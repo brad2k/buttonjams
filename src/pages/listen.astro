@@ -1,0 +1,332 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/Section.astro";
+import Heading from "../components/Heading.astro";
+import PlayIcon from "../components/svg/Play.astro";
+import RewindIcon from "../components/svg/Rewind.astro";
+import PauseIcon from "../components/svg/Pause.astro";
+import PlayingIcon from "../components/svg/Playing.astro";
+import MusicIcon from "../components/svg/Music.astro";
+
+interface SongProps {
+  id: string;
+  src?: string;
+  filename: string;
+  name: string;
+  description: string;
+}
+
+const songs: SongProps[] = [
+  {
+    id: "albinoni",
+    src: (await import(`../assets/audio/albinoni-concerto.mp3`)).default,
+    filename: "albinoni-concerto.mp3",
+    name: "Albinoni - Adagio in G minor",
+    description:
+      "Excerpt from Adadio in G minor. Lorem ipsum dolor sit amet, consectetur.",
+  },
+  {
+    id: "sheherazade",
+    src: (await import(`../assets/audio/sheherazade.mp3`)).default,
+    filename: "sheherazade.mp3",
+    name: "Sheherazade - Excerpt from Symphony No. 1",
+    description:
+      "Excerpt from Symphony No. 1. Lorem ipsum dolor sit amet, consectetur.",
+  },
+  {
+    id: "tombeau",
+    src: (await import(`../assets/audio/tombeau.m4a`)).default,
+    filename: "tombeau.m4a",
+    name: "Ravel - Le Tombeau de Couperin",
+    description: "For Lili Boulanger. Lorem ipsum dolor sit amet, consectetur.",
+  },
+  {
+    id: "alwyn",
+    src: (await import(`../assets/audio/alwyn.m4a`)).default,
+    filename: "alwyn.m4a",
+    name: "Alwyn - Excerpt from Symphony No. 5.",
+    description:
+      "Excerpt from Symphony No. 5. Lorem ipsum dolor sit amet, consectetur.",
+  },
+  {
+    id: "magnificat",
+    src: (await import(`../assets/audio/magnificat.m4a`)).default,
+    filename: "magnificat.m4a",
+    name: "Bach - Magnificat",
+    description:
+      "Excerpt from Magnificat. Lorem ipsum dolor sit amet, consectetur.",
+  },
+  {
+    id: "stravinsky",
+    src: (await import(`../assets/audio/stravinsky.mp3`)).default,
+    filename: "stravinsky.mp3",
+    name: "Stravinsky - The Firebird",
+    description:
+      "Excerpt from The Firebird. Lorem ipsum dolor sit amet, consectetur.",
+  },
+];
+---
+
+<Layout>
+  <main>
+    <Section className="wrapper flow">
+      <Heading level={2} emphasis>Audio excerpts</Heading>
+
+      <div class="audio-player">
+        <ul class="playlist">
+          {
+            songs.map((song) => {
+              return (
+                <li>
+                  <button
+                    data-id={song.id}
+                    class="audio-control"
+                    aria-label={`Play ${song.name}`}
+                  >
+                    <PlayingIcon />
+                    <PlayIcon />
+                    {song.name}
+                  </button>
+                  <audio
+                    src={song.src}
+                    data-id={song.id}
+                    data-name={song.name}
+                    data-description={song.description}
+                  />
+                </li>
+              );
+            })
+          }
+        </ul>
+
+        <div class="song-deck standby">
+          <div class="placeholder"><MusicIcon /><p>Select a song</p></div>
+          <div class="song-info">
+            <strong class="now-playing">Now playing</strong>
+            <Heading level={3} className="song-title" />
+            <p class="song-description"></p>
+          </div>
+
+          <aside class="audio-controls" aria-label="Audio controls">
+            <button class="audio-control play-button" aria-label="Play">
+              <PlayIcon />
+            </button>
+            <button class="audio-control pause-button" aria-label="Pause">
+              <PauseIcon />
+            </button>
+            <button class="audio-control rewind-button" aria-label="Rewind">
+              <RewindIcon />
+            </button>
+          </aside>
+        </div>
+      </div>
+    </Section>
+  </main>
+</Layout>
+
+<style>
+  .audio-player {
+    background-color: var(--color-light-shade);
+    padding: var(--space-m);
+    border-radius: var(--radius-m);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: var(--space-l);
+    font-size: var(--size-step-0);
+  }
+
+  .playlist {
+    .icon {
+      height: 0.75rem;
+      width: 0.75rem;
+      margin-inline-end: var(--space-xs);
+    }
+
+    .audio-control {
+      display: block;
+      padding-block: var(--space-xs);
+    }
+
+    .icon--playing {
+      display: none;
+    }
+
+    [aria-current="true"] {
+      .icon--play {
+        display: none;
+      }
+
+      .icon--playing {
+        display: inline-block;
+      }
+    }
+  }
+
+  .song-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    margin-block-end: var(--space-s);
+
+    .standby & {
+      display: none;
+    }
+  }
+
+  .audio-controls {
+    display: flex;
+    gap: var(--space-m);
+    justify-content: center;
+    background-color: oklch(0.8546 0.0054 106.51);
+    border-radius: var(--radius-m);
+    padding: var(--space-xs);
+
+    .standby & {
+      display: none;
+    }
+
+    .audio-control {
+      display: none;
+
+      &:not([aria-pressed="true"]) {
+        display: block;
+      }
+    }
+
+    .icon {
+      display: block;
+      height: 2rem;
+      width: 2rem;
+
+      &:not(.icon--rewind) {
+        fill: #000;
+      }
+    }
+  }
+
+  .song-deck {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: oklch(0.7507 0.0054 106.51);
+    border-radius: var(--radius-m);
+    padding: var(--space-m);
+
+    &.standby {
+      justify-content: center;
+    }
+  }
+
+  .placeholder {
+    text-align: center;
+  }
+
+  .song-title {
+    font-size: var(--size-step-01);
+  }
+
+  .song-description {
+    font-size: var(--size-step-00);
+  }
+
+  .now-playing {
+    text-transform: uppercase;
+    font-size: var(--size-step-000);
+    font-weight: 400;
+  }
+</style>
+
+<script>
+  const playlist = document.querySelector(".playlist");
+  const rewindButton = document.querySelector(".rewind-button");
+  const playButton = document.querySelector(".play-button");
+  const pauseButton = document.querySelector(".pause-button");
+  const songDeck = document.querySelector(".song-deck");
+  const songTitle = document.querySelector(".song-title");
+  const songDescription = document.querySelector(".song-description");
+  const placeholder = document.querySelector(".placeholder");
+
+  let currentAudioFile: HTMLAudioElement | null;
+
+  function playSong(id: string) {
+    const audioFile = playlist?.querySelector(
+      `audio[data-id="${id}"]`
+    ) as HTMLAudioElement;
+
+    if (!audioFile) return;
+
+    audioFile.currentTime = 0;
+    audioFile.play();
+    currentAudioFile = audioFile;
+
+    // Update the displayed song data
+    pauseButton?.setAttribute("aria-pressed", "false");
+    playButton?.setAttribute("aria-pressed", "true");
+
+    songTitle!.textContent = audioFile.dataset.name || "";
+    songDescription!.textContent = audioFile.dataset.description || "";
+    placeholder?.remove();
+  }
+
+  function rewindPlayback() {
+    if (currentAudioFile) {
+      currentAudioFile.currentTime = 0;
+    }
+
+    pauseButton?.setAttribute("aria-pressed", "false");
+    playButton?.setAttribute("aria-pressed", "true");
+  }
+
+  function pausePlayback() {
+    if (currentAudioFile) {
+      currentAudioFile.pause();
+    }
+
+    pauseButton?.setAttribute("aria-pressed", "true");
+    playButton?.setAttribute("aria-pressed", "false");
+  }
+
+  function resumePlayback() {
+    if (currentAudioFile) {
+      currentAudioFile.play();
+    }
+
+    pauseButton?.setAttribute("aria-pressed", "false");
+    playButton?.setAttribute("aria-pressed", "true");
+  }
+
+  function updatePlaylist(requested?: HTMLButtonElement) {
+    // Find and deactivate the currently active song
+    const activeSong = playlist?.querySelector("[aria-current]");
+
+    if (activeSong) {
+      activeSong.removeAttribute("aria-current");
+    }
+
+    // Activate the requested song
+    if (requested) {
+      requested.setAttribute("aria-current", "true");
+    }
+  }
+
+  // Event listeners
+
+  playlist?.addEventListener("click", (e) => {
+    const newSong = e.target as HTMLButtonElement;
+    if (!newSong) return;
+
+    pausePlayback();
+    updatePlaylist(newSong);
+
+    songDeck?.classList.remove("standby");
+
+    const songId = newSong.dataset.id?.toLowerCase();
+    if (songId) {
+      playSong(songId);
+    }
+  });
+
+  pauseButton?.addEventListener("click", pausePlayback);
+  rewindButton?.addEventListener("click", rewindPlayback);
+  playButton?.addEventListener("click", resumePlayback);
+</script>

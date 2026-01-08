@@ -1,0 +1,71 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/Section.astro";
+import Heading from "../components/Heading.astro";
+import Event from "../components/Event.astro";
+---
+
+<Layout>
+  <main>
+    <Section className="wrapper prose event-grid">
+      <Heading level={2} emphasis>Special events</Heading>
+
+      <p>
+        I perform regularly with the San Francisco Symphony in my role as
+        Associate Principal Oboe, but I occasionally give masterclasses, join in
+        recitals, and play with other orchestras.
+      </p>
+
+      <ul class="event-list grid">
+        <Event
+          category="Masterclass"
+          title="Oboe Masterclass"
+          dateTime={new Date("Feb 1 2026 1:00")}
+          link="https://www.srsymphony.org/event/srsyomar2026/"
+          location="University of Madison, Madison, WI"
+        >
+          Join me as I teach oboe things to the good people of Madison.
+        </Event>
+
+        <Event
+          category="Performance"
+          title="San Francisco Symphony"
+          dateTime={new Date("March 14, 2026 07:30")}
+          link="https://www.mondaviarts.org/whats-on/sf-symphony-26/"
+          location="Mondavi Center, UC Davis, Davis, CA"
+        >
+          The SFS will travel to UC Davis for one night to perform Dvořák’s
+          Cello Concerto and Brahms’s Second Symphony, featuring Italian
+          conductor Daniele Rustioni alongside German cellist Daniel
+          Müller-Schott.
+        </Event>
+
+        <Event
+          category="Performance"
+          title="Santa Rosa Symphony Youth Orchestra"
+          dateTime={new Date("Mar 1, 2026 03:00")}
+          link="https://www.srsymphony.org/event/srsyomar2026/"
+          location="Green Music Center, Rohnert Park, CA"
+        >
+          I'll be playing a BLAH BLAh concerto with the Santa Rosa Symphony
+          Youth Orchestra.
+        </Event>
+      </ul>
+    </Section>
+  </main>
+</Layout>
+
+<style>
+  .event-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-l);
+  }
+
+  .event-list {
+    --grid-placement: auto-fit;
+
+    font-size: var(--size-step-00);
+    text-align: center;
+  }
+</style>

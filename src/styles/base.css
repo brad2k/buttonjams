@@ -1,0 +1,649 @@
+/* https://demo-base-styles.netlify.app/css/global.css */
+
+:root {
+  --bg-gradient: radial-gradient(
+    in oklch circle,
+    var(--color-light) 0%,
+    var(--color-light-shade) 100%
+  );
+
+  --color-light: oklch(95% 0.005 106.5); /* #eeeeea */
+  --color-light-shade: oklch(89.947% 0.00539 106.51); /* #dededa */
+
+  --color-dark: oklch(28.518% 0.00564 271.22); /* #292a2d */
+  --accent-blue: oklch(0.7774 0.0296 244.63); /* #93a5b4 */
+
+  --text-decoration-color: var(--accent-blue);
+
+  --color-mid: #aba9a2;
+
+  /* --color-light-shade: #e4e4de;
+  --color-light-glare: #ffffff; */
+
+  --leading-fine: 1.2;
+  --leading-standard: 1.4;
+  --leading-loose: 1.7;
+  --space-xs: clamp(0.4375rem, 0.41rem + 0.11vw, 0.5rem);
+  --space-s: clamp(0.875rem, 0.83rem + 0.22vw, 1rem);
+  --space-m: clamp(1.3125rem, 1.24rem + 0.33vw, 1.5rem);
+  --space-l: clamp(2.1875rem, 2.07rem + 0.56vw, 2.5rem);
+  --space-xl: clamp(3.0625rem, 2.9rem + 0.78vw, 3.5rem);
+  --space-2xl: clamp(3.5rem, 3.32rem + 0.89vw, 4rem);
+  --space-3xl: clamp(4.375rem, 4.15rem + 1.11vw, 5rem);
+  --space-4xl: clamp(6.5625rem, 6.22rem + 1.67vw, 7.5rem);
+  --space-5xl: clamp(8.75rem, 8.29rem + 2.22vw, 10rem);
+  --size-step-000: clamp(0.740625rem, 0.73rem + 0.07vw, 0.78125rem);
+  --size-step-00: clamp(0.833125rem, 0.79rem + 0.19vw, 0.9375rem);
+  --size-step-0: clamp(0.9375rem, 0.87rem + 0.33vw, 1.125rem);
+  --size-step-1: clamp(1.055rem, 0.95rem + 0.52vw, 1.35rem);
+  --size-step-2: clamp(1.18625rem, 1.03rem + 0.77vw, 1.62rem);
+  --size-step-3: clamp(1.335rem, 1.11rem + 1.08vw, 1.94375rem);
+  --size-step-4: clamp(1.501875rem, 1.2rem + 1.48vw, 2.3325rem);
+  --size-step-5: clamp(1.689375rem, 1.28rem + 1.97vw, 2.799375rem);
+  --size-step-6: clamp(1.900625rem, 1.37rem + 2.59vw, 3.359375rem);
+  --size-step-7: clamp(2.138125rem, 1.44rem + 3.37vw, 4.03125rem);
+  --size-step-8: clamp(2.405625rem, 1.51rem + 4.32vw, 4.8375rem);
+  --size-step-9: clamp(2.70625rem, 1.57rem + 5.51vw, 5.805rem);
+  --size-step-10: clamp(3.044375rem, 1.61rem + 6.97vw, 6.965625rem);
+
+  --font-base: var(--font-Montserrat), Segoe UI, Roboto, Helvetica Neue, Arial,
+    sans-serif;
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-bold: 700;
+  --font-black: 900;
+  --gutter: var(--space-l);
+  --transition-base: 250ms ease;
+  --transition-movement: 200ms linear;
+  --transition-fade: 300ms ease;
+  --transition-bounce: 500ms cubic-bezier(0.5, 0.05, 0.2, 1.5);
+
+  --radius-s: 0.2rem;
+  --radius-m: 0.75rem;
+  --radius-l: 2.5rem;
+  --radius-s-m: clamp(var(--radius), 2vw, var(--radius-m));
+}
+
+/*
+  Global styles
+
+  Low-specificity, global styles that apply to the whole
+  project: https://cube.fyi/css.html
+*/
+
+body {
+  background: var(--bg-gradient);
+  color: var(--color-dark);
+  font-size: var(--size-step-1);
+  font-family: var(--font-base);
+  line-height: var(--leading-standard);
+  font-size-adjust: from-font;
+  margin: 0;
+  /* scroll-margin-top: 0; */
+}
+
+:is(h1, h2, h3, h4) {
+  line-height: var(--leading-fine);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--size-step-6);
+  max-width: 20ch;
+}
+
+h2 {
+  font-size: var(--size-step-5);
+  max-width: 35ch;
+}
+
+h3 {
+  font-size: var(--size-step-4);
+  max-width: 35ch;
+}
+
+:is(h4, h5, h6) {
+  font-size: var(--size-step-3);
+}
+
+small {
+  font-size: var(--size-step-0);
+}
+
+q {
+  font-style: italic;
+}
+
+/* Position sub and sup with transform so it doesn't affect leading */
+
+sub,
+sup {
+  font-size: var(--size-step-00);
+  vertical-align: baseline;
+  display: inline-block;
+}
+
+sub {
+  transform: translateY(0.65ex);
+}
+
+sup {
+  transform: translateY(-0.7ex);
+}
+
+/* Lists */
+
+:is(ol, ul) {
+  margin-block-end: 0;
+}
+
+ul {
+  padding-inline-start: 1.8ch;
+  list-style-type: disc;
+}
+
+ul:not([class]) > li {
+  padding-inline-start: var(--space-xs);
+}
+
+ul ::marker {
+  font-size: 0.8lh;
+}
+
+ol {
+  padding-inline-start: 2ch;
+}
+
+ol ::marker {
+  font-size: 1em;
+  font-weight: var(--font-bold);
+}
+
+/* Lists with classes and roles will be out of standard flow, so remove the default spacing and style */
+
+ol[class],
+ul[class],
+[role="tablist"] {
+  margin-block: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Description lists */
+
+dt {
+  font-weight: var(--font-medium);
+}
+
+dt + dd {
+  margin-block-start: var(--space-xs);
+}
+
+dd + dt {
+  margin-block-start: var(--space-s);
+}
+
+dd {
+  margin-inline-start: 1.5ch;
+}
+
+/* Blockquotes */
+
+blockquote {
+  margin-inline: 0;
+}
+
+blockquote footer {
+  margin-block-start: var(--space-s);
+  font-size: var(--size-step-0);
+  color: var(--color-primary);
+}
+
+blockquote q {
+  font-style: normal;
+}
+
+/* Address */
+
+address {
+  font-style: normal;
+}
+
+/* Media */
+
+:is(video, iframe[src*="youtube"], iframe[src*="vimeo"]) {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
+}
+
+figure {
+  margin-inline: 0;
+}
+
+figcaption {
+  padding-block-start: 0.5em;
+  font-size: var(--size-step-0);
+  font-family: var(--font-mono);
+}
+
+/* Interactive */
+
+a:not([class]):hover {
+  text-underline-offset: 0.2lh;
+}
+
+:is(h1, h2, h3, h4) a:not([class]) {
+  text-decoration-thickness: 0.1ex;
+  text-underline-offset: 0.2ex;
+}
+
+:is(h1, h2, h3, h4) a:not([class]):hover {
+  text-underline-offset: 0.3ex;
+}
+
+abbr {
+  cursor: help;
+  text-underline-offset: 0.2ex;
+}
+
+/* Favour focus-visible over focus so click events don't trigger focus styles */
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-color, currentColor);
+  outline-offset: var(--focus-offset, 0.2lh);
+}
+
+/* Firefox is the only browser that doesn't outline the whole element unless you
+   make it display: inline-block. That in itself causes multiple flow issues so
+   we can detect it, using its own vendor prefix and reduce focus offset
+*/
+
+@supports (-moz-appearance: none) {
+  :root {
+    --focus-offset: 0.08em;
+  }
+}
+
+::selection {
+  color: var(--color-light);
+  background: var(--color-dark);
+}
+
+/* Horizontal rule*/
+
+hr {
+  border: none;
+  border-block-start: var(--stroke-solid-thick);
+  margin-block: var(--flow-space, var(--space-xl));
+}
+
+/* Scale icons within container*/
+
+svg:not([class]) {
+  width: auto;
+  height: 1lh;
+}
+
+/* Don't let SVGs shrink in flex contexts where there's less space */
+
+svg {
+  flex-shrink: 0;
+}
+
+/* Details and summary */
+
+summary {
+  font-weight: var(--font-bold);
+  cursor: default;
+}
+
+details[open] summary {
+  margin-block-end: var(--space-s);
+}
+
+.button {
+  --button-bg: var(--color-primary);
+  --button-text: currentColor;
+  --button-x-padding: 2em;
+  --button-y-padding: 1.1em;
+  --focus-color: var(--color-primary);
+
+  line-height: var(--leading-flat);
+  position: relative;
+  cursor: pointer;
+  background: var(--button-bg);
+  border: 1px solid currentColor;
+  color: currentColor;
+  padding: var(--button-y-padding) var(--button-x-padding);
+  text-transform: uppercase;
+  letter-spacing: var(--uppercase-kerning);
+  text-decoration: none;
+  font-size: var(--size-step-00);
+  font-weight: var(--font-bold);
+}
+
+/* the most developer hover state I could think of https://www.figma.com/file/xTUEEo1a4WsB5qBtBk3XOC/Sketch-up?type=whiteboard&node-id=67-80&t=B5RVDQOZR2vxNLYs-4 */
+
+.button:hover {
+  filter: brightness(90%);
+}
+
+.button:active {
+  transform: scale(99%);
+}
+
+/* Prose */
+
+.prose {
+  --flow-space: var(--space-l);
+}
+
+.prose h1 {
+  max-width: 20ch;
+}
+
+.prose :is(h1, h2, h3) {
+  /* Allow words to break by default. Great for small viewports */
+  overflow-wrap: anywhere;
+}
+
+.prose h2 {
+  max-width: 30ch;
+}
+
+.prose h3 {
+  max-width: 40ch;
+}
+
+/* Increase legibility by limiting line lengths */
+
+.prose :is(p, li, dl, figcaption, blockquote) {
+  max-width: 70ch;
+  text-wrap: pretty;
+}
+
+/* Heading flow for elements that follow them */
+
+.prose :is(h1, h2, h3, h4) + *:not([class]) {
+  --flow-space: var(--space-m);
+}
+
+/* Add more space on and around figures and tables */
+
+.prose :is(figure, table),
+.prose :is(figure, table) + * {
+  --flow-space: var(--space-2xl);
+}
+
+/* Add more space to headings on block start */
+
+.prose * + :is(h1, h2, h3, h4):not([class]) {
+  --flow-space: var(--space-xl);
+}
+
+/* Flow for list items */
+
+.prose :is(ul, ol):not([class]) li + li,
+.prose :is(ul, ol):not([class]) li > :is(ol, ul) {
+  margin-block-start: var(--space-xs);
+}
+
+/* Add a subtle stroke to media in case the background blends with the prose container */
+
+.prose :is(img, picture, video, svg[width][height]) {
+  border: var(--stroke-solid);
+}
+
+/* Add lots of space for horizontal rules */
+
+hr {
+  --flow-space: var(--space-2xl);
+}
+
+/* Undo the breaking of words rule because we don't need it on larger viewports */
+
+@media (min-width: 760px) {
+  .prose :is(h1, h2, h3) {
+    overflow-wrap: unset;
+  }
+}
+
+/*
+CLUSTER
+More info: https://every-layout.dev/layouts/cluster/
+A layout that lets you distribute items with consitent
+spacing, regardless of their size
+
+CUSTOM PROPERTIES AND CONFIGURATION
+--gutter (var(--space-m)): This defines the space
+between each item.
+
+--cluster-horizontal-alignment (flex-start) How items should align
+horizontally. Can be any acceptable flexbox aligmnent value.
+
+--cluster-vertical-alignment How items should align vertically.
+Can be any acceptable flexbox alignment value.
+*/
+
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gutter, var(--space-m));
+  justify-content: var(--cluster-horizontal-alignment, flex-start);
+  align-items: var(--cluster-vertical-alignment, center);
+}
+
+/* 
+FLOW COMPOSITION 
+Like the Every Layout stack: https://every-layout.dev/layouts/stack/
+Info about this implementation: https://piccalil.li/quick-tip/flow-utility/ 
+*/
+
+.flow > * + * {
+  margin-top: var(--flow-space, 1em);
+}
+
+/* AUTO GRID
+Related Every Layout: https://every-layout.dev/layouts/grid/
+More info on the flexible nature: https://piccalil.li/tutorial/create-a-responsive-grid-layout-with-no-media-queries-using-css-grid/
+A flexible layout that will create an auto-fill grid with
+configurable grid item sizes
+
+CUSTOM PROPERTIES AND CONFIGURATION
+--gutter (var(--space-m)): This defines the space
+between each item.
+
+--grid-min-item-size (14rem): How large each item should be
+ideally, as a minimum.
+
+--grid-placement (auto-fill): Set either auto-fit or auto-fill
+to change how empty grid tracks are handled */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(
+    var(--grid-placement, auto-fill),
+    minmax(var(--grid-min-item-size, 16rem), 1fr)
+  );
+  gap: var(--gutter, var(--space-l));
+}
+
+/* A split 50/50 layout */
+
+.grid[data-layout="50-50"] {
+  --grid-placement: auto-fit;
+  --grid-min-item-size: clamp(16rem, 50vw, 33rem);
+}
+
+/* Three column grid layout */
+
+.grid[data-layout="thirds"] {
+  --grid-placement: auto-fit;
+  --grid-min-item-size: clamp(16rem, 33%, 20rem);
+}
+
+/* Twelve column grid layout */
+
+.grid[data-layout="twelfths"] {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+/*
+SWITCHER
+More info: https://every-layout.dev/layouts/switcher/
+A layout that allows you to lay **2** items next to each other
+until there is not enough horizontal space to allow that.
+
+CUSTOM PROPERTIES AND CONFIGURATION
+--gutter (var(--space-size-1)): This defines the space
+between each item
+
+--switcher-target-container-width (40rem): How large the container
+needs to be to allow items to sit inline with each other
+
+--switcher-vertical-alignment How items should align vertically.
+Can be any acceptable flexbox alignment value.
+*/
+
+.switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gutter, var(--space-l));
+  align-items: var(--switcher-vertical-alignment, flex-start);
+}
+
+.switcher > * {
+  flex-grow: 1;
+  flex-basis: calc(
+    (var(--switcher-target-container-width, 40rem) - 100%) * 999
+  );
+}
+
+/* Max 2 items,
+so anything greater than 2 is ful width */
+
+.switcher > :nth-child(n + 3) {
+  flex-basis: 100%;
+}
+
+/*
+WRAPPER COMPOSITION 
+A common wrapper/container
+*/
+
+.wrapper {
+  margin-inline: auto;
+  max-width: clamp(16rem, var(--wrapper-max-width, 100vw), 80rem);
+  padding-inline: var(--gutter);
+  position: relative;
+}
+
+/* 
+REGION UTILITY
+Consistent block padding for page sections
+*/
+
+.region {
+  padding-block: var(--region-space, var(--space-xl-2xl));
+}
+
+/* 
+VISUALLY HIDDEN UTILITY
+Info: https://piccalil.li/quick-tip/visually-hidden/ 
+*/
+
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 0;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.mb-xl {
+  margin-bottom: clamp(3.0625rem, 2.9rem + 0.78vw, 3.5rem);
+}
+
+.mt-xs {
+  margin-top: clamp(0.4375rem, 0.41rem + 0.11vw, 0.5rem);
+}
+
+.block {
+  display: block;
+}
+
+.inline {
+  display: inline;
+}
+
+.hidden {
+  display: none;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-baseline {
+  align-items: baseline;
+}
+
+.bg-mid {
+  background-color: #aba9a2;
+}
+
+.p-m {
+  padding: clamp(1.3125rem, 1.24rem + 0.33vw, 1.5rem);
+}
+
+.py-m {
+  padding-top: clamp(1.3125rem, 1.24rem + 0.33vw, 1.5rem);
+  padding-bottom: clamp(1.3125rem, 1.24rem + 0.33vw, 1.5rem);
+}
+
+.pr-m {
+  padding-right: clamp(1.3125rem, 1.24rem + 0.33vw, 1.5rem);
+}
+
+.pt-l {
+  padding-top: clamp(2.1875rem, 2.07rem + 0.56vw, 2.5rem);
+}
+
+.text-step-1 {
+  font-size: clamp(1.055rem, 0.95rem + 0.52vw, 1.35rem);
+}
+
+.text-step-4 {
+  font-size: clamp(1.501875rem, 1.2rem + 1.48vw, 2.3325rem);
+}
+
+.leading-\[1\] {
+  line-height: 1;
+}
+
+.gutter-xs {
+  --gutter: clamp(0.4375rem, 0.41rem + 0.11vw, 0.5rem);
+}

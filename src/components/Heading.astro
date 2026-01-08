@@ -1,0 +1,28 @@
+---
+import type { ACTION_ERROR_CODES } from "astro:actions";
+
+interface Props {
+  className?: string;
+  level?: 2 | 3 | 4 | 5 | 6;
+  emphasis?: boolean;
+}
+
+const { className, level = 2, emphasis = false, ...rest } = Astro.props;
+
+const Tag = `h${level}`;
+---
+
+<Tag class:list={[className, { emphasis }]} {...rest}><slot /></Tag>
+
+<style>
+  .emphasis {
+    text-transform: uppercase;
+  }
+
+  /* TODO: not currently used */
+  .underline {
+    text-decoration: underline;
+    text-underline-offset: 0.625rem;
+    text-decoration-color: var(--text-decoration-color);
+  }
+</style>

@@ -1,0 +1,116 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/Section.astro";
+import Heading from "../components/Heading.astro";
+import InstagramLogo from "../components/svg/Instagram.astro";
+---
+
+<Layout>
+  <main>
+    <Section className="wrapper flow prose">
+      <Heading level={2} emphasis>Get in touch</Heading>
+
+      <div class="contact-options grid">
+        <div>
+          <h3 class="visually-hidden">Send me a message</h3>
+          <form
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            data-netlify-recaptcha="true"
+          >
+            <input
+              type="hidden"
+              name="subject"
+              data-remove-prefix
+              value="Inquiry from jamesbutton.com"
+            />
+            <div class="contact-form">
+              <p>
+                <label>
+                  <span class="form-label-text">Your Name:</span>
+                  <input type="text" name="name" class="contact-field" /></label
+                >
+              </p>
+              <p>
+                <label>
+                  <span class="form-label-text">Your Email:</span>
+                  <input
+                    type="email"
+                    name="email"
+                    class="contact-field"
+                  /></label
+                >
+              </p>
+              <p>
+                <label>
+                  <span class="form-label-text">Message:</span>
+                  <textarea name="message" class="contact-field"></textarea>
+                </label>
+              </p>
+              <div data-netlify-recaptcha="true"></div>
+              <p>
+                <button type="submit" class="button">Send</button>
+              </p>
+            </div>
+          </form>
+        </div>
+
+        <div class="contact--instagram flow">
+          <h3 class="contact--instagram-heading">Find me on Instagram</h3>
+          <a
+            href="https://www.instagram.com/buttonjamss/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact--instagram-link"
+          >
+            <InstagramLogo />
+            <span>@buttonjamss</span>
+          </a>
+        </div>
+      </div>
+    </Section>
+  </main>
+</Layout>
+
+<style>
+  .contact-form {
+    display: grid;
+    gap: var(--space-s);
+    font-size: var(--size-step-0);
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .contact-field {
+    padding: 0.75rem;
+    width: 100%;
+  }
+
+  .contact-options {
+    --grid-placement: auto-fit;
+  }
+
+  .form-label-text {
+    margin-block-end: 0.5rem;
+    display: block;
+  }
+
+  .contact--instagram {
+    --flow-space: var(--space-s);
+
+    font-size: var(--size-step-0);
+  }
+
+  .contact--instagram-heading {
+    font-size: var(--size-step-1);
+  }
+
+  .contact--instagram-link {
+    text-decoration: none;
+    display: block;
+    color: var(--color-dark);
+  }
+</style>

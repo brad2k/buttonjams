@@ -1,0 +1,108 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <main class="wrapper">
+    <h1>James Button Design System</h1>
+    <section>
+      <header>
+        <h2>Type</h2>
+
+        <div class="steps">
+          <h3>Steps</h3>
+
+          <p style="--fontSize: var(--size-step-1);">Step 1</p>
+          <p style="--fontSize: var(--size-step-2);">Step 2</p>
+          <p style="--fontSize: var(--size-step-3);">Step 3</p>
+          <p style="--fontSize: var(--size-step-4);">Step 4</p>
+          <p style="--fontSize: var(--size-step-5);">Step 5</p>
+          <p style="--fontSize: var(--size-step-6);">Step 6</p>
+        </div>
+
+        <div class="prose">
+          <p>
+            James Button was appointed Associate Principal Oboe of the San
+            Francisco Symphony in September 2017. A native of Australia, he made
+            his solo debut with the Melbourne Symphony at the age of 17. He
+            later attended Temple University and the Juilliard School under the
+            tutelage of Jonathan Blumenfeld and Eugene Izotov respectively. He
+            has also studied with John Mack, John de Lancie, and Joseph Turner.
+          </p>
+          <p class="font-montserrat">
+            James Button was appointed Associate Principal Oboe of the San
+            Francisco Symphony in September 2017. A native of Australia, he made
+            his solo debut with the Melbourne Symphony at the age of 17. He
+            later attended Temple University and the Juilliard School under the
+            tutelage of Jonathan Blumenfeld and Eugene Izotov respectively. He
+            has also studied with John Mack, John de Lancie, and Joseph Turner.
+          </p>
+
+          <p class="font-figtree">
+            James Button was appointed Associate Principal Oboe of the San
+            Francisco Symphony in September 2017. A native of Australia, he made
+            his solo debut with the Melbourne Symphony at the age of 17. He
+            later attended Temple University and the Juilliard School under the
+            tutelage of Jonathan Blumenfeld and Eugene Izotov respectively. He
+            has also studied with John Mack, John de Lancie, and Joseph Turner.
+          </p>
+
+          <p class="font-jakarta">
+            James Button was appointed Associate Principal Oboe of the San
+            Francisco Symphony in September 2017. A native of Australia, he made
+            his solo debut with the Melbourne Symphony at the age of 17. He
+            later attended Temple University and the Juilliard School under the
+            tutelage of Jonathan Blumenfeld and Eugene Izotov respectively. He
+            has also studied with John Mack, John de Lancie, and Joseph Turner.
+          </p>
+
+          <p class="font-dm">
+            James Button was appointed Associate Principal Oboe of the San
+            Francisco Symphony in September 2017. A native of Australia, he made
+            his solo debut with the Melbourne Symphony at the age of 17. He
+            later attended Temple University and the Juilliard School under the
+            tutelage of Jonathan Blumenfeld and Eugene Izotov respectively. He
+            has also studied with John Mack, John de Lancie, and Joseph Turner.
+          </p>
+
+          <p class="font-poppins">
+            James Button was appointed Associate Principal Oboe of the San
+            Francisco Symphony in September 2017. A native of Australia, he made
+            his solo debut with the Melbourne Symphony at the age of 17. He
+            later attended Temple University and the Juilliard School under the
+            tutelage of Jonathan Blumenfeld and Eugene Izotov respectively. He
+            has also studied with John Mack, John de Lancie, and Joseph Turner.
+          </p>
+        </div>
+      </header>
+    </section>
+
+    <section>
+      <header>
+        <h2>Colors</h2>
+        <div class="swatches">
+          <div class="swatch" style="--swatchBg: #2A6F97;"></div>
+          <div class="swatch" style="--swatchBg: #F7F3EE;"></div>
+          <div class="swatch" style="--swatchBg: #8FBC8F;"></div>
+          <div class="swatch" style="--swatchBg: #333333;"></div>
+        </div>
+      </header>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .steps p {
+    font-size: var(--fontSize);
+  }
+
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-rows: 100px;
+  }
+
+  .swatch {
+    background-color: var(--swatchBg);
+  }
+</style>

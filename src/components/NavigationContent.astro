@@ -1,0 +1,84 @@
+---
+import { Image } from "astro:assets";
+import instagramLogo from "../assets/instagram.svg";
+
+interface Props {
+  layout?: "mobile" | "desktop";
+}
+
+const { layout = "desktop" } = Astro.props;
+---
+
+<ul
+  class:list={[
+    "header-menu",
+    layout === "mobile" ? "header-menu--mobile" : "header-menu--desktop",
+  ]}
+>
+  <li><a href="/about">About</a></li>
+  <li><a href="/audition-coaching">Audition coaching</a></li>
+  <li><a href="/listen">Listen</a></li>
+  <li><a href="/events">Events</a></li>
+  <li><a href="/contact">Contact</a></li>
+  <li>
+    <a
+      href="https://www.instagram.com/buttonjamss/"
+      target="_blank"
+      rel="noopener noreferrer"
+      ><Image
+        src={instagramLogo}
+        alt="Instagram logo"
+        role="img"
+        height={22}
+        width={22}
+      /></a
+    >
+  </li>
+</ul>
+
+<style>
+  .header-menu {
+    display: flex;
+    list-style: none;
+    font-size: var(--size-step-0);
+    color: #000;
+
+    a {
+      text-decoration: none;
+      text-decoration-color: transparent;
+      text-underline-offset: 0.2em;
+      transition:
+        text-decoration-color 0.3s,
+        text-underline-offset 0.3s ease-in-out; /* Transition for the offset */
+
+      &:hover {
+        text-decoration: underline;
+        text-decoration-color: oklch(from currentColor l c h / 0.5);
+        text-underline-offset: 0.3em; /* Initial offset */
+      }
+    }
+  }
+
+  .header-menu--desktop {
+    gap: var(--space-l);
+  }
+
+  .header-menu--mobile {
+    flex-direction: column;
+    padding-inline: var(--space-m);
+    margin-block-start: calc(
+      var(--headerPadding) + var(--space-m) + var(--space-m)
+    );
+
+    a {
+      display: block;
+      padding: var(--space-s);
+
+      &:hover,
+      &:focus {
+        /* background-color: oklch(from currentColor l c h / 0.3); */
+        background-color: var(--color-light-shade);
+      }
+    }
+  }
+</style>

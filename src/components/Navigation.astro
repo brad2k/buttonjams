@@ -1,0 +1,243 @@
+---
+import NavigationContent from "../components/NavigationContent.astro";
+---
+
+<script>
+  const navToggle = document.querySelector(
+    '[aria-controls="mobile-nav"]'
+  ) as HTMLButtonElement;
+
+  if (navToggle) {
+    navToggle.addEventListener("click", () => {
+      const isOpen = navToggle.getAttribute("aria-expanded") === "true";
+
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+
+      function closeMenu() {
+        navToggle.setAttribute("aria-expanded", "false");
+      }
+
+      function openMenu() {
+        navToggle.setAttribute("aria-expanded", "true");
+      }
+    });
+  }
+</script>
+
+<header class="header">
+  <div class="wrapper header-wrapper">
+    <a href="/" class="header-logo">
+      <span class="first-name">James</span>
+      <span class="last-name">Button</span>
+      <span class="oboe-title">Oboist</span>
+    </a>
+
+    <button
+      class="menu-button"
+      aria-label="Toggle menu"
+      aria-controls="mobile-nav"
+      aria-expanded="false"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="1.25rem"
+        height="1.25rem"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="menu-icon menu-icon--open"
+      >
+        <line x1="3" y1="5" x2="21" y2="5" class="menu-icon--top-bar"></line>
+        <line x1="3" y1="12" x2="21" y2="12" class="menu-icon--middle-bar"
+        ></line>
+        <line x1="3" y1="19" x2="21" y2="19" class="menu-icon--bottom-bar"
+        ></line>
+      </svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="1.25rem"
+        height="1.25rem"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="menu-icon menu-icon--close"
+        ><line x1="5" y1="5" x2="19" y2="19"></line><line
+          x1="3"
+          y1="12"
+          x2="21"
+          y2="12"
+          style="opacity: 0;"></line><line x1="5" y1="19" x2="19" y2="5"></line>
+      </svg>
+    </button>
+
+    <nav id="mobile-nav"><NavigationContent layout="mobile" /></nav>
+    <nav id="desktop-nav"><NavigationContent /></nav>
+  </div>
+</header>
+
+<style>
+  /* Default (mobile) values */
+  :root {
+    --headerPadding: var(--space-s);
+  }
+
+  /* Desktop values */
+  @media (min-width: 55rem) {
+    :root {
+      --headerPadding: var(--space-m);
+    }
+  }
+
+  .header {
+    width: 100%;
+  }
+
+  .header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    place-items: flex-start;
+    padding: var(--headerPadding);
+  }
+
+  .header-logo {
+    font-family: var(--font-Playfair);
+    font-size: var(--size-step-4);
+    text-decoration: none;
+    color: var(--color-dark);
+    line-height: 1;
+    word-break: normal;
+  }
+
+  .oboe-title {
+    display: block;
+    font-size: var(--size-step-3);
+    text-align: right;
+    margin-block-start: 0.5rem;
+  }
+
+  #desktop-nav {
+    display: none;
+
+    @media (min-width: 55rem) {
+      display: block;
+    }
+  }
+
+  #mobile-nav {
+    position: absolute;
+    z-index: 1000;
+    inset: 0;
+    height: 100dvh;
+    background-color: var(--color-light);
+    display: none;
+
+    [aria-expanded="true"] + & {
+      display: block;
+    }
+  }
+
+  /* open the navigation */
+
+  .menu-button {
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+    outline-offset: 2px;
+    z-index: 1001;
+
+    @media (min-width: 55rem) {
+      display: none;
+    }
+  }
+
+  .menu-icon {
+    stroke: currentColor;
+    display: block;
+  }
+
+  .menu-icon--open {
+    [aria-expanded="true"] & {
+      display: none;
+    }
+  }
+
+  .menu-icon--close {
+    display: none;
+
+    [aria-expanded="true"] & {
+      display: block;
+    }
+  }
+
+  /* Prevent scrolling when menu is open */
+  body:has([aria-expanded="true"]) {
+    overflow: hidden;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+  }
+
+  /* if the body has a hero element then position the menu absolutely (basically just the homepage) */
+  body:has(.hero-container) {
+    .header {
+      position: absolute;
+      background: linear-gradient(
+        to bottom,
+        oklch(from black l c h / 0.1),
+        transparent
+      );
+    }
+
+    .header-logo {
+      font-size: var(--size-step-6);
+    }
+
+    .last-name {
+      display: block;
+      text-align: right;
+    }
+
+    /* Logo animation (homepage only) */
+    .first-name,
+    .last-name,
+    .oboe-title {
+      animation: fadeIn 1s ease-in-out;
+      animation-fill-mode: both;
+
+      @media (prefers-reduced-motion: reduce) {
+        animation: none;
+      }
+    }
+
+    .last-name {
+      animation-delay: 0.5s;
+    }
+
+    .oboe-title {
+      animation-delay: 1s;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+</style>

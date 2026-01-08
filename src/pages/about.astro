@@ -1,0 +1,55 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/Section.astro";
+import Heading from "../components/Heading.astro";
+
+import muralPhoto from "../assets/james-mural.jpg";
+---
+
+<Layout>
+  <main>
+    <Section className="wrapper flow prose">
+      <Heading level={2} emphasis>Hi, I’m James</Heading>
+
+      <div
+        class="grid"
+        style="--grid-placement: auto-fit; --gutter: var(--space-xl);"
+      >
+        <figure>
+          <img
+            src={muralPhoto.src}
+            alt="James Button playing his Marigaux oboe"
+            width={888}
+            height={888}
+          />
+        </figure>
+        <div class="flow prose">
+          <p>
+            I was appointed Associate Principal Oboe of the San Francisco
+            Symphony in September, 2017. A native of Australia, I made my solo
+            debut with the Melbourne Symphony at the age of seventeen. I later
+            attended Temple University and the Juilliard School under the
+            tutelage of Jonathan Blumenfeld and Eugene Izotov, respectively. I
+            has also studied with John Mack, John de Lancie and Joseph Turner.
+          </p>
+
+          <p>
+            I was previously a member of the Nashville Symphony, Santa Fe Opera
+            Orchestra, New World Symphony, and have appeared as guest Principal
+            with the Chicago Symphony, Philadelphia Orchestra, Los Angeles
+            Philharmonic and the Melbourne Symphony. I have performed at the
+            Verbier, Edinburgh and Tanglewood music festivals, as well as
+            Italy’s Spoleto Festival dei Due Mondi and the Santa Fe Chamber
+            Music Festival. My live recording of the Higdon Oboe Concerto with
+            the Nashville Symphony won a Grammy in 2018.
+          </p>
+
+          <p>
+            I am currently a Marigaux artist and play on a 920A model
+            instrument.
+          </p>
+        </div>
+      </div>
+    </Section>
+  </main>
+</Layout>
