@@ -6,7 +6,7 @@ import calendarSvg from "../assets/calendar.svg";
 interface Props {
   category: string;
   title: string;
-  dateTime: Date;
+  dateTime: string;
   children?: string;
   link: string;
   location: string;
@@ -30,23 +30,12 @@ const {
     <div class="event-info">
       <time class="event-date">
         <Image src={calendarSvg} alt="Calendar icon" class="calendar-icon" />
-        <span
-          >{
-            dateTime.toLocaleString("en-US", {
-              // weekday: "long",
-              // year: "numeric",
-              // month: "long",
-              // day: "numeric",
-              dateStyle: "short",
-              timeStyle: "short",
-            })
-          }</span
-        ></time
+        <span>{dateTime}</span></time
       >
       <p>{location}</p>
     </div>
 
-    {children ? <p>{children}</p> : null}
+    <p><slot /></p>
   </div>
 
   <a href={link} target="_blank" rel="noopener" class="button">More info</a>

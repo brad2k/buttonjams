@@ -374,13 +374,6 @@ details[open] summary {
   --flow-space: var(--space-m);
 }
 
-/* Add more space on and around figures and tables */
-
-.prose :is(figure, table),
-.prose :is(figure, table) + * {
-  --flow-space: var(--space-2xl);
-}
-
 /* Add more space to headings on block start */
 
 .prose * + :is(h1, h2, h3, h4):not([class]) {
