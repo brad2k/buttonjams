@@ -111,3 +111,22 @@ import oboePhoto from "../assets/standing-denim.avif";
     display: block;
   }
 </style>
+
+<script>
+  const handleSubmit = (event: SubmitEvent) => {
+    event.preventDefault();
+
+    const myForm = event.target as HTMLFormElement;
+    const formData = new FormData(myForm);
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData as any).toString(),
+    })
+      .then(() => console.log("Form successfully submitted"))
+      .catch((error) => alert(error));
+  };
+
+  document.querySelector("form")?.addEventListener("submit", handleSubmit);
+</script>
