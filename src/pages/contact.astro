@@ -2,7 +2,6 @@
 import Layout from "../layouts/Layout.astro";
 import Section from "../components/Section.astro";
 import Heading from "../components/Heading.astro";
-import InstagramLogo from "../components/svg/Instagram.astro";
 import Prose from "../components/Prose.astro";
 
 import oboePhoto from "../assets/standing-denim.avif";
@@ -31,56 +30,57 @@ import oboePhoto from "../assets/standing-denim.avif";
           />
         </figure>
 
-        <div class="contact-options grid">
-          <div>
-            <h3 class="visually-hidden">Send me a message</h3>
-            <form
-              name="contact"
-              method="POST"
-              data-netlify="true"
-              data-netlify-recaptcha="true"
-            >
-              <input
-                type="hidden"
-                name="subject"
-                data-remove-prefix
-                value="Inquiry from jamesbutton.com"
-              />
-              <div class="contact-form">
-                <p>
-                  <label>
-                    <span class="form-label-text">Your Name:</span>
-                    <input
-                      type="text"
-                      name="name"
-                      class="contact-field"
-                    /></label
-                  >
-                </p>
-                <p>
-                  <label>
-                    <span class="form-label-text">Your Email:</span>
-                    <input
-                      type="email"
-                      name="email"
-                      class="contact-field"
-                    /></label
-                  >
-                </p>
-                <p>
-                  <label>
-                    <span class="form-label-text">Message:</span>
-                    <textarea name="message" class="contact-field"></textarea>
-                  </label>
-                </p>
-                <div data-netlify-recaptcha="true"></div>
-                <p>
-                  <button type="submit" class="button">Send</button>
-                </p>
-              </div>
-            </form>
-          </div>
-        </div>
+        <aside>
+          <h3 class="visually-hidden">Send me a message</h3>
+          <form
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            data-netlify-recaptcha="true"
+          >
+            <input
+              type="hidden"
+              name="subject"
+              data-remove-prefix
+              value="Inquiry from jamesbuttonoboe.com"
+            />
+            <div class="contact-form">
+              <p>
+                <label>
+                  <span class="form-label-text">Your Name:</span>
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    class="contact-field"
+                  /></label
+                >
+              </p>
+              <p>
+                <label>
+                  <span class="form-label-text">Your Email:</span>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    class="contact-field"
+                  /></label
+                >
+              </p>
+              <p>
+                <label>
+                  <span class="form-label-text">Message:</span>
+                  <textarea name="message" class="contact-field" required
+                  ></textarea>
+                </label>
+              </p>
+              <div data-netlify-recaptcha="true"></div>
+              <p>
+                <button type="submit" class="button">Send</button>
+              </p>
+            </div>
+          </form>
+        </aside>
       </Prose>
     </Section>
   </main>
@@ -100,30 +100,14 @@ import oboePhoto from "../assets/standing-denim.avif";
   .contact-field {
     padding: 0.75rem;
     width: 100%;
-  }
 
-  .contact-options {
-    --grid-placement: auto-fit;
+    &:user-invalid {
+      border: 2px dashed red;
+    }
   }
 
   .form-label-text {
     margin-block-end: 0.5rem;
     display: block;
-  }
-
-  .contact--instagram {
-    --flow-space: var(--space-s);
-
-    font-size: var(--size-step-0);
-  }
-
-  .contact--instagram-heading {
-    font-size: var(--size-step-1);
-  }
-
-  .contact--instagram-link {
-    text-decoration: none;
-    display: block;
-    color: var(--color-dark);
   }
 </style>
