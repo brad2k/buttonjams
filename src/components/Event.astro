@@ -44,15 +44,12 @@ const {
 <style>
   .event {
     padding: var(--space-m);
-    background-color: var(--text-decoration-color);
+    background-color: oklch(0.8546 0.0054 106.51);
+    border-radius: var(--radius-m);
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: max-content auto max-content;
     gap: var(--space-s);
-
-    button {
-      display: inline-block;
-    }
   }
 
   .event-heading {
@@ -61,7 +58,7 @@ const {
 
   .event-category {
     text-transform: uppercase;
-    /* font-size: var(--size-step-00); */
+    color: oklch(35% 0.09 200);
   }
 
   .event-details {

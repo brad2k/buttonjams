@@ -2,11 +2,15 @@
 import Layout from "../layouts/Layout.astro";
 import Section from "../components/Section.astro";
 import Heading from "../components/Heading.astro";
+import Prose from "../components/Prose.astro";
+
 import PlayIcon from "../components/svg/Play.astro";
 import RewindIcon from "../components/svg/Rewind.astro";
 import PauseIcon from "../components/svg/Pause.astro";
 import PlayingIcon from "../components/svg/Playing.astro";
 import MusicIcon from "../components/svg/Music.astro";
+
+import oboePhoto from "../assets/oboe.avif";
 
 interface SongProps {
   id: string;
@@ -64,8 +68,13 @@ const songs: SongProps[] = [
 
 <Layout>
   <main>
-    <Section className="wrapper flow">
-      <Heading level={2} emphasis>Audio excerpts</Heading>
+    <Section className="wrapper flow prose">
+      <Heading level={1} emphasis>Audio excerpts</Heading>
+
+      <p>
+        Below are a selection of audio excerpts featuring my playing in various
+        orchestral and chamber music settings. Click on a title to listen.
+      </p>
 
       <div class="audio-player">
         <ul class="playlist">
@@ -123,6 +132,7 @@ const songs: SongProps[] = [
   .audio-player {
     background-color: var(--color-light-shade);
     padding: var(--space-m);
+    border: 1px solid oklch(0.8546 0.0054 106.51);
     border-radius: var(--radius-m);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
@@ -153,6 +163,7 @@ const songs: SongProps[] = [
 
       .icon--playing {
         display: inline-block;
+        animation: pulse 2s ease-in-out infinite;
       }
     }
   }
@@ -228,6 +239,21 @@ const songs: SongProps[] = [
     text-transform: uppercase;
     font-size: var(--size-step-000);
     font-weight: 400;
+  }
+
+  @keyframes pulse {
+    0% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+    50% {
+      opacity: 0.25;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
   }
 </style>
 

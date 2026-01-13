@@ -7,6 +7,8 @@
     var(--color-light-shade) 100%
   );
 
+  --color-primary: oklch(35% 0.09 200); /* #00464b */
+
   --color-light: oklch(95% 0.005 106.5); /* #eeeeea */
   --color-light-shade: oklch(89.947% 0.00539 106.51); /* #dededa */
 
@@ -20,9 +22,11 @@
   /* --color-light-shade: #e4e4de;
   --color-light-glare: #ffffff; */
 
+  --leading-flat: 1;
   --leading-fine: 1.2;
   --leading-standard: 1.4;
   --leading-loose: 1.7;
+  --uppercase-kerning: 0.04ch;
   --space-xs: clamp(0.4375rem, 0.41rem + 0.11vw, 0.5rem);
   --space-s: clamp(0.875rem, 0.83rem + 0.22vw, 1rem);
   --space-m: clamp(1.3125rem, 1.24rem + 0.33vw, 1.5rem);
@@ -211,13 +215,6 @@ address {
 
 /* Media */
 
-:is(video, iframe[src*="youtube"], iframe[src*="vimeo"]) {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16/9;
-}
-
 figure {
   margin-inline: 0;
 }
@@ -309,7 +306,7 @@ details[open] summary {
 
 .button {
   --button-bg: var(--color-primary);
-  --button-text: currentColor;
+  --button-text: #ffffff;
   --button-x-padding: 2em;
   --button-y-padding: 1.1em;
   --focus-color: var(--color-primary);
@@ -318,14 +315,16 @@ details[open] summary {
   position: relative;
   cursor: pointer;
   background: var(--button-bg);
-  border: 1px solid currentColor;
-  color: currentColor;
+  border: 1px solid var(--button-bg);
+  border-radius: var(--radius-s);
+  color: var(--button-text);
   padding: var(--button-y-padding) var(--button-x-padding);
   text-transform: uppercase;
   letter-spacing: var(--uppercase-kerning);
   text-decoration: none;
   font-size: var(--size-step-00);
   font-weight: var(--font-bold);
+  text-align: center;
 }
 
 /* the most developer hover state I could think of https://www.figma.com/file/xTUEEo1a4WsB5qBtBk3XOC/Sketch-up?type=whiteboard&node-id=67-80&t=B5RVDQOZR2vxNLYs-4 */
@@ -389,9 +388,9 @@ details[open] summary {
 
 /* Add a subtle stroke to media in case the background blends with the prose container */
 
-.prose :is(img, picture, video, svg[width][height]) {
+/* .prose :is(img, picture, video, svg[width][height]) {
   border: var(--stroke-solid);
-}
+} */
 
 /* Add lots of space for horizontal rules */
 

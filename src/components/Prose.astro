@@ -1,0 +1,29 @@
+---
+interface Props {
+  className?: string;
+}
+
+const { className, ...rest } = Astro.props;
+---
+
+<section class:list={["prose", "prose-grid", className]} {...rest}>
+  <slot name="figure" />
+  <div class="flow"><slot /></div>
+</section>
+
+<style>
+  .prose-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+
+    @media (min-width: 55rem) {
+      grid-template-columns: 2fr 3fr;
+    }
+
+    img {
+      border: 1px solid oklch(0.7507 0.0054 106.51);
+      border-radius: var(--radius-m);
+    }
+  }
+</style>
