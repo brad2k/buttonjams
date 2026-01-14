@@ -1,5 +1,4 @@
 ---
-import PostHogLayout from "../layouts/PostHogLayout.astro";
 import Layout from "../layouts/Layout.astro";
 import Section from "../components/Section.astro";
 import Heading from "../components/Heading.astro";
@@ -9,8 +8,6 @@ import RewindIcon from "../components/svg/Rewind.astro";
 import PauseIcon from "../components/svg/Pause.astro";
 import PlayingIcon from "../components/svg/Playing.astro";
 import MusicIcon from "../components/svg/Music.astro";
-
-import oboePhoto from "../assets/oboe.avif";
 
 interface SongProps {
   id: string;
@@ -66,69 +63,67 @@ const songs: SongProps[] = [
 ];
 ---
 
-<PostHogLayout>
-  <Layout>
-    <main>
-      <Section className="wrapper flow prose">
-        <Heading level={1} emphasis>Audio excerpts</Heading>
+<Layout>
+  <main>
+    <Section className="wrapper flow prose">
+      <Heading level={1} emphasis>Audio excerpts</Heading>
 
-        <p>
-          Below are a selection of audio excerpts featuring my playing in various
-          orchestral and chamber music settings. Click on a title to listen.
-        </p>
+      <p>
+        Below are a selection of audio excerpts featuring my playing in various
+        orchestral and chamber music settings. Click on a title to listen.
+      </p>
 
-        <div class="audio-player">
-          <ul class="playlist">
-            {
-              songs.map((song) => {
-                return (
-                  <li>
-                    <button
-                      data-id={song.id}
-                      class="audio-control"
-                      aria-label={`Play ${song.name}`}
-                    >
-                      <PlayingIcon />
-                      <PlayIcon />
-                      {song.name}
-                    </button>
-                    <audio
-                      src={song.src}
-                      data-id={song.id}
-                      data-name={song.name}
-                      data-description={song.description}
-                    />
-                  </li>
-                );
-              })
-            }
-          </ul>
+      <div class="audio-player">
+        <ul class="playlist">
+          {
+            songs.map((song) => {
+              return (
+                <li>
+                  <button
+                    data-id={song.id}
+                    class="audio-control"
+                    aria-label={`Play ${song.name}`}
+                  >
+                    <PlayingIcon />
+                    <PlayIcon />
+                    {song.name}
+                  </button>
+                  <audio
+                    src={song.src}
+                    data-id={song.id}
+                    data-name={song.name}
+                    data-description={song.description}
+                  />
+                </li>
+              );
+            })
+          }
+        </ul>
 
-          <div class="song-deck standby">
-            <div class="placeholder"><MusicIcon /><p>Select a song</p></div>
-            <div class="song-info">
-              <strong class="now-playing">Now playing</strong>
-              <Heading level={3} className="song-title" />
-              <p class="song-description"></p>
-            </div>
-
-            <aside class="audio-controls" aria-label="Audio controls">
-              <button class="audio-control play-button" aria-label="Play">
-                <PlayIcon />
-              </button>
-              <button class="audio-control pause-button" aria-label="Pause">
-                <PauseIcon />
-              </button>
-              <button class="audio-control rewind-button" aria-label="Rewind">
-                <RewindIcon />
-              </button>
-            </aside>
+        <div class="song-deck standby">
+          <div class="placeholder"><MusicIcon /><p>Select a song</p></div>
+          <div class="song-info">
+            <strong class="now-playing">Now playing</strong>
+            <Heading level={3} className="song-title" />
+            <p class="song-description"></p>
           </div>
+
+          <aside class="audio-controls" aria-label="Audio controls">
+            <button class="audio-control play-button" aria-label="Play">
+              <PlayIcon />
+            </button>
+            <button class="audio-control pause-button" aria-label="Pause">
+              <PauseIcon />
+            </button>
+            <button class="audio-control rewind-button" aria-label="Rewind">
+              <RewindIcon />
+            </button>
+          </aside>
         </div>
-      </Section>
-    </main>
-  </Layout>
-</PostHogLayout>
+      </div>
+    </Section>
+  </main>
+</Layout>
 
 <style>
   .audio-player {

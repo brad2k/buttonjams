@@ -1,5 +1,4 @@
 ---
-import PostHogLayout from "../layouts/PostHogLayout.astro";
 import Layout from "../layouts/Layout.astro";
 import Section from "../components/Section.astro";
 import Heading from "../components/Heading.astro";
@@ -9,71 +8,69 @@ import playingAvif from "../assets/playing.avif";
 import playingWebp from "../assets/playing.webp";
 ---
 
-<PostHogLayout>
-  <Layout>
-    <main>
-      <Section className="wrapper flow">
-        <Heading level={1} emphasis>Audition coaching</Heading>
+<Layout>
+  <main>
+    <Section className="wrapper flow">
+      <Heading level={1} emphasis>Audition coaching</Heading>
 
-        <Prose>
-          <figure slot="figure">
-            <picture>
-              <source srcset={playingAvif.src} type="image/avif" />
-              <source srcset={playingWebp.src} type="image/webp" />
+      <Prose>
+        <figure slot="figure">
+          <picture>
+            <source srcset={playingAvif.src} type="image/avif" />
+            <source srcset={playingWebp.src} type="image/webp" />
 
-              <img
-                src={playingAvif.src}
-                alt="James Button playing his Marigaux 920A oboe"
-                width={3470}
-                height={3054}
-                class="prose--image"
-              />
-            </picture>
-          </figure>
+            <img
+              src={playingAvif.src}
+              alt="James Button playing his Marigaux 920A oboe"
+              width={3470}
+              height={3054}
+              class="prose--image"
+            />
+          </picture>
+        </figure>
 
-          <p>
-            After taking professional orchestral auditions for more than 25 years,
-            and more recently serving on the other side of the curtain on many
-            audition committees with the San Francisco Symphony, I’ve learned a
-            great deal about the process. My own audition journey was a rocky one:
-            I made nearly every mistake imaginable before winning my first big job
-            with the Nashville Symphony at age 30 and, later, my dream job with
-            the San Francisco Symphony at 36.
-          </p>
+        <p>
+          After taking professional orchestral auditions for more than 25 years,
+          and more recently serving on the other side of the curtain on many
+          audition committees with the San Francisco Symphony, I’ve learned a
+          great deal about the process. My own audition journey was a rocky one:
+          I made nearly every mistake imaginable before winning my first big job
+          with the Nashville Symphony at age 30 and, later, my dream job with
+          the San Francisco Symphony at 36.
+        </p>
 
-          <p>
-            Over the course of dozens upon dozens of auditions, I stumbled in just
-            about every aspect of preparation and execution. Even though it was
-            incredibly frustrating and disheartening at the time, each misstep
-            taught me something essential and ultimately shaped the musician I am
-            today. While there is no substitute for hard work, solid instrumental
-            fundamentals, musical imagination, and resilience; and the audition
-            process itself is a skill that must be honed like any other.
-          </p>
+        <p>
+          Over the course of dozens upon dozens of auditions, I stumbled in just
+          about every aspect of preparation and execution. Even though it was
+          incredibly frustrating and disheartening at the time, each misstep
+          taught me something essential and ultimately shaped the musician I am
+          today. While there is no substitute for hard work, solid instrumental
+          fundamentals, musical imagination, and resilience; and the audition
+          process itself is a skill that must be honed like any other.
+        </p>
 
-          <p>
-            I often wonder how things might have unfolded if my younger self had
-            known what I know now. That thought is what led me to start coaching
-            other woodwind players, helping them navigate this challenging and
-            often discouraging process, and offering the benefit of everything
-            I’ve learned. Recently, I’ve helped many musicians refine their
-            audition preparation, and several have gone on to win full-time
-            professional positions.
-          </p>
-          <p>
-            Although my audition-preparation system is designed for those pursuing
-            professional orchestral jobs, it’s never too early to begin. The same
-            approach works equally well for music school and summer festival
-            auditions. I offer coaching for all woodwind instruments.
-          </p>
+        <p>
+          I often wonder how things might have unfolded if my younger self had
+          known what I know now. That thought is what led me to start coaching
+          other woodwind players, helping them navigate this challenging and
+          often discouraging process, and offering the benefit of everything
+          I’ve learned. Recently, I’ve helped many musicians refine their
+          audition preparation, and several have gone on to win full-time
+          professional positions.
+        </p>
+        <p>
+          Although my audition-preparation system is designed for those pursuing
+          professional orchestral jobs, it’s never too early to begin. The same
+          approach works equally well for music school and summer festival
+          auditions. I offer coaching for all woodwind instruments.
+        </p>
 
-          <p>
-            Please contact me for more details or to schedule a coaching session.
-            I offer services in person in San Francisco or online for all woodwind
-            instruments.
-          </p>
-        </Prose>
-      </Section>
-    </main>
-  </Layout>
-</PostHogLayout>
+        <p>
+          Please contact me for more details or to schedule a coaching session.
+          I offer services in person in San Francisco or online for all woodwind
+          instruments.
+        </p>
+      </Prose>
+    </Section>
+  </main>
+</Layout>

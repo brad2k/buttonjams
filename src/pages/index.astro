@@ -1,18 +1,16 @@
 ---
-import PostHogLayout from '../layouts/PostHogLayout.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 
-import { Image, Picture } from 'astro:assets';
-import heroAvif5568 from '../assets/hero-5568×3712.avif';
-import heroWebp5568 from '../assets/hero-5568×3712.webp';
-import heroJpg5568 from '../assets/hero-5568×3712.jpg';
+import { Image, Picture } from "astro:assets";
+import heroAvif5568 from "../assets/hero-5568×3712.avif";
+import heroWebp5568 from "../assets/hero-5568×3712.webp";
+import heroJpg5568 from "../assets/hero-5568×3712.jpg";
 ---
 
-<PostHogLayout>
-  <Layout>
-    <main>
-      <div class="hero-container">
-        <!-- <Picture
+<Layout>
+  <main>
+    <div class="hero-container">
+      <!-- <Picture
           class="hero-image"
           src={heroAvif}
           formats={["avif"]}
@@ -27,23 +25,23 @@ import heroJpg5568 from '../assets/hero-5568×3712.jpg';
           height={3712}
           pictureAttributes={{ class: "hero-picture" }}
         /> -->
-        <picture class="hero-picture">
-          <source srcset={heroAvif5568.src} type="image/avif" />
-          <source srcset={heroWebp5568.src} type="image/webp" />
+      <picture class="hero-picture">
+        <source srcset={heroAvif5568.src} type="image/avif" />
+        <source srcset={heroWebp5568.src} type="image/webp" />
 
-          <img
-            class="hero-image"
-            src={heroJpg5568.src}
-            alt="James Button"
-            fetchpriority="high"
-            loading="eager"
-            width={5568}
-            height={3712}
-          />
-        </picture>
-      </div>
+        <img
+          class="hero-image"
+          src={heroJpg5568.src}
+          alt="James Button"
+          fetchpriority="high"
+          loading="eager"
+          width={5568}
+          height={3712}
+        />
+      </picture>
+    </div>
 
-      <!-- <section id="watch-and-listen" class="content-section">
+    <!-- <section id="watch-and-listen" class="content-section">
         <div class="wrapper flow">
           <h2 class="welcome welcome--underline">Watch &amp; Listen</h2>
 
@@ -93,7 +91,7 @@ import heroJpg5568 from '../assets/hero-5568×3712.jpg';
         </div>
       </section> -->
 
-      <!-- <section id="contact" class="content-section">
+    <!-- <section id="contact" class="content-section">
         <div class="wrapper flow">
           <h2 class="welcome">Get in touch</h2>
 
@@ -162,9 +160,8 @@ import heroJpg5568 from '../assets/hero-5568×3712.jpg';
           </div>
         </div>
       </section> -->
-    </main>
-  </Layout>
-</PostHogLayout>
+  </main>
+</Layout>
 
 <style>
   .hero-container {

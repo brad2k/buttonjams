@@ -1,5 +1,4 @@
 ---
-import PostHogLayout from "../layouts/PostHogLayout.astro";
 import Layout from "../layouts/Layout.astro";
 import Section from "../components/Section.astro";
 import Heading from "../components/Heading.astro";
@@ -8,67 +7,65 @@ import Prose from "../components/Prose.astro";
 import muralPhoto from "../assets/james-mural.jpg";
 ---
 
-<PostHogLayout>
-  <Layout>
-    <main>
-      <Section className="wrapper flow">
-        <Heading level={1} emphasis>About James</Heading>
+<Layout>
+  <main>
+    <Section className="wrapper flow">
+      <Heading level={1} emphasis>About James</Heading>
 
-        <Prose>
-          <figure slot="figure">
-            <img
-              src={muralPhoto.src}
-              alt="James Button holding an oboe"
-              width={888}
-              height={888}
-              class="prose--image"
-            />
-          </figure>
+      <Prose>
+        <figure slot="figure">
+          <img
+            src={muralPhoto.src}
+            alt="James Button holding an oboe"
+            width={888}
+            height={888}
+            class="prose--image"
+          />
+        </figure>
 
-          <p>
-            James Button was appointed Associate Principal Oboe of the San
-            Francisco Symphony in September 2017. A native of Australia, he made
-            his solo debut with the Melbourne Symphony Orchestra at the age of
-            seventeen.
-          </p>
+        <p>
+          James Button was appointed Associate Principal Oboe of the San
+          Francisco Symphony in September 2017. A native of Australia, he made
+          his solo debut with the Melbourne Symphony Orchestra at the age of
+          seventeen.
+        </p>
 
-          <p>
-            Mr. Button studied at Temple University and the Juilliard School,
-            where his principal teachers included Jonathan Blumenfeld and Eugene
-            Izotov. He has also studied with John Mack, John de Lancie, and Joseph
-            Turner.
-          </p>
+        <p>
+          Mr. Button studied at Temple University and the Juilliard School,
+          where his principal teachers included Jonathan Blumenfeld and Eugene
+          Izotov. He has also studied with John Mack, John de Lancie, and Joseph
+          Turner.
+        </p>
 
-          <p>
-            Prior to joining the San Francisco Symphony, Mr. Button was a member
-            of the Nashville Symphony, the Santa Fe Opera Orchestra, and the New
-            World Symphony. He has appeared as Guest Principal Oboe with the
-            Chicago Symphony Orchestra, Philadelphia Orchestra, and Los Angeles
-            Philharmonic.
-          </p>
+        <p>
+          Prior to joining the San Francisco Symphony, Mr. Button was a member
+          of the Nashville Symphony, the Santa Fe Opera Orchestra, and the New
+          World Symphony. He has appeared as Guest Principal Oboe with the
+          Chicago Symphony Orchestra, Philadelphia Orchestra, and Los Angeles
+          Philharmonic.
+        </p>
 
-          <p>
-            An active performer both nationally and internationally, Mr. Button
-            has appeared at the Verbier, Edinburgh, and Tanglewood Music
-            Festivals, as well as Italy’s Spoleto Festival dei Due Mondi and the
-            Santa Fe Chamber Music Festival. His live recording of Jennifer
-            Higdon’s Oboe Concerto with the Nashville Symphony received a Grammy
-            Award in 2018.
-          </p>
+        <p>
+          An active performer both nationally and internationally, Mr. Button
+          has appeared at the Verbier, Edinburgh, and Tanglewood Music
+          Festivals, as well as Italy’s Spoleto Festival dei Due Mondi and the
+          Santa Fe Chamber Music Festival. His live recording of Jennifer
+          Higdon’s Oboe Concerto with the Nashville Symphony received a Grammy
+          Award in 2018.
+        </p>
 
-          <p>
-            In addition to his orchestral career, Mr. Button has enjoyed a diverse
-            freelance career, including recording projects with Björk and Willie
-            Nelson, performances on Broadway in Fiddler on the Roof, and guest
-            principal appearances with his hometown orchestra, the Melbourne
-            Symphony Orchestra.
-          </p>
+        <p>
+          In addition to his orchestral career, Mr. Button has enjoyed a diverse
+          freelance career, including recording projects with Björk and Willie
+          Nelson, performances on Broadway in Fiddler on the Roof, and guest
+          principal appearances with his hometown orchestra, the Melbourne
+          Symphony Orchestra.
+        </p>
 
-          <p>
-            Mr. Button is a Marigaux artist and performs on a 920A model oboe.
-          </p>
-        </Prose>
-      </Section>
-    </main>
-  </Layout>
-</PostHogLayout>
+        <p>
+          Mr. Button is a Marigaux artist and performs on a 920A model oboe.
+        </p>
+      </Prose>
+    </Section>
+  </main>
+</Layout>

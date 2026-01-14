@@ -1,49 +1,46 @@
 ---
-import PostHogLayout from '../layouts/PostHogLayout.astro';
 import Layout from "../layouts/Layout.astro";
 import Section from "../components/Section.astro";
 import Heading from "../components/Heading.astro";
 import Event from "../components/Event.astro";
 ---
 
-<PostHogLayout>
-  <Layout>
-    <main>
-      <Section className="wrapper prose event-grid">
-        <Heading level={2} emphasis>Special events</Heading>
+<Layout>
+  <main>
+    <Section className="wrapper prose event-grid">
+      <Heading level={2} emphasis>Special events</Heading>
 
-        <p>
-          I perform regularly with the San Francisco Symphony in my role as
-          Associate Principal Oboe, but I occasionally give masterclasses, join in
-          recitals, and play with other orchestras.
-        </p>
+      <p>
+        I perform regularly with the San Francisco Symphony in my role as
+        Associate Principal Oboe, but I occasionally give masterclasses, join in
+        recitals, and play with other orchestras.
+      </p>
 
-        <ul class="event-list grid">
-          <Event
-            category="Performance"
-            title="Chamber Music at Davies Symphony Hall"
-            dateTime="Sun, May 3, 2026 at 2:00pm PST"
-            link="https://www.sfsymphony.org/Buy-Tickets/2025-26/CHAMBER-DSH-MAY"
-            location="Mondavi Center, UC Davis, Davis, CA"
-          >
-            Performing Prokofiev’s Quintet with San Francisco Symphony colleagues.
-          </Event>
+      <ul class="event-list grid">
+        <Event
+          category="Performance"
+          title="Chamber Music at Davies Symphony Hall"
+          dateTime="Sun, May 3, 2026 at 2:00pm PST"
+          link="https://www.sfsymphony.org/Buy-Tickets/2025-26/CHAMBER-DSH-MAY"
+          location="Mondavi Center, UC Davis, Davis, CA"
+        >
+          Performing Prokofiev’s Quintet with San Francisco Symphony colleagues.
+        </Event>
 
-          <Event
-            category="Performance"
-            title="Santa Rosa Symphony Youth Orchestra"
-            dateTime="Sat, May 9, 2026 at 2:00pm PST"
-            link="https://www.srsymphony.org/event/srsyomay2026/"
-            location="Green Music Center, Rohnert Park, CA"
-          >
-            Performing Johann Nepomuk Hummel’s Introduction, Theme and Variations
-            for Oboe and Orchestra.
-          </Event>
-        </ul>
-      </Section>
-    </main>
-  </Layout>
-</PostHogLayout>
+        <Event
+          category="Performance"
+          title="Santa Rosa Symphony Youth Orchestra"
+          dateTime="Sat, May 9, 2026 at 2:00pm PST"
+          link="https://www.srsymphony.org/event/srsyomay2026/"
+          location="Green Music Center, Rohnert Park, CA"
+        >
+          Performing Johann Nepomuk Hummel’s Introduction, Theme and Variations
+          for Oboe and Orchestra.
+        </Event>
+      </ul>
+    </Section>
+  </main>
+</Layout>
 
 <style>
   .event-grid {
