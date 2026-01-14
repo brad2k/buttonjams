@@ -1,6 +1,7 @@
 ---
 import { Font } from "astro:assets";
 import PostHog from "../components/posthog.astro";
+import socialImage from "../assets/james-button-social.jpg";
 ---
 
 <head>
@@ -14,11 +15,17 @@ import PostHog from "../components/posthog.astro";
   <PostHog />
 
   <title>James Button — San Francisco oboist</title>
-  <!-- <meta name="description" content="" />
+  <meta
+    name="description"
+    content="James Button is a San Francisco-based oboist and Associate Principal Oboe of the San Francisco Symphony. He offers audition coaching and adult oboe lessons in San Francisco or online."
+  />
   <meta name="generator" content={Astro.generator} />
-  <meta property="og:title" content="" />
-  <meta property="og:type" content="" />
-  <meta property="og:url" content="" />
-  <meta property="og:image" content="" />
-  <meta property="og:image:alt" content="" /> -->
+  <meta property="og:title" content="James Button — oboist" />
+  <meta property="og:image" content={socialImage.src} />
+  <meta
+    property="og:image:alt"
+    content="James Button holding his Marigaux 920A oboe"
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jamesbuttonoboe.com/" />
 </head>
