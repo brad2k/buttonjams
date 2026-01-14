@@ -15,12 +15,17 @@ import socialImage from "../assets/james-button-social.jpg";
   <PostHog />
 
   <title>James Button — San Francisco oboist</title>
+  <link rel="canonical" href="https://jamesbuttonoboe.com" />
   <meta
     name="description"
-    content="James Button is a San Francisco-based oboist and Associate Principal Oboe of the San Francisco Symphony. He offers audition coaching and adult oboe lessons in San Francisco or online."
+    content="James Button is a San Francisco-based oboist and Associate Principal Oboe of the San Francisco Symphony. He offers woodwind audition coaching and adult oboe lessons in San Francisco or online."
   />
   <meta name="generator" content={Astro.generator} />
   <meta property="og:title" content="James Button — oboist" />
+  <meta
+    property="og:description"
+    content="San Francisco-based oboist and Associate Principal Oboe of the San Francisco Symphony offering audition coaching and adult oboe lessons."
+  />
   <meta property="og:image" content={socialImage.src} />
   <meta
     property="og:image:alt"
@@ -28,4 +33,32 @@ import socialImage from "../assets/james-button-social.jpg";
   />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://jamesbuttonoboe.com/" />
+  <meta property="og:locale" content="en_US" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "James Button",
+      "jobTitle": "Oboist",
+      "url": "https://jamesbuttonoboe.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "San Francisco",
+        "addressRegion": "CA"
+      },
+      "sameAs": [
+        "https://www.instagram.com/buttonjamss/",
+        "https://www.sfsymphony.org/Data/Event-Data/Artists/B/James-Button"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Woodwind Audition Coaching",
+          "description": "Professional woodwind audition coaching."
+        }
+      }
+    }
+  </script>
 </head>
