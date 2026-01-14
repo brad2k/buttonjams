@@ -4,6 +4,8 @@ import "../styles/base.css";
 
 import Head from "../components/Head.astro";
 import Navigation from "../components/Navigation.astro";
+
+const { wrapperClass } = Astro.props;
 ---
 
 <!doctype html>
@@ -11,7 +13,7 @@ import Navigation from "../components/Navigation.astro";
   <Head />
   <body>
     <Navigation />
-    <slot />
+    <main class:list={[wrapperClass]}><slot /></main>
   </body><footer class="footer">
     <div class="wrapper footer-wrapper">
       <span>James Button © 2025</span><span>Website by Brad Azevedo</span>

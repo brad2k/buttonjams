@@ -8,9 +8,8 @@ import heroJpg5568 from "../assets/hero-5568×3712.jpg";
 ---
 
 <Layout>
-  <main>
-    <div class="hero-container">
-      <!-- <Picture
+  <div class="hero-container">
+    <!-- <Picture
           class="hero-image"
           src={heroAvif}
           formats={["avif"]}
@@ -25,142 +24,21 @@ import heroJpg5568 from "../assets/hero-5568×3712.jpg";
           height={3712}
           pictureAttributes={{ class: "hero-picture" }}
         /> -->
-      <picture class="hero-picture">
-        <source srcset={heroAvif5568.src} type="image/avif" />
-        <source srcset={heroWebp5568.src} type="image/webp" />
+    <picture class="hero-picture">
+      <source srcset={heroAvif5568.src} type="image/avif" />
+      <source srcset={heroWebp5568.src} type="image/webp" />
 
-        <img
-          class="hero-image"
-          src={heroJpg5568.src}
-          alt="James Button"
-          fetchpriority="high"
-          loading="eager"
-          width={5568}
-          height={3712}
-        />
-      </picture>
-    </div>
-
-    <!-- <section id="watch-and-listen" class="content-section">
-        <div class="wrapper flow">
-          <h2 class="welcome welcome--underline">Watch &amp; Listen</h2>
-
-          <div class="watch-listen-grid">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/Q-xTYfAjQEU?si=T4NDrIjR0qcVAebv"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen></iframe>
-
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/Q-xTYfAjQEU?si=T4NDrIjR0qcVAebv"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen></iframe>
-
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/Q-xTYfAjQEU?si=T4NDrIjR0qcVAebv"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen></iframe>
-
-            <iframe
-              data-testid="embed-iframe"
-              class="music-row"
-              style="border-radius:12px"
-              src="https://open.spotify.com/embed/album/4cKVW5PMpQGKqdxWYnhHdx?utm_source=generator"
-              width="100%"
-              height="152"
-              frameborder="0"
-              allowfullscreen=""
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="lazy"></iframe>
-          </div>
-        </div>
-      </section> -->
-
-    <!-- <section id="contact" class="content-section">
-        <div class="wrapper flow">
-          <h2 class="welcome">Get in touch</h2>
-
-          <div class="contact-options grid">
-            <div>
-              <h3 class="visually-hidden">Send me a message</h3>
-              <form
-                name="contact"
-                method="POST"
-                data-netlify="true"
-                data-netlify-recaptcha="true"
-              >
-                <input
-                  type="hidden"
-                  name="subject"
-                  data-remove-prefix
-                  value="Inquiry from jamesbutton.com"
-                />
-                <div class="contact-form">
-                  <p>
-                    <label>
-                      <span class="form-label-text">Your Name:</span>
-                      <input
-                        type="text"
-                        name="name"
-                        class="contact-field"
-                      /></label
-                    >
-                  </p>
-                  <p>
-                    <label>
-                      <span class="form-label-text">Your Email:</span>
-                      <input
-                        type="email"
-                        name="email"
-                        class="contact-field"
-                      /></label
-                    >
-                  </p>
-                  <p>
-                    <label>
-                      <span class="form-label-text">Message:</span>
-                      <textarea name="message" class="contact-field"></textarea>
-                    </label>
-                  </p>
-                  <div data-netlify-recaptcha="true"></div>
-                  <p>
-                    <button type="submit" class="button">Send</button>
-                  </p>
-                </div>
-              </form>
-            </div>
-
-            <div class="contact--instagram flow">
-              <h3 class="contact--instagram-heading">Find me on Instagram</h3>
-              <a
-                href="https://www.instagram.com/buttonjamss/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="contact--instagram-link"
-              >
-                <InstagramLogo />
-                <span>@buttonjamss</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section> -->
-  </main>
+      <img
+        class="hero-image"
+        src={heroJpg5568.src}
+        alt="James Button"
+        fetchpriority="high"
+        loading="eager"
+        width={5568}
+        height={3712}
+      />
+    </picture>
+  </div>
 </Layout>
 
 <style>
@@ -183,75 +61,5 @@ import heroJpg5568 from "../assets/hero-5568×3712.jpg";
     @media (min-width: 55rem) {
       object-position: 50% 20%;
     }
-  }
-
-  /* .music-promo {
-    display: flex;
-    flex-direction: column-reverse;
-    gap: var(--space-m);
-
-    @media (min-width: 600px) {
-      display: block;
-
-      position: relative;
-      font-size: var(--size-step-0);
-      padding: var(--space-l);
-
-      h3 {
-        font-size: var(--size-step-2);
-        text-transform: uppercase;
-      }
-    }
-  }
-
-  .music-promo--text {
-    @media (min-width: 600px) {
-      --flow-space: var(--space-m);
-
-      background-color: var(--color-light);
-      padding: var(--space-l);
-      min-height: 500px;
-      max-width: 40%;
-    }
-  }
-
-  .music-promo--image {
-    @media (min-width: 600px) {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: -1;
-
-      img {
-        object-fit: cover;
-        height: 100%;
-      }
-    }
-  } */
-
-  .watch-listen-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-auto-columns: 100%;
-    grid-auto-rows: max-content;
-    gap: var(--space-m);
-  }
-
-  .music-row {
-    grid-column: 1 / 4;
-  }
-
-  #watch-and-listen,
-  #events,
-  #contact,
-  #music {
-    --flow-space: var(--space-l);
-  }
-
-  #contact {
-    background-color: oklch(0.462 0.004 106.5);
-    color: var(--color-light);
   }
 </style>

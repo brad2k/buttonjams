@@ -9,89 +9,82 @@ import oboePhoto from "../assets/standing-denim.avif";
 ---
 
 <Layout>
-  <main>
-    <Section className="wrapper flow prose">
-      <Heading level={1} emphasis>Get in touch</Heading>
+  <Section className="wrapper flow prose">
+    <Heading level={1} emphasis>Get in touch</Heading>
 
-      <p>
-        I’m always happy to hear from fellow musicians, students, and
-        enthusiasts. Whether you have questions about my performances, want to
-        discuss potential collaborations, or are interested in lessons or
-        coaching, please don’t hesitate to reach out.
-      </p>
+    <p>
+      I’m always happy to hear from fellow musicians, students, and enthusiasts.
+      Whether you have questions about my performances, want to discuss
+      potential collaborations, or are interested in lessons or coaching, please
+      don’t hesitate to reach out.
+    </p>
 
-      <Prose>
-        <figure slot="figure">
-          <img
-            src={oboePhoto.src}
-            alt="James Button holding his Marigaux 920A oboe"
-            width={1200}
-            height={1080}
-            class="prose--image"
-          />
-        </figure>
+    <Prose>
+      <figure slot="figure">
+        <img
+          src={oboePhoto.src}
+          alt="James Button holding his Marigaux 920A oboe"
+          width={1200}
+          height={1080}
+          class="prose--image"
+        />
+      </figure>
 
-        <aside>
-          <h3 class="visually-hidden">Send me a message</h3>
+      <aside>
+        <h3 class="visually-hidden">Send me a message</h3>
 
-          <Card id="success-message" hidden>
-            <Heading level={2} as={5}>Thanks for your message!</Heading>
-            <p>I’ll get back to you as soon as I can.</p>
-          </Card>
+        <Card id="success-message" hidden>
+          <Heading level={2} as={5}>Thanks for your message!</Heading>
+          <p>I’ll get back to you as soon as I can.</p>
+        </Card>
 
-          <form
-            name="contact"
-            method="POST"
-            data-netlify="true"
-            data-netlify-recaptcha="true"
-          >
-            <div class="contact-form">
-              <input
-                type="hidden"
-                name="subject"
-                data-remove-prefix
-                value="Inquiry from jamesbuttonoboe.com"
-              />
+        <form
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          data-netlify-recaptcha="true"
+        >
+          <div class="contact-form">
+            <input
+              type="hidden"
+              name="subject"
+              data-remove-prefix
+              value="Inquiry from jamesbuttonoboe.com"
+            />
 
-              <div>
-                <label>
-                  <span class="form-label-text">Your name:</span>
-                  <input
-                    type="text"
-                    name="name"
-                    required
-                    class="contact-field"
-                  />
-                </label>
-              </div>
-              <div>
-                <label>
-                  <span class="form-label-text">Your email:</span>
-                  <input
-                    type="email"
-                    name="email"
-                    required
-                    class="contact-field"
-                  />
-                </label>
-              </div>
-              <div>
-                <label>
-                  <span class="form-label-text">Message:</span>
-                  <textarea name="message" class="contact-field" required
-                  ></textarea>
-                </label>
-              </div>
-              <div data-netlify-recaptcha="true"></div>
-              <div>
-                <button type="submit" class="button">Send</button>
-              </div>
+            <div>
+              <label>
+                <span class="form-label-text">Your name:</span>
+                <input type="text" name="name" required class="contact-field" />
+              </label>
             </div>
-          </form>
-        </aside>
-      </Prose>
-    </Section>
-  </main>
+            <div>
+              <label>
+                <span class="form-label-text">Your email:</span>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  class="contact-field"
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                <span class="form-label-text">Message:</span>
+                <textarea name="message" class="contact-field" required
+                ></textarea>
+              </label>
+            </div>
+            <div data-netlify-recaptcha="true"></div>
+            <div>
+              <button type="submit" class="button">Send</button>
+            </div>
+          </div>
+        </form>
+      </aside>
+    </Prose>
+  </Section>
 </Layout>
 
 <style>
