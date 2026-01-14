@@ -1,167 +1,170 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import PostHogLayout from '../layouts/PostHogLayout.astro';
+import Layout from '../layouts/Layout.astro';
 
-import { Image, Picture } from "astro:assets";
-import heroAvif5568 from "../assets/hero-5568×3712.avif";
-import heroWebp5568 from "../assets/hero-5568×3712.webp";
-import heroJpg5568 from "../assets/hero-5568×3712.jpg";
+import { Image, Picture } from 'astro:assets';
+import heroAvif5568 from '../assets/hero-5568×3712.avif';
+import heroWebp5568 from '../assets/hero-5568×3712.webp';
+import heroJpg5568 from '../assets/hero-5568×3712.jpg';
 ---
 
-<Layout>
-  <main>
-    <div class="hero-container">
-      <!-- <Picture
-        class="hero-image"
-        src={heroAvif}
-        formats={["avif"]}
-        fallbackFormat="jpg"
-        alt="James Button"
-        fetchpriority="high"
-        loading="eager"
-        layout="full-width"
-        position="50% 20%"
-        fit="cover"
-        width={5568}
-        height={3712}
-        pictureAttributes={{ class: "hero-picture" }}
-      /> -->
-      <picture class="hero-picture">
-        <source srcset={heroAvif5568.src} type="image/avif" />
-        <source srcset={heroWebp5568.src} type="image/webp" />
-
-        <img
+<PostHogLayout>
+  <Layout>
+    <main>
+      <div class="hero-container">
+        <!-- <Picture
           class="hero-image"
-          src={heroJpg5568.src}
+          src={heroAvif}
+          formats={["avif"]}
+          fallbackFormat="jpg"
           alt="James Button"
           fetchpriority="high"
           loading="eager"
+          layout="full-width"
+          position="50% 20%"
+          fit="cover"
           width={5568}
           height={3712}
-        />
-      </picture>
-    </div>
+          pictureAttributes={{ class: "hero-picture" }}
+        /> -->
+        <picture class="hero-picture">
+          <source srcset={heroAvif5568.src} type="image/avif" />
+          <source srcset={heroWebp5568.src} type="image/webp" />
 
-    <!-- <section id="watch-and-listen" class="content-section">
-      <div class="wrapper flow">
-        <h2 class="welcome welcome--underline">Watch &amp; Listen</h2>
-
-        <div class="watch-listen-grid">
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/Q-xTYfAjQEU?si=T4NDrIjR0qcVAebv"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen></iframe>
-
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/Q-xTYfAjQEU?si=T4NDrIjR0qcVAebv"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen></iframe>
-
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/Q-xTYfAjQEU?si=T4NDrIjR0qcVAebv"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen></iframe>
-
-          <iframe
-            data-testid="embed-iframe"
-            class="music-row"
-            style="border-radius:12px"
-            src="https://open.spotify.com/embed/album/4cKVW5PMpQGKqdxWYnhHdx?utm_source=generator"
-            width="100%"
-            height="152"
-            frameborder="0"
-            allowfullscreen=""
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"></iframe>
-        </div>
+          <img
+            class="hero-image"
+            src={heroJpg5568.src}
+            alt="James Button"
+            fetchpriority="high"
+            loading="eager"
+            width={5568}
+            height={3712}
+          />
+        </picture>
       </div>
-    </section> -->
 
-    <!-- <section id="contact" class="content-section">
-      <div class="wrapper flow">
-        <h2 class="welcome">Get in touch</h2>
+      <!-- <section id="watch-and-listen" class="content-section">
+        <div class="wrapper flow">
+          <h2 class="welcome welcome--underline">Watch &amp; Listen</h2>
 
-        <div class="contact-options grid">
-          <div>
-            <h3 class="visually-hidden">Send me a message</h3>
-            <form
-              name="contact"
-              method="POST"
-              data-netlify="true"
-              data-netlify-recaptcha="true"
-            >
-              <input
-                type="hidden"
-                name="subject"
-                data-remove-prefix
-                value="Inquiry from jamesbutton.com"
-              />
-              <div class="contact-form">
-                <p>
-                  <label>
-                    <span class="form-label-text">Your Name:</span>
-                    <input
-                      type="text"
-                      name="name"
-                      class="contact-field"
-                    /></label
-                  >
-                </p>
-                <p>
-                  <label>
-                    <span class="form-label-text">Your Email:</span>
-                    <input
-                      type="email"
-                      name="email"
-                      class="contact-field"
-                    /></label
-                  >
-                </p>
-                <p>
-                  <label>
-                    <span class="form-label-text">Message:</span>
-                    <textarea name="message" class="contact-field"></textarea>
-                  </label>
-                </p>
-                <div data-netlify-recaptcha="true"></div>
-                <p>
-                  <button type="submit" class="button">Send</button>
-                </p>
-              </div>
-            </form>
-          </div>
+          <div class="watch-listen-grid">
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/Q-xTYfAjQEU?si=T4NDrIjR0qcVAebv"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen></iframe>
 
-          <div class="contact--instagram flow">
-            <h3 class="contact--instagram-heading">Find me on Instagram</h3>
-            <a
-              href="https://www.instagram.com/buttonjamss/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="contact--instagram-link"
-            >
-              <InstagramLogo />
-              <span>@buttonjamss</span>
-            </a>
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/Q-xTYfAjQEU?si=T4NDrIjR0qcVAebv"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen></iframe>
+
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/Q-xTYfAjQEU?si=T4NDrIjR0qcVAebv"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen></iframe>
+
+            <iframe
+              data-testid="embed-iframe"
+              class="music-row"
+              style="border-radius:12px"
+              src="https://open.spotify.com/embed/album/4cKVW5PMpQGKqdxWYnhHdx?utm_source=generator"
+              width="100%"
+              height="152"
+              frameborder="0"
+              allowfullscreen=""
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"></iframe>
           </div>
         </div>
-      </div>
-    </section> -->
-  </main>
-</Layout>
+      </section> -->
+
+      <!-- <section id="contact" class="content-section">
+        <div class="wrapper flow">
+          <h2 class="welcome">Get in touch</h2>
+
+          <div class="contact-options grid">
+            <div>
+              <h3 class="visually-hidden">Send me a message</h3>
+              <form
+                name="contact"
+                method="POST"
+                data-netlify="true"
+                data-netlify-recaptcha="true"
+              >
+                <input
+                  type="hidden"
+                  name="subject"
+                  data-remove-prefix
+                  value="Inquiry from jamesbutton.com"
+                />
+                <div class="contact-form">
+                  <p>
+                    <label>
+                      <span class="form-label-text">Your Name:</span>
+                      <input
+                        type="text"
+                        name="name"
+                        class="contact-field"
+                      /></label
+                    >
+                  </p>
+                  <p>
+                    <label>
+                      <span class="form-label-text">Your Email:</span>
+                      <input
+                        type="email"
+                        name="email"
+                        class="contact-field"
+                      /></label
+                    >
+                  </p>
+                  <p>
+                    <label>
+                      <span class="form-label-text">Message:</span>
+                      <textarea name="message" class="contact-field"></textarea>
+                    </label>
+                  </p>
+                  <div data-netlify-recaptcha="true"></div>
+                  <p>
+                    <button type="submit" class="button">Send</button>
+                  </p>
+                </div>
+              </form>
+            </div>
+
+            <div class="contact--instagram flow">
+              <h3 class="contact--instagram-heading">Find me on Instagram</h3>
+              <a
+                href="https://www.instagram.com/buttonjamss/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact--instagram-link"
+              >
+                <InstagramLogo />
+                <span>@buttonjamss</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section> -->
+    </main>
+  </Layout>
+</PostHogLayout>
 
 <style>
   .hero-container {

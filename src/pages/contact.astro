@@ -1,4 +1,5 @@
 ---
+import PostHogLayout from "../layouts/PostHogLayout.astro";
 import Layout from "../layouts/Layout.astro";
 import Section from "../components/Section.astro";
 import Heading from "../components/Heading.astro";
@@ -7,84 +8,86 @@ import Prose from "../components/Prose.astro";
 import oboePhoto from "../assets/standing-denim.avif";
 ---
 
-<Layout>
-  <main>
-    <Section className="wrapper flow prose">
-      <Heading level={1} emphasis>Get in touch</Heading>
+<PostHogLayout>
+  <Layout>
+    <main>
+      <Section className="wrapper flow prose">
+        <Heading level={1} emphasis>Get in touch</Heading>
 
-      <p>
-        I’m always happy to hear from fellow musicians, students, and
-        enthusiasts. Whether you have questions about my performances, want to
-        discuss potential collaborations, or are interested in lessons or
-        coaching, please don’t hesitate to reach out.
-      </p>
+        <p>
+          I’m always happy to hear from fellow musicians, students, and
+          enthusiasts. Whether you have questions about my performances, want to
+          discuss potential collaborations, or are interested in lessons or
+          coaching, please don’t hesitate to reach out.
+        </p>
 
-      <Prose>
-        <figure slot="figure">
-          <img
-            src={oboePhoto.src}
-            alt="James Button holding his Marigaux 920A oboe"
-            width={1200}
-            height={1080}
-            class="prose--image"
-          />
-        </figure>
-
-        <aside>
-          <h3 class="visually-hidden">Send me a message</h3>
-          <form
-            name="contact"
-            method="POST"
-            data-netlify="true"
-            data-netlify-recaptcha="true"
-          >
-            <input
-              type="hidden"
-              name="subject"
-              data-remove-prefix
-              value="Inquiry from jamesbuttonoboe.com"
+        <Prose>
+          <figure slot="figure">
+            <img
+              src={oboePhoto.src}
+              alt="James Button holding his Marigaux 920A oboe"
+              width={1200}
+              height={1080}
+              class="prose--image"
             />
-            <div class="contact-form">
-              <p>
-                <label>
-                  <span class="form-label-text">Your Name:</span>
-                  <input
-                    type="text"
-                    name="name"
-                    required
-                    class="contact-field"
-                  /></label
-                >
-              </p>
-              <p>
-                <label>
-                  <span class="form-label-text">Your Email:</span>
-                  <input
-                    type="email"
-                    name="email"
-                    required
-                    class="contact-field"
-                  /></label
-                >
-              </p>
-              <p>
-                <label>
-                  <span class="form-label-text">Message:</span>
-                  <textarea name="message" class="contact-field" required
-                  ></textarea>
-                </label>
-              </p>
-              <div data-netlify-recaptcha="true"></div>
-              <p>
-                <button type="submit" class="button">Send</button>
-              </p>
-            </div>
-          </form>
-        </aside>
-      </Prose>
-    </Section>
-  </main>
-</Layout>
+          </figure>
+
+          <aside>
+            <h3 class="visually-hidden">Send me a message</h3>
+            <form
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              data-netlify-recaptcha="true"
+            >
+              <input
+                type="hidden"
+                name="subject"
+                data-remove-prefix
+                value="Inquiry from jamesbuttonoboe.com"
+              />
+              <div class="contact-form">
+                <p>
+                  <label>
+                    <span class="form-label-text">Your Name:</span>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      class="contact-field"
+                    /></label
+                  >
+                </p>
+                <p>
+                  <label>
+                    <span class="form-label-text">Your Email:</span>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      class="contact-field"
+                    /></label
+                  >
+                </p>
+                <p>
+                  <label>
+                    <span class="form-label-text">Message:</span>
+                    <textarea name="message" class="contact-field" required
+                    ></textarea>
+                  </label>
+                </p>
+                <div data-netlify-recaptcha="true"></div>
+                <p>
+                  <button type="submit" class="button">Send</button>
+                </p>
+              </div>
+            </form>
+          </aside>
+        </Prose>
+      </Section>
+    </main>
+  </Layout>
+</PostHogLayout>
 
 <style>
   .contact-form {
