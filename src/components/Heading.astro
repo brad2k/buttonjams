@@ -2,15 +2,25 @@
 interface Props {
   className?: string;
   level?: 1 | 2 | 3 | 4 | 5 | 6;
+  as?: 1 | 2 | 3 | 4 | 5 | 6;
   emphasis?: boolean;
 }
 
-const { className, level = 2, emphasis = false, ...rest } = Astro.props;
+const {
+  className,
+  level = 2,
+  as = level,
+  emphasis = false,
+  ...rest
+} = Astro.props;
 
 const Tag = `h${level}`;
 ---
 
-<Tag class:list={[className, { emphasis }]} {...rest}><slot /></Tag>
+<Tag
+  class:list={[className, { emphasis }, level !== as ? `h${as}` : ""]}
+  {...rest}><slot /></Tag
+>
 
 <style>
   .emphasis {

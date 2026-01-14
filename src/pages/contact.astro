@@ -32,52 +32,59 @@ import oboePhoto from "../assets/standing-denim.avif";
 
         <aside>
           <h3 class="visually-hidden">Send me a message</h3>
+
+          <div id="success-message" class="flow" hidden>
+            <Heading level={2} as={4}>Thanks for your message!</Heading>
+            <p>I’ll get back to you as soon as I can.</p>
+          </div>
+
           <form
             name="contact"
             method="POST"
             data-netlify="true"
             data-netlify-recaptcha="true"
           >
-            <input
-              type="hidden"
-              name="subject"
-              data-remove-prefix
-              value="Inquiry from jamesbuttonoboe.com"
-            />
             <div class="contact-form">
-              <p>
+              <input
+                type="hidden"
+                name="subject"
+                data-remove-prefix
+                value="Inquiry from jamesbuttonoboe.com"
+              />
+
+              <div>
                 <label>
-                  <span class="form-label-text">Your Name:</span>
+                  <span class="form-label-text">Your name:</span>
                   <input
                     type="text"
                     name="name"
                     required
                     class="contact-field"
-                  /></label
-                >
-              </p>
-              <p>
+                  />
+                </label>
+              </div>
+              <div>
                 <label>
-                  <span class="form-label-text">Your Email:</span>
+                  <span class="form-label-text">Your email:</span>
                   <input
                     type="email"
                     name="email"
                     required
                     class="contact-field"
-                  /></label
-                >
-              </p>
-              <p>
+                  />
+                </label>
+              </div>
+              <div>
                 <label>
                   <span class="form-label-text">Message:</span>
                   <textarea name="message" class="contact-field" required
                   ></textarea>
                 </label>
-              </p>
+              </div>
               <div data-netlify-recaptcha="true"></div>
-              <p>
+              <div>
                 <button type="submit" class="button">Send</button>
-              </p>
+              </div>
             </div>
           </form>
         </aside>
@@ -113,10 +120,17 @@ import oboePhoto from "../assets/standing-denim.avif";
 </style>
 
 <script>
-  const handleSubmit = (event: SubmitEvent) => {
+  const handleSubmit = (event: Event) => {
     event.preventDefault();
 
     const myForm = event.target as HTMLFormElement;
+    const submitButton = myForm.querySelector(
+      'button[type="submit"]'
+    ) as HTMLButtonElement;
+
+    submitButton.setAttribute("disabled", "disabled");
+    myForm.setAttribute("aria-busy", "true");
+
     const formData = new FormData(myForm);
 
     fetch("/", {
@@ -124,7 +138,13 @@ import oboePhoto from "../assets/standing-denim.avif";
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(formData as any).toString(),
     })
-      .then(() => console.log("Form successfully submitted"))
+      .then(() => {
+        myForm.setAttribute("aria-busy", "false");
+        myForm.setAttribute("hidden", "hidden");
+        myForm.reset();
+        submitButton.setAttribute("disabled", "false");
+        document.getElementById("success-message")?.removeAttribute("hidden");
+      })
       .catch((error) => alert(error));
   };
 
