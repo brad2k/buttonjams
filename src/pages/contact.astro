@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Section from "../components/Section.astro";
 import Heading from "../components/Heading.astro";
 import Prose from "../components/Prose.astro";
+import Card from "../components/Card.astro";
 
 import oboePhoto from "../assets/standing-denim.avif";
 ---
@@ -33,10 +34,10 @@ import oboePhoto from "../assets/standing-denim.avif";
         <aside>
           <h3 class="visually-hidden">Send me a message</h3>
 
-          <div id="success-message" class="flow" hidden>
-            <Heading level={2} as={4}>Thanks for your message!</Heading>
+          <Card id="success-message" hidden>
+            <Heading level={2} as={5}>Thanks for your message!</Heading>
             <p>I’ll get back to you as soon as I can.</p>
-          </div>
+          </Card>
 
           <form
             name="contact"
@@ -117,6 +118,12 @@ import oboePhoto from "../assets/standing-denim.avif";
     margin-block-end: 0.5rem;
     display: block;
   }
+
+  #success-message {
+    &[hidden] {
+      display: none;
+    }
+  }
 </style>
 
 <script>
@@ -145,7 +152,7 @@ import oboePhoto from "../assets/standing-denim.avif";
         submitButton.setAttribute("disabled", "false");
         document.getElementById("success-message")?.removeAttribute("hidden");
       })
-      .catch((error) => alert(error));
+      .catch((error) => console.log(error));
   };
 
   document.querySelector("form")?.addEventListener("submit", handleSubmit);

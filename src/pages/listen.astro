@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Section from "../components/Section.astro";
 import Heading from "../components/Heading.astro";
+import Card from "../components/Card.astro";
 
 import PlayIcon from "../components/svg/Play.astro";
 import RewindIcon from "../components/svg/Rewind.astro";
@@ -73,7 +74,7 @@ const songs: SongProps[] = [
         orchestral and chamber music settings. Click on a title to listen.
       </p>
 
-      <div class="audio-player">
+      <Card className="audio-player">
         <ul class="playlist">
           {
             songs.map((song) => {
@@ -120,20 +121,14 @@ const songs: SongProps[] = [
             </button>
           </aside>
         </div>
-      </div>
+      </Card>
     </Section>
   </main>
 </Layout>
 
 <style>
   .audio-player {
-    background-color: var(--color-light-shade);
-    padding: var(--space-m);
-    border: 1px solid oklch(0.8546 0.0054 106.51);
-    border-radius: var(--radius-m);
-    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-    gap: var(--space-l);
     font-size: var(--size-step-0);
   }
 
