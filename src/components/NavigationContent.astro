@@ -29,20 +29,17 @@ import instagramLogo from "../assets/instagram.svg";
   .header-menu {
     display: flex;
     font-size: var(--size-step-0);
-    color: #000;
 
     a {
-      text-decoration: none;
       text-decoration-color: transparent;
       text-underline-offset: 0.2em;
       transition:
-        text-decoration-color 0.3s,
-        text-underline-offset 0.3s ease-in-out; /* Transition for the offset */
+        text-decoration-color var(--transition-base),
+        text-underline-offset var(--transition-base);
 
-      @media (hover: any-hover) {
+      @media (hover: hover) {
         &:hover {
-          text-decoration: underline;
-          text-decoration-color: oklch(from currentColor l c h / 0.5);
+          text-decoration-color: currentColor;
           text-underline-offset: 0.3em;
         }
       }
@@ -60,10 +57,10 @@ import instagramLogo from "../assets/instagram.svg";
         display: block;
         padding: var(--space-s);
 
-        @media (hover: any-hover) {
+        @media (hover: hover) {
           &:hover,
           &:focus {
-            background-color: var(--color-light-shade);
+            background-color: var(--color-shade-1);
           }
         }
       }

@@ -1,5 +1,5 @@
 ---
-// src/components/Event.astro
+import Card from "./Card.astro";
 import { Image } from "astro:assets";
 import calendarSvg from "../assets/calendar.svg";
 
@@ -23,7 +23,7 @@ const {
 } = Astro.props;
 ---
 
-<li class="event" {...rest}>
+<Card as="li" class="event" {...rest}>
   <strong class="event-category">{category}</strong>
   <div class="event-details">
     <h3 class="event-heading">{title}</h3>
@@ -39,17 +39,12 @@ const {
   </div>
 
   <a href={link} target="_blank" rel="noopener" class="button">More info</a>
-</li>
+</Card>
 
 <style>
   .event {
-    padding: var(--space-m);
-    background-color: oklch(0.8546 0.0054 106.51);
-    border-radius: var(--radius-m);
-    display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: max-content auto max-content;
-    gap: var(--space-s);
   }
 
   .event-heading {
@@ -58,7 +53,8 @@ const {
 
   .event-category {
     text-transform: uppercase;
-    color: oklch(35% 0.09 200);
+    letter-spacing: var(--uppercase-kerning);
+    color: var(--color-primary);
   }
 
   .event-details {
@@ -66,7 +62,7 @@ const {
     grid-template-columns: 1fr;
     grid-auto-rows: max-content;
     gap: var(--space-s);
-    line-height: 1.5;
+    line-height: var(--leading-standard);
   }
 
   .event-date {

@@ -4,9 +4,9 @@ interface Props {
   as?: HTMLElement;
 }
 
-const { className, ...rest } = Astro.props;
+const { className, as, ...rest } = Astro.props;
 
-const Tag = Astro.props.as || "section";
+const Tag = as || "section";
 ---
 
 <Tag class:list={["content-section", className]} {...rest}>
@@ -15,6 +15,6 @@ const Tag = Astro.props.as || "section";
 
 <style>
   .content-section {
-    padding-block: var(--space-xl);
+    padding-block: var(--space-l);
   }
 </style>

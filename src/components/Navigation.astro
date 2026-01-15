@@ -101,7 +101,7 @@ import NavigationContent from "../components/NavigationContent.astro";
     font-size: var(--size-step-4);
     text-decoration: none;
     color: var(--color-dark);
-    line-height: 1;
+    line-height: var(--leading-flat);
     word-break: normal;
   }
 
@@ -140,7 +140,6 @@ import NavigationContent from "../components/NavigationContent.astro";
     display: flex;
     align-items: center;
     justify-content: center;
-    color: inherit;
     outline-offset: 2px;
     z-index: 1001;
 
@@ -201,7 +200,7 @@ import NavigationContent from "../components/NavigationContent.astro";
     .first-name,
     .last-name,
     .oboe-title {
-      animation: fadeIn 1s ease-in-out;
+      animation: fadeIn var(--transition-fade);
       animation-fill-mode: both;
 
       @media (prefers-reduced-motion: reduce) {

@@ -1,32 +1,29 @@
 /* https://demo-base-styles.netlify.app/css/global.css */
 
 :root {
+  --color-primary: oklch(
+    0.3589 0.061077067325265945 202.28872467436463
+  ); /* #00464b */
+  --color-light: oklch(0.95 0.005 106.5); /* #efefeb */
+  --color-dark: oklch(0.2852 0.00564 271.22); /* #292a2d */
+
+  --color-shade-1: oklch(0.8995 0.00539 106.5); /* #dededa */
+  --color-shade-2: oklch(0.8546 0.0054 106.5); /* #cfcfcb */
+  --color-shade-3: oklch(0.7507 0.0054 106.5); /* #aeaeaa */
+  --color-shade-4: oklch(0.462 0.004 106.5); /* #595956 */
+
   --bg-gradient: radial-gradient(
     in oklch circle,
     var(--color-light) 0%,
-    var(--color-light-shade) 100%
+    var(--color-shade-1) 100%
   );
-
-  --color-primary: oklch(35% 0.09 200); /* #00464b */
-
-  --color-light: oklch(95% 0.005 106.5); /* #eeeeea */
-  --color-light-shade: oklch(89.947% 0.00539 106.51); /* #dededa */
-
-  --color-dark: oklch(28.518% 0.00564 271.22); /* #292a2d */
-  --accent-blue: oklch(0.7774 0.0296 244.63); /* #93a5b4 */
-
-  --text-decoration-color: var(--accent-blue);
-
-  --color-mid: #aba9a2;
-
-  /* --color-light-shade: #e4e4de;
-  --color-light-glare: #ffffff; */
 
   --leading-flat: 1;
   --leading-fine: 1.2;
   --leading-standard: 1.4;
   --leading-loose: 1.7;
   --uppercase-kerning: 0.04ch;
+
   --space-xs: clamp(0.4375rem, 0.41rem + 0.11vw, 0.5rem);
   --space-s: clamp(0.875rem, 0.83rem + 0.22vw, 1rem);
   --space-m: clamp(1.3125rem, 1.24rem + 0.33vw, 1.5rem);
@@ -36,6 +33,7 @@
   --space-3xl: clamp(4.375rem, 4.15rem + 1.11vw, 5rem);
   --space-4xl: clamp(6.5625rem, 6.22rem + 1.67vw, 7.5rem);
   --space-5xl: clamp(8.75rem, 8.29rem + 2.22vw, 10rem);
+
   --size-step-000: clamp(0.740625rem, 0.73rem + 0.07vw, 0.78125rem);
   --size-step-00: clamp(0.833125rem, 0.79rem + 0.19vw, 0.9375rem);
   --size-step-0: clamp(0.9375rem, 0.87rem + 0.33vw, 1.125rem);
@@ -55,24 +53,21 @@
   --font-regular: 400;
   --font-medium: 500;
   --font-bold: 700;
-  --font-black: 900;
+
   --gutter: var(--space-m);
+
   --transition-base: 250ms ease;
-  --transition-movement: 200ms linear;
-  --transition-fade: 300ms ease;
-  --transition-bounce: 500ms cubic-bezier(0.5, 0.05, 0.2, 1.5);
+  --transition-fade: 500ms ease;
 
   --radius-s: 0.2rem;
   --radius-m: 0.75rem;
   --radius-l: 2.5rem;
-  --radius-s-m: clamp(var(--radius), 2vw, var(--radius-m));
 }
 
 /*
   Global styles
 
-  Low-specificity, global styles that apply to the whole
-  project: https://cube.fyi/css.html
+  Low-specificity, global styles
 */
 
 body {
@@ -80,10 +75,10 @@ body {
   color: var(--color-dark);
   font-size: var(--size-step-1);
   font-family: var(--font-base);
+  font-optical-sizing: auto;
   line-height: var(--leading-standard);
   font-size-adjust: from-font;
   margin: 0;
-  /* scroll-margin-top: 0; */
 }
 
 :is(h1, h2, h3, h4) {
@@ -118,31 +113,6 @@ h4,
 .h5,
 .h6 {
   font-size: var(--size-step-2);
-}
-
-small {
-  font-size: var(--size-step-0);
-}
-
-q {
-  font-style: italic;
-}
-
-/* Position sub and sup with transform so it doesn't affect leading */
-
-sub,
-sup {
-  font-size: var(--size-step-00);
-  vertical-align: baseline;
-  display: inline-block;
-}
-
-sub {
-  transform: translateY(0.65ex);
-}
-
-sup {
-  transform: translateY(-0.7ex);
 }
 
 /* Lists */
@@ -183,46 +153,6 @@ ul[class],
   list-style: none;
 }
 
-/* Description lists */
-
-dt {
-  font-weight: var(--font-medium);
-}
-
-dt + dd {
-  margin-block-start: var(--space-xs);
-}
-
-dd + dt {
-  margin-block-start: var(--space-s);
-}
-
-dd {
-  margin-inline-start: 1.5ch;
-}
-
-/* Blockquotes */
-
-blockquote {
-  margin-inline: 0;
-}
-
-blockquote footer {
-  margin-block-start: var(--space-s);
-  font-size: var(--size-step-0);
-  color: var(--color-primary);
-}
-
-blockquote q {
-  font-style: normal;
-}
-
-/* Address */
-
-address {
-  font-style: normal;
-}
-
 /* Media */
 
 figure {
@@ -233,26 +163,6 @@ figcaption {
   padding-block-start: 0.5em;
   font-size: var(--size-step-0);
   font-family: var(--font-mono);
-}
-
-/* Interactive */
-
-a:not([class]):hover {
-  text-underline-offset: 0.2lh;
-}
-
-:is(h1, h2, h3, h4) a:not([class]) {
-  text-decoration-thickness: 0.1ex;
-  text-underline-offset: 0.2ex;
-}
-
-:is(h1, h2, h3, h4) a:not([class]):hover {
-  text-underline-offset: 0.3ex;
-}
-
-abbr {
-  cursor: help;
-  text-underline-offset: 0.2ex;
 }
 
 /* Favour focus-visible over focus so click events don't trigger focus styles */
@@ -282,14 +192,6 @@ abbr {
   background: var(--color-dark);
 }
 
-/* Horizontal rule*/
-
-hr {
-  border: none;
-  border-block-start: var(--stroke-solid-thick);
-  margin-block: var(--flow-space, var(--space-xl));
-}
-
 /* Scale icons within container*/
 
 svg:not([class]) {
@@ -301,17 +203,6 @@ svg:not([class]) {
 
 svg {
   flex-shrink: 0;
-}
-
-/* Details and summary */
-
-summary {
-  font-weight: var(--font-bold);
-  cursor: default;
-}
-
-details[open] summary {
-  margin-block-end: var(--space-s);
 }
 
 .button {
@@ -336,8 +227,6 @@ details[open] summary {
   font-weight: var(--font-bold);
   text-align: center;
 }
-
-/* the most developer hover state I could think of https://www.figma.com/file/xTUEEo1a4WsB5qBtBk3XOC/Sketch-up?type=whiteboard&node-id=67-80&t=B5RVDQOZR2vxNLYs-4 */
 
 .button:hover {
   filter: brightness(90%);
@@ -389,28 +278,9 @@ details[open] summary {
   --flow-space: var(--space-xl);
 }
 
-/* Flow for list items */
-
-.prose :is(ul, ol):not([class]) li + li,
-.prose :is(ul, ol):not([class]) li > :is(ol, ul) {
-  margin-block-start: var(--space-xs);
-}
-
-/* Add a subtle stroke to media in case the background blends with the prose container */
-
-/* .prose :is(img, picture, video, svg[width][height]) {
-  border: var(--stroke-solid);
-} */
-
-/* Add lots of space for horizontal rules */
-
-hr {
-  --flow-space: var(--space-2xl);
-}
-
 /* Undo the breaking of words rule because we don't need it on larger viewports */
 
-@media (min-width: 760px) {
+@media (min-width: 55rem) {
   .prose :is(h1, h2, h3) {
     overflow-wrap: unset;
   }
@@ -476,65 +346,6 @@ to change how empty grid tracks are handled */
   gap: var(--gutter, var(--space-l));
 }
 
-/* A split 50/50 layout */
-
-.grid[data-layout="50-50"] {
-  --grid-placement: auto-fit;
-  --grid-min-item-size: clamp(16rem, 50vw, 33rem);
-}
-
-/* Three column grid layout */
-
-.grid[data-layout="thirds"] {
-  --grid-placement: auto-fit;
-  --grid-min-item-size: clamp(16rem, 33%, 20rem);
-}
-
-/* Twelve column grid layout */
-
-.grid[data-layout="twelfths"] {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-}
-
-/*
-SWITCHER
-More info: https://every-layout.dev/layouts/switcher/
-A layout that allows you to lay **2** items next to each other
-until there is not enough horizontal space to allow that.
-
-CUSTOM PROPERTIES AND CONFIGURATION
---gutter (var(--space-size-1)): This defines the space
-between each item
-
---switcher-target-container-width (40rem): How large the container
-needs to be to allow items to sit inline with each other
-
---switcher-vertical-alignment How items should align vertically.
-Can be any acceptable flexbox alignment value.
-*/
-
-.switcher {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--gutter, var(--space-l));
-  align-items: var(--switcher-vertical-alignment, flex-start);
-}
-
-.switcher > * {
-  flex-grow: 1;
-  flex-basis: calc(
-    (var(--switcher-target-container-width, 40rem) - 100%) * 999
-  );
-}
-
-/* Max 2 items,
-so anything greater than 2 is ful width */
-
-.switcher > :nth-child(n + 3) {
-  flex-basis: 100%;
-}
-
 /*
 WRAPPER COMPOSITION 
 A common wrapper/container
@@ -545,15 +356,6 @@ A common wrapper/container
   max-width: clamp(16rem, var(--wrapper-max-width, 100vw), 80rem);
   padding-inline: var(--gutter);
   position: relative;
-}
-
-/* 
-REGION UTILITY
-Consistent block padding for page sections
-*/
-
-.region {
-  padding-block: var(--region-space, var(--space-xl-2xl));
 }
 
 /* 
@@ -571,81 +373,4 @@ Info: https://piccalil.li/quick-tip/visually-hidden/
   position: absolute;
   width: 1px;
   white-space: nowrap;
-}
-
-.fixed {
-  position: fixed;
-}
-
-.absolute {
-  position: absolute;
-}
-
-.mb-xl {
-  margin-bottom: clamp(3.0625rem, 2.9rem + 0.78vw, 3.5rem);
-}
-
-.mt-xs {
-  margin-top: clamp(0.4375rem, 0.41rem + 0.11vw, 0.5rem);
-}
-
-.block {
-  display: block;
-}
-
-.inline {
-  display: inline;
-}
-
-.hidden {
-  display: none;
-}
-
-.flex-wrap {
-  flex-wrap: wrap;
-}
-
-.items-center {
-  align-items: center;
-}
-
-.items-baseline {
-  align-items: baseline;
-}
-
-.bg-mid {
-  background-color: #aba9a2;
-}
-
-.p-m {
-  padding: clamp(1.3125rem, 1.24rem + 0.33vw, 1.5rem);
-}
-
-.py-m {
-  padding-top: clamp(1.3125rem, 1.24rem + 0.33vw, 1.5rem);
-  padding-bottom: clamp(1.3125rem, 1.24rem + 0.33vw, 1.5rem);
-}
-
-.pr-m {
-  padding-right: clamp(1.3125rem, 1.24rem + 0.33vw, 1.5rem);
-}
-
-.pt-l {
-  padding-top: clamp(2.1875rem, 2.07rem + 0.56vw, 2.5rem);
-}
-
-.text-step-1 {
-  font-size: clamp(1.055rem, 0.95rem + 0.52vw, 1.35rem);
-}
-
-.text-step-4 {
-  font-size: clamp(1.501875rem, 1.2rem + 1.48vw, 2.3325rem);
-}
-
-.leading-\[1\] {
-  line-height: 1;
-}
-
-.gutter-xs {
-  --gutter: clamp(0.4375rem, 0.41rem + 0.11vw, 0.5rem);
 }

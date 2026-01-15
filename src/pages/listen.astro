@@ -65,7 +65,7 @@ const songs: SongProps[] = [
 ---
 
 <Layout>
-  <Section className="wrapper flow prose">
+  <Section className="wrapper flow prose" as="div">
     <Heading level={1} emphasis>Audio excerpts</Heading>
 
     <p>
@@ -173,7 +173,7 @@ const songs: SongProps[] = [
     display: flex;
     gap: var(--space-m);
     justify-content: center;
-    background-color: oklch(0.8546 0.0054 106.51);
+    background-color: var(--color-shade-2);
     border-radius: var(--radius-m);
     padding: var(--space-xs);
 
@@ -195,7 +195,7 @@ const songs: SongProps[] = [
       width: 2rem;
 
       &:not(.icon--rewind) {
-        fill: #000;
+        fill: var(--color-dark);
       }
     }
   }
@@ -204,7 +204,7 @@ const songs: SongProps[] = [
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: oklch(0.7507 0.0054 106.51);
+    background-color: var(--color-shade-3);
     border-radius: var(--radius-m);
     padding: var(--space-m);
 
@@ -227,6 +227,7 @@ const songs: SongProps[] = [
 
   .now-playing {
     text-transform: uppercase;
+    letter-spacing: var(--uppercase-kerning);
     font-size: var(--size-step-000);
     font-weight: 400;
   }
