@@ -86,20 +86,13 @@ import NavigationContent from "../components/NavigationContent.astro";
 </script>
 
 <style>
-  /* Default (mobile) values */
   :root {
     --headerPadding: var(--space-m);
-  }
-
-  .header {
-    width: 100%;
   }
 
   .header-wrapper {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    place-items: flex-start;
     padding: var(--headerPadding);
   }
 
@@ -187,6 +180,7 @@ import NavigationContent from "../components/NavigationContent.astro";
   body:has(.hero-container) {
     .header {
       position: absolute;
+      width: 100%;
       background: linear-gradient(
         to bottom,
         oklch(from black l c h / 0.1),

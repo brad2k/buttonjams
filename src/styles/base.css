@@ -56,7 +56,7 @@
   --font-medium: 500;
   --font-bold: 700;
   --font-black: 900;
-  --gutter: var(--space-l);
+  --gutter: var(--space-m);
   --transition-base: 250ms ease;
   --transition-movement: 200ms linear;
   --transition-fade: 300ms ease;

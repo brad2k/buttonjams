@@ -28,7 +28,6 @@ import instagramLogo from "../assets/instagram.svg";
 <style>
   .header-menu {
     display: flex;
-    list-style: none;
     font-size: var(--size-step-0);
     color: #000;
 
@@ -40,7 +39,7 @@ import instagramLogo from "../assets/instagram.svg";
         text-decoration-color 0.3s,
         text-underline-offset 0.3s ease-in-out; /* Transition for the offset */
 
-      @media (hover: hover) {
+      @media (hover: any-hover) {
         &:hover {
           text-decoration: underline;
           text-decoration-color: oklch(from currentColor l c h / 0.5);
@@ -51,6 +50,7 @@ import instagramLogo from "../assets/instagram.svg";
 
     @media (max-width: 55rem) {
       flex-direction: column;
+      align-items: flex-start;
       padding-inline: var(--space-m);
       margin-block-start: calc(
         var(--headerPadding) + var(--space-m) + var(--space-m)
@@ -60,7 +60,7 @@ import instagramLogo from "../assets/instagram.svg";
         display: block;
         padding: var(--space-s);
 
-        @media (hover: hover) {
+        @media (hover: any-hover) {
           &:hover,
           &:focus {
             background-color: var(--color-light-shade);
@@ -70,6 +70,7 @@ import instagramLogo from "../assets/instagram.svg";
     }
 
     @media (min-width: 55rem) {
+      align-items: center;
       gap: var(--space-l);
     }
   }
