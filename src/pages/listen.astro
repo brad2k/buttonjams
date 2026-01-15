@@ -65,65 +65,63 @@ const songs: SongProps[] = [
 ---
 
 <Layout>
-  <main>
-    <Section className="wrapper flow prose">
-      <Heading level={1} emphasis>Audio excerpts</Heading>
+  <Section className="wrapper flow prose">
+    <Heading level={1} emphasis>Audio excerpts</Heading>
 
-      <p>
-        Below are a selection of audio excerpts featuring my playing in various
-        orchestral and chamber music settings. Click on a title to listen.
-      </p>
+    <p>
+      Below are a selection of audio excerpts featuring my playing in various
+      orchestral and chamber music settings. Click on a title to listen.
+    </p>
 
-      <Card className="audio-player">
-        <ul class="playlist">
-          {
-            songs.map((song) => {
-              return (
-                <li>
-                  <button
-                    data-id={song.id}
-                    class="audio-control"
-                    aria-label={`Play ${song.name}`}
-                  >
-                    <PlayingIcon />
-                    <PlayIcon />
-                    {song.name}
-                  </button>
-                  <audio
-                    src={song.src}
-                    data-id={song.id}
-                    data-name={song.name}
-                    data-description={song.description}
-                  />
-                </li>
-              );
-            })
-          }
-        </ul>
+    <Card className="audio-player">
+      <ul class="playlist">
+        {
+          songs.map((song) => {
+            return (
+              <li>
+                <button
+                  data-id={song.id}
+                  class="audio-control"
+                  aria-label={`Play ${song.name}`}
+                >
+                  <PlayingIcon />
+                  <PlayIcon />
+                  {song.name}
+                </button>
+                <audio
+                  src={song.src}
+                  data-id={song.id}
+                  data-name={song.name}
+                  data-description={song.description}
+                />
+              </li>
+            );
+          })
+        }
+      </ul>
 
-        <div class="song-deck standby">
-          <div class="placeholder"><MusicIcon /><p>Select a song</p></div>
-          <div class="song-info">
-            <strong class="now-playing">Now playing</strong>
-            <Heading level={3} className="song-title" />
-            <p class="song-description"></p>
-          </div>
-
-          <aside class="audio-controls" aria-label="Audio controls">
-            <button class="audio-control play-button" aria-label="Play">
-              <PlayIcon />
-            </button>
-            <button class="audio-control pause-button" aria-label="Pause">
-              <PauseIcon />
-            </button>
-            <button class="audio-control rewind-button" aria-label="Rewind">
-              <RewindIcon />
-            </button>
-          </aside>
+      <div class="song-deck standby">
+        <div class="placeholder"><MusicIcon /><p>Select a song</p></div>
+        <div class="song-info">
+          <strong class="now-playing">Now playing</strong>
+          <Heading level={3} className="song-title" />
+          <p class="song-description"></p>
         </div>
-      </Card>
-    </Section>
-  </main>
+
+        <aside class="audio-controls" aria-label="Audio controls">
+          <button class="audio-control play-button" aria-label="Play">
+            <PlayIcon />
+          </button>
+          <button class="audio-control pause-button" aria-label="Pause">
+            <PauseIcon />
+          </button>
+          <button class="audio-control rewind-button" aria-label="Rewind">
+            <RewindIcon />
+          </button>
+        </aside>
+      </div>
+    </Card>
+  </Section>
 </Layout>
 
 <style>
