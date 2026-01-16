@@ -16,7 +16,9 @@ const { wrapperClass } = Astro.props;
     <main class:list={[wrapperClass]}><slot /></main>
   </body><footer class="footer">
     <div class="wrapper footer-wrapper">
-      <span>James Button © 2026</span><span>Website by Brad Azevedo</span>
+      <span>James Button © 2026</span><span
+        >Website by Brad Azevedo | Photos by Anne Richardson</span
+      >
     </div>
   </footer>
 </html>
@@ -37,6 +39,7 @@ const { wrapperClass } = Astro.props;
 
   .footer-wrapper {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
   }
 </style>

@@ -1,43 +1,22 @@
 ---
+import { Picture } from "astro:assets";
+import heroAvif from "../assets/hero-5568×3712.avif";
 import Layout from "../layouts/Layout.astro";
-
-import { Image, Picture } from "astro:assets";
-import heroAvif5568 from "../assets/hero-5568×3712.avif";
-import heroWebp5568 from "../assets/hero-5568×3712.webp";
-import heroJpg5568 from "../assets/hero-5568×3712.jpg";
 ---
 
 <Layout>
   <div class="hero-container">
-    <!-- <Picture
-          class="hero-image"
-          src={heroAvif}
-          formats={["avif"]}
-          fallbackFormat="jpg"
-          alt="James Button"
-          fetchpriority="high"
-          loading="eager"
-          layout="full-width"
-          position="50% 20%"
-          fit="cover"
-          width={5568}
-          height={3712}
-          pictureAttributes={{ class: "hero-picture" }}
-        /> -->
-    <picture class="hero-picture">
-      <source srcset={heroAvif5568.src} type="image/avif" />
-      <source srcset={heroWebp5568.src} type="image/webp" />
-
-      <img
-        class="hero-image"
-        src={heroJpg5568.src}
-        alt="James Button"
-        fetchpriority="high"
-        loading="eager"
-        width={5568}
-        height={3712}
-      />
-    </picture>
+    <Picture
+      class="hero-image"
+      src={heroAvif}
+      formats={["avif", "webp"]}
+      alt="James Button holding his Marigaux 920A oboe in the lobby of Davies Symphony Hall"
+      priority
+      width={5568}
+      height={3712}
+      layout="full-width"
+      pictureAttributes={{ class: "hero-picture" }}
+    />
   </div>
 </Layout>
 
