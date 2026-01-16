@@ -1,10 +1,11 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import Section from "../components/Section.astro";
 import Heading from "../components/Heading.astro";
 import Prose from "../components/Prose.astro";
 
-import muralPhoto from "../assets/james-mural.jpg";
+import muralPhoto from "../assets/james-button-mural.jpg";
 ---
 
 <Layout>
@@ -13,12 +14,13 @@ import muralPhoto from "../assets/james-mural.jpg";
 
     <Prose>
       <figure slot="figure">
-        <img
-          src={muralPhoto.src}
-          alt="James Button holding an oboe"
-          width={888}
-          height={888}
+        <Image
+          src={muralPhoto}
+          width={480}
+          alt="James Button holding an oboe in front of a mural in San Francisco, CA"
           class="prose--image"
+          format="avif"
+          densities={[1, 1.5, 2]}
         />
       </figure>
 

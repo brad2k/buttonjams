@@ -1,12 +1,12 @@
 ---
-import { Image, Picture } from "astro:assets";
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import Section from "../components/Section.astro";
 import Heading from "../components/Heading.astro";
 import Prose from "../components/Prose.astro";
 import Card from "../components/Card.astro";
 
-import denimPhoto from "../assets/james-button-denim.png";
+import denimPhoto from "../assets/james-button-denim.avif";
 ---
 
 <Layout>
@@ -30,13 +30,6 @@ import denimPhoto from "../assets/james-button-denim.png";
           format="avif"
           densities={[1, 1.5, 2]}
         />
-        <!-- <img
-          src={denimPhoto.src}
-          alt="James Button holding his Marigaux 920A oboe"
-          width={1200}
-          height={1080}
-          class="prose--image"
-        /> -->
       </figure>
 
       <aside>

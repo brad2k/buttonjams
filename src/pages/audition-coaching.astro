@@ -1,11 +1,11 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import Section from "../components/Section.astro";
 import Heading from "../components/Heading.astro";
 import Prose from "../components/Prose.astro";
 
-import playingAvif from "../assets/playing.avif";
-import playingWebp from "../assets/playing.webp";
+import playingPhoto from "../assets/james-button-playing.avif";
 ---
 
 <Layout>
@@ -14,18 +14,14 @@ import playingWebp from "../assets/playing.webp";
 
     <Prose>
       <figure slot="figure">
-        <picture>
-          <source srcset={playingAvif.src} type="image/avif" />
-          <source srcset={playingWebp.src} type="image/webp" />
-
-          <img
-            src={playingAvif.src}
-            alt="James Button playing his Marigaux 920A oboe"
-            width={3470}
-            height={3054}
-            class="prose--image"
-          />
-        </picture>
+        <Image
+          src={playingPhoto}
+          width={playingPhoto.width / 2}
+          alt="James Button playing his Marigaux 920A oboe"
+          class="prose--image"
+          format="avif"
+          densities={[1, 1.5, 2]}
+        />
       </figure>
 
       <p>
