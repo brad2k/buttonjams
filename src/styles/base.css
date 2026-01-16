@@ -22,7 +22,6 @@
   --leading-fine: 1.2;
   --leading-standard: 1.4;
   --leading-loose: 1.7;
-  --uppercase-kerning: 0.04ch;
 
   --space-xs: clamp(0.4375rem, 0.41rem + 0.11vw, 0.5rem);
   --space-s: clamp(0.875rem, 0.83rem + 0.22vw, 1rem);
@@ -221,7 +220,6 @@ svg {
   color: var(--button-text);
   padding: var(--button-y-padding) var(--button-x-padding);
   text-transform: uppercase;
-  letter-spacing: var(--uppercase-kerning);
   text-decoration: none;
   font-size: var(--size-step-00);
   font-weight: var(--font-bold);
