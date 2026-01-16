@@ -1,7 +1,6 @@
 ---
 import Card from "./Card.astro";
-import { Image } from "astro:assets";
-import calendarSvg from "../assets/calendar.svg";
+import Calendar from "../assets/svg/calendar.svg";
 
 interface Props {
   category: string;
@@ -29,7 +28,7 @@ const {
     <h3 class="event-heading">{title}</h3>
     <div class="event-info">
       <time class="event-date">
-        <Image src={calendarSvg} alt="Calendar icon" class="calendar-icon" />
+        <Calendar class="calendar-icon" />
         <span>{dateTime}</span></time
       >
       <p>{location}</p>

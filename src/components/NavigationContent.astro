@@ -1,6 +1,5 @@
 ---
-import { Image } from "astro:assets";
-import instagramLogo from "../assets/instagram.svg";
+import InstagramLogo from "../assets/svg/instagram.svg";
 ---
 
 <ul class="header-menu">
@@ -14,14 +13,8 @@ import instagramLogo from "../assets/instagram.svg";
       href="https://www.instagram.com/buttonjamss/"
       target="_blank"
       rel="noopener noreferrer"
-      ><Image
-        src={instagramLogo}
-        alt="Instagram logo"
-        role="img"
-        height={22}
-        width={22}
-      /></a
-    >
+      ><InstagramLogo height={22} width={22} />
+    </a>
   </li>
 </ul>
 
@@ -45,9 +38,12 @@ import instagramLogo from "../assets/instagram.svg";
       }
     }
 
+    svg {
+      display: block;
+    }
+
     @media (max-width: 55rem) {
       flex-direction: column;
-      align-items: flex-start;
       padding-inline: var(--space-m);
       margin-block-start: calc(
         var(--headerPadding) + var(--space-m) + var(--space-m)

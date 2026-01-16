@@ -1,10 +1,3 @@
----
-interface Props {
-  className?: string;
-}
-
-const { className, ...rest } = Astro.props;
----
 
 <svg
   xmlns="http://www.w3.org/2000/svg"
@@ -16,8 +9,10 @@ const { className, ...rest } = Astro.props;
   stroke-width="2"
   stroke-linecap="round"
   stroke-linejoin="round"
-  class:list={["icon icon--playing", className]}
-  {...rest}
+  class="icon icon--playing"
+  role="img"
+  aria-labelledby="playing-icon-title"
+  ><title id="playing-icon-title">Playing icon</title
   ><path d="M2 10v3"></path><path d="M6 6v11"></path><path d="M10 3v18"
   ></path><path d="M14 8v7"></path><path d="M18 5v13"></path><path d="M22 10v3"
   ></path></svg
