@@ -64,7 +64,7 @@ const songs: SongProps[] = [
 ];
 ---
 
-<Layout>
+<Layout pageTitle="Listen to audio excerpts">
   <Section className="wrapper flow prose" as="div">
     <Heading level={1} emphasis>Audio excerpts</Heading>
 
@@ -74,7 +74,10 @@ const songs: SongProps[] = [
     </p>
 
     <Card className="audio-player">
-      <ul class="playlist">
+      <ul
+        class="playlist"
+        aria-label="Playlist of James Button's audio excerpts"
+      >
         {
           songs.map((song) => {
             return (
@@ -248,96 +251,180 @@ const songs: SongProps[] = [
 </style>
 
 <script>
-  const playlist = document.querySelector(".playlist");
-  const rewindButton = document.querySelector(".rewind-button");
-  const playButton = document.querySelector(".play-button");
-  const pauseButton = document.querySelector(".pause-button");
-  const songDeck = document.querySelector(".song-deck");
-  const songTitle = document.querySelector(".song-title");
-  const songDescription = document.querySelector(".song-description");
-  const placeholder = document.querySelector(".placeholder");
+  const SELECTORS = {
+    playlist: ".playlist",
+    rewindButton: ".rewind-button",
+    playButton: ".play-button",
+    pauseButton: ".pause-button",
+    songDeck: ".song-deck",
+    songTitle: ".song-title",
+    songDescription: ".song-description",
+    placeholder: ".placeholder",
+  };
 
-  let currentAudioFile: HTMLAudioElement | null;
+  // Cache DOM elements
+  const elements = {
+    playlist: document.querySelector(
+      SELECTORS.playlist
+    ) as HTMLUListElement | null,
+    rewindButton: document.querySelector(
+      SELECTORS.rewindButton
+    ) as HTMLButtonElement | null,
+    playButton: document.querySelector(
+      SELECTORS.playButton
+    ) as HTMLButtonElement | null,
+    pauseButton: document.querySelector(
+      SELECTORS.pauseButton
+    ) as HTMLButtonElement | null,
+    songDeck: document.querySelector(
+      SELECTORS.songDeck
+    ) as HTMLDivElement | null,
+    songTitle: document.querySelector(
+      SELECTORS.songTitle
+    ) as HTMLElement | null,
+    songDescription: document.querySelector(
+      SELECTORS.songDescription
+    ) as HTMLElement | null,
+    placeholder: document.querySelector(
+      SELECTORS.placeholder
+    ) as HTMLElement | null,
+  };
 
-  function playSong(id: string) {
-    const audioFile = playlist?.querySelector(
+  // State management
+  let currentAudio: HTMLAudioElement | null = null;
+  let isPlaying = false;
+
+  // Helper: Update play/pause button states
+  function updatePlayPauseButtons(playing: boolean) {
+    isPlaying = playing;
+    elements.pauseButton?.setAttribute(
+      "aria-pressed",
+      playing ? "false" : "true"
+    );
+    elements.playButton?.setAttribute(
+      "aria-pressed",
+      playing ? "true" : "false"
+    );
+  }
+
+  // Helper: Update song info display
+  function updateSongInfo(audio: HTMLAudioElement) {
+    if (elements.songTitle)
+      elements.songTitle.textContent = audio.dataset.name || "";
+    if (elements.songDescription)
+      elements.songDescription.textContent = audio.dataset.description || "";
+    elements.placeholder?.remove();
+    elements.songDeck?.classList.remove("standby");
+  }
+
+  // Helper: Update playlist active state
+  function updatePlaylistActive(button: HTMLButtonElement | null) {
+    const active = elements.playlist?.querySelector("[aria-current]");
+    if (active) active.removeAttribute("aria-current");
+    if (button) button.setAttribute("aria-current", "true");
+  }
+
+  // Play or toggle a song
+  function playOrToggleSong(id: string) {
+    const audio = elements.playlist?.querySelector(
       `audio[data-id="${id}"]`
-    ) as HTMLAudioElement;
+    ) as HTMLAudioElement | null;
+    if (!audio) return;
 
-    if (!audioFile) return;
-
-    audioFile.currentTime = 0;
-    audioFile.play();
-    currentAudioFile = audioFile;
-
-    // Update the displayed song data
-    pauseButton?.setAttribute("aria-pressed", "false");
-    playButton?.setAttribute("aria-pressed", "true");
-
-    songTitle!.textContent = audioFile.dataset.name || "";
-    songDescription!.textContent = audioFile.dataset.description || "";
-    placeholder?.remove();
+    if (currentAudio === audio) {
+      // Same song: toggle play/pause
+      if (isPlaying) {
+        pausePlayback();
+      } else {
+        resumePlayback();
+      }
+    } else {
+      // New song: pause current, switch, and play
+      if (currentAudio) currentAudio.pause();
+      currentAudio = audio;
+      audio.currentTime = 0;
+      try {
+        audio.play();
+        updatePlayPauseButtons(true);
+        updateSongInfo(audio);
+      } catch (error) {
+        console.error("Audio playback failed:", error);
+      }
+    }
   }
 
+  // Rewind current song
   function rewindPlayback() {
-    if (currentAudioFile) {
-      currentAudioFile.currentTime = 0;
+    if (currentAudio) {
+      currentAudio.currentTime = 0;
+      if (!isPlaying) resumePlayback(); // Auto-resume if paused
     }
-
-    pauseButton?.setAttribute("aria-pressed", "false");
-    playButton?.setAttribute("aria-pressed", "true");
   }
 
+  // Pause playback
   function pausePlayback() {
-    if (currentAudioFile) {
-      currentAudioFile.pause();
-    }
-
-    pauseButton?.setAttribute("aria-pressed", "true");
-    playButton?.setAttribute("aria-pressed", "false");
+    if (currentAudio) currentAudio.pause();
+    updatePlayPauseButtons(false);
   }
 
+  // Resume playback
   function resumePlayback() {
-    if (currentAudioFile) {
-      currentAudioFile.play();
-    }
-
-    pauseButton?.setAttribute("aria-pressed", "false");
-    playButton?.setAttribute("aria-pressed", "true");
-  }
-
-  function updatePlaylist(requested?: HTMLButtonElement) {
-    // Find and deactivate the currently active song
-    const activeSong = playlist?.querySelector("[aria-current]");
-
-    if (activeSong) {
-      activeSong.removeAttribute("aria-current");
-    }
-
-    // Activate the requested song
-    if (requested) {
-      requested.setAttribute("aria-current", "true");
+    if (currentAudio) {
+      try {
+        currentAudio.play();
+        updatePlayPauseButtons(true);
+      } catch (error) {
+        console.error("Audio resume failed:", error);
+      }
     }
   }
 
   // Event listeners
+  elements.playlist?.addEventListener("click", (e) => {
+    const button = (e.target as HTMLElement).closest(
+      ".audio-control"
+    ) as HTMLButtonElement | null;
+    if (!button) return;
 
-  playlist?.addEventListener("click", (e) => {
-    const newSong = e.target as HTMLButtonElement;
-    if (!newSong) return;
-
-    pausePlayback();
-    updatePlaylist(newSong);
-
-    songDeck?.classList.remove("standby");
-
-    const songId = newSong.dataset.id?.toLowerCase();
+    const songId = button.dataset.id;
     if (songId) {
-      playSong(songId);
+      updatePlaylistActive(button);
+      playOrToggleSong(songId);
     }
   });
 
-  pauseButton?.addEventListener("click", pausePlayback);
-  rewindButton?.addEventListener("click", rewindPlayback);
-  playButton?.addEventListener("click", resumePlayback);
+  elements.pauseButton?.addEventListener("click", pausePlayback);
+  elements.rewindButton?.addEventListener("click", rewindPlayback);
+  elements.playButton?.addEventListener("click", resumePlayback);
+
+  // Audio event listeners for automatic UI syncing
+  document.addEventListener(
+    "play",
+    (e) => {
+      if (e.target instanceof HTMLAudioElement && e.target === currentAudio) {
+        updatePlayPauseButtons(true);
+      }
+    },
+    true
+  );
+
+  document.addEventListener(
+    "pause",
+    (e) => {
+      if (e.target instanceof HTMLAudioElement && e.target === currentAudio) {
+        updatePlayPauseButtons(false);
+      }
+    },
+    true
+  );
+
+  document.addEventListener(
+    "ended",
+    (e) => {
+      if (e.target instanceof HTMLAudioElement && e.target === currentAudio) {
+        updatePlayPauseButtons(false);
+      }
+    },
+    true
+  );
 </script>

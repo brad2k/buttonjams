@@ -2,6 +2,11 @@
 import { Font } from "astro:assets";
 import socialImage from "../assets/james-button-social.jpg";
 import PostHog from "../components/posthog.astro";
+
+interface Props {
+  pageTitle?: string;
+}
+const { pageTitle } = Astro.props;
 ---
 
 <head>
@@ -14,7 +19,7 @@ import PostHog from "../components/posthog.astro";
   <Font cssVariable="--font-Montserrat" preload />
   <PostHog />
 
-  <title>James Button — San Francisco oboist</title>
+  <title>{`James Button — ${pageTitle || "San Francisco oboist"}`}</title>
   <link rel="canonical" href="https://jamesbuttonoboe.com" />
   <meta
     name="description"

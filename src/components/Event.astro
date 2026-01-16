@@ -7,7 +7,7 @@ interface Props {
   title: string;
   dateTime: string;
   children?: string;
-  link: string;
+  link: string | URL;
   location: string;
 }
 
@@ -20,6 +20,10 @@ const {
   location,
   ...rest
 } = Astro.props;
+
+const url = new URL(link);
+url.searchParams.append("utm_source", "jamesbuttonoboe.com");
+const ammendedLink = url.toString();
 ---
 
 <Card as="li" class="event" {...rest}>
@@ -37,7 +41,9 @@ const {
     <p><slot /></p>
   </div>
 
-  <a href={link} target="_blank" rel="noopener" class="button">More info</a>
+  <a href={ammendedLink} target="_blank" rel="noopener" class="button">
+    More info
+  </a>
 </Card>
 
 <style>

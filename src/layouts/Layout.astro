@@ -5,12 +5,17 @@ import "../styles/base.css";
 import Head from "../components/Head.astro";
 import Navigation from "../components/Navigation.astro";
 
-const { wrapperClass } = Astro.props;
+interface Props {
+  pageTitle?: string;
+  wrapperClass?: string;
+}
+
+const { pageTitle, wrapperClass } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-  <Head />
+  <Head pageTitle={pageTitle} />
   <body>
     <Navigation />
     <main class:list={[wrapperClass]}><slot /></main>
