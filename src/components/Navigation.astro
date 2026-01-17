@@ -2,7 +2,7 @@
 import NavigationContent from "../components/NavigationContent.astro";
 ---
 
-<header class="header">
+<header class="header" transition:persist>
   <div class="wrapper header-wrapper">
     <a href="/" class="header-logo">
       <span class="first-name">James</span>
@@ -62,25 +62,53 @@ import NavigationContent from "../components/NavigationContent.astro";
     '[aria-controls="primary-navigation"]'
   ) as HTMLButtonElement;
 
-  if (navToggle) {
-    navToggle.addEventListener("click", () => {
-      const isOpen = navToggle.getAttribute("aria-expanded") === "true";
+  function toggleMenu() {
+    const isOpen = navToggle.getAttribute("aria-expanded") === "true";
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  }
 
-      if (isOpen) {
-        closeMenu();
+  function closeMenu() {
+    navToggle.setAttribute("aria-expanded", "false");
+  }
+
+  function openMenu() {
+    navToggle.setAttribute("aria-expanded", "true");
+  }
+
+  function highlightActiveLink() {
+    const navLinks = document.querySelectorAll(
+      ".header-menu a"
+    ) as NodeListOf<HTMLAnchorElement>;
+
+    navLinks.forEach((link) => {
+      const linkPath = new URL(link.href).pathname;
+      if (linkPath === window.location.pathname) {
+        link.setAttribute("aria-current", "page");
       } else {
-        openMenu();
-      }
-
-      function closeMenu() {
-        navToggle.setAttribute("aria-expanded", "false");
-      }
-
-      function openMenu() {
-        navToggle.setAttribute("aria-expanded", "true");
+        link.removeAttribute("aria-current");
       }
     });
   }
+
+  document.addEventListener("astro:page-load", () => {
+    // Add menu toggle event listener
+    navToggle.addEventListener("click", toggleMenu);
+
+    // Highlight the active link on initial load
+    highlightActiveLink();
+  });
+
+  document.addEventListener("astro:before-swap", (event) => {
+    // Remove menu event listener to prevent multiple bindings
+    document.removeEventListener("click", toggleMenu);
+
+    // Close the menu on navigation
+    closeMenu();
+  });
 </script>
 
 <style>

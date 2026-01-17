@@ -1,8 +1,6 @@
 ---
 import InstagramLogo from "../assets/svg/instagram.svg";
 
-const currentPath = Astro.url.pathname;
-
 const links = [
   { href: "/about", label: "About" },
   { href: "/audition-coaching", label: "Audition coaching" },
@@ -16,12 +14,7 @@ const links = [
   {
     links.map((link) => (
       <li>
-        <a
-          href={link.href}
-          aria-current={currentPath === link.href ? "page" : undefined}
-        >
-          {link.label}
-        </a>
+        <a href={link.href}>{link.label}</a>
       </li>
     ))
   }
