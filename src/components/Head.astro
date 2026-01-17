@@ -1,5 +1,6 @@
 ---
 import { Font } from "astro:assets";
+import { ClientRouter } from "astro:transitions";
 import socialImage from "../assets/james-button-social.jpg";
 import PostHog from "../components/posthog.astro";
 
@@ -39,6 +40,8 @@ const { pageTitle } = Astro.props;
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://jamesbuttonoboe.com/" />
   <meta property="og:locale" content="en_US" />
+
+  <ClientRouter />
 
   <script type="application/ld+json">
     {
