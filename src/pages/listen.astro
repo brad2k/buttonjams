@@ -86,6 +86,7 @@ const songs: SongProps[] = [
                   data-id={song.id}
                   class="audio-control"
                   aria-label={`Play ${song.name}`}
+                  aria-controls={`audio-${song.id}`}
                 >
                   <PlayingIcon />
                   <PlayIcon />
@@ -96,6 +97,7 @@ const songs: SongProps[] = [
                   data-id={song.id}
                   data-name={song.name}
                   data-description={song.description}
+                  id={`audio-${song.id}`}
                 />
               </li>
             );
