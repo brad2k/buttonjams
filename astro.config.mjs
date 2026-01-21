@@ -8,7 +8,7 @@ export default defineConfig({
   adapter: netlify({
     imageCDN: true,
   }),
-
+  trailingSlash: "always",
   experimental: {
     svgo: true,
     fonts: [
