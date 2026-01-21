@@ -26,5 +26,17 @@ const { className, ...rest } = Astro.props;
       border-radius: var(--radius-m);
       width: 100%;
     }
+
+    figcaption {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-size: var(--size-step-00);
+
+      .icon {
+        height: 1.2em;
+        width: 1.2em;
+      }
+    }
   }
 </style>

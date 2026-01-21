@@ -10,6 +10,7 @@ export default defineConfig({
   }),
 
   experimental: {
+    svgo: true,
     fonts: [
       {
         provider: fontProviders.google(),

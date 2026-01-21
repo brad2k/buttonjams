@@ -7,10 +7,11 @@ import Navigation from "../components/Navigation.astro";
 
 interface Props {
   pageTitle?: string;
+  pageType?: string;
   wrapperClass?: string;
 }
 
-const { pageTitle, wrapperClass } = Astro.props;
+const { pageTitle, pageType, wrapperClass, ...rest } = Astro.props;
 ---
 
 <!doctype html>
@@ -18,11 +19,13 @@ const { pageTitle, wrapperClass } = Astro.props;
   <Head pageTitle={pageTitle} />
   <body>
     <Navigation />
-    <main class:list={[wrapperClass]}><slot /></main>
+    <main class:list={[wrapperClass]} {...rest}><slot /></main>
   </body><footer class="footer">
     <div class="wrapper footer-wrapper">
       <span>James Button © 2026</span><span
-        >Website by Brad Azevedo | Photos by Anne Richardson</span
+        >Website by Brad Azevedo{
+          pageType === "home" ? " | Photo by Anne Richardson" : null
+        }</span
       >
     </div>
   </footer>
