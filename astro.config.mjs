@@ -24,6 +24,7 @@ export default defineConfig({
         cssVariable: "--font-Montserrat",
         weights: [400, 700],
         subsets: ["latin"],
+        styles: ["normal"],
       },
     ],
   },
