@@ -9,6 +9,9 @@ export default defineConfig({
     imageCDN: true,
   }),
   trailingSlash: "always",
+  image: {
+    responsiveStyles: true,
+  },
   experimental: {
     svgo: true,
     fonts: [
