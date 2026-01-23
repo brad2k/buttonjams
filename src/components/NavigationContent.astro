@@ -34,6 +34,7 @@ const links = [
     font-size: var(--size-step-0);
 
     a {
+      color: var(--nav-text-color);
       text-decoration-color: transparent;
       text-underline-offset: 0.2em;
       transition:
@@ -68,11 +69,15 @@ const links = [
       a {
         display: block;
         padding: var(--space-s);
+        color: light-dark(var(--color-dark), var(--color-light));
 
         @media (hover: hover) {
           &:hover,
           &:focus {
-            background-color: var(--color-shade-1);
+            background-color: light-dark(
+              var(--color-shade-1),
+              var(--color-shade-4)
+            );
           }
         }
       }

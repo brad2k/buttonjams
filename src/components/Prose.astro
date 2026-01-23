@@ -22,7 +22,7 @@ const { className, ...rest } = Astro.props;
     }
 
     img {
-      border: 1px solid var(--color-shade-3);
+      border: 1px solid light-dark(var(--border-light), var(--border-dark));
       border-radius: var(--radius-m);
       width: 100%;
     }

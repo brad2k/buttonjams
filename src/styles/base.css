@@ -1,6 +1,18 @@
-/* https://demo-base-styles.netlify.app/css/global.css */
+@property --starting-color {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: var(--color-light);
+}
+
+@property --ending-color {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: var(--color-dark);
+}
 
 :root {
+  color-scheme: light dark;
+
   --color-primary: oklch(
     0.3589 0.061077067325265945 202.28872467436463
   ); /* #00464b */
@@ -12,11 +24,22 @@
   --color-shade-3: oklch(0.7507 0.0054 106.5); /* #aeaeaa */
   --color-shade-4: oklch(0.462 0.004 106.5); /* #595956 */
 
+  --starting-color: light-dark(var(--color-light), var(--color-dark));
+  --ending-color: light-dark(
+    var(--color-shade-1),
+    oklch(from var(--color-dark) calc(l + 0.1) c h)
+  );
+
   --bg-gradient: radial-gradient(
     in oklch circle,
-    var(--color-light) 0%,
-    var(--color-shade-1) 100%
+    var(--starting-color) 0%,
+    var(--ending-color) 100%
   );
+
+  --nav-text-color: light-dark(var(--color-dark)), var(--color-light);
+
+  --border-light: var(--color-shade-3);
+  --border-dark: var(--color-shade-4);
 
   --leading-flat: 1;
   --leading-fine: 1.2;
@@ -71,13 +94,15 @@
 
 body {
   background: var(--bg-gradient);
-  color: var(--color-dark);
+  color: light-dark(var(--color-dark), var(--color-light));
   font-size: var(--size-step-1);
   font-family: var(--font-base);
   font-optical-sizing: auto;
   line-height: var(--leading-standard);
   font-size-adjust: from-font;
   margin: 0;
+  transition: --starting-color var(--transition-fade),
+    --ending-color var(--transition-fade), color var(--transition-fade);
 }
 
 :is(h1, h2, h3, h4) {

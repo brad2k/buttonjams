@@ -6,17 +6,18 @@ import Head from "../components/Head.astro";
 import Navigation from "../components/Navigation.astro";
 
 interface Props {
+  heroImage?: string;
   pageTitle?: string;
   pageType?: string;
   wrapperClass?: string;
 }
 
-const { pageTitle, pageType, wrapperClass, ...rest } = Astro.props;
+const { heroImage, pageTitle, pageType, wrapperClass, ...rest } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-  <Head pageTitle={pageTitle} />
+  <Head pageTitle={pageTitle} heroImage={heroImage} />
   <body>
     <Navigation />
     <main class:list={[wrapperClass]} {...rest}><slot /></main>
@@ -41,7 +42,7 @@ const { pageTitle, pageType, wrapperClass, ...rest } = Astro.props;
   .footer {
     padding-block: var(--space-xs);
     font-size: var(--size-step-00);
-    background-color: var(--color-shade-4);
+    background-color: light-dark(var(--color-shade-4), var(--color-dark));
     color: var(--color-light);
   }
 
