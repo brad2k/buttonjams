@@ -141,6 +141,7 @@ const songs: SongProps[] = [
       width: 0.75rem;
       margin-inline-end: var(--space-xs);
       margin-inline-start: -1.5rem;
+      fill: light-dark(var(--color-dark), var(--color-light));
     }
 
     .audio-control {
@@ -180,7 +181,7 @@ const songs: SongProps[] = [
     display: flex;
     gap: var(--space-m);
     justify-content: center;
-    background-color: var(--color-shade-2);
+    background-color: light-dark(var(--color-shade-2), var(--color-shade-3));
     border-radius: var(--radius-m);
     padding: var(--space-xs);
 
@@ -200,10 +201,7 @@ const songs: SongProps[] = [
       display: block;
       height: 2rem;
       width: 2rem;
-
-      &:not(.icon--rewind) {
-        fill: var(--color-dark);
-      }
+      color: var(--color-dark);
     }
   }
 
@@ -211,10 +209,10 @@ const songs: SongProps[] = [
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: var(--color-shade-3);
+    background-color: light-dark(var(--color-shade-3), var(--color-shade-4));
     border-radius: var(--radius-m);
     padding: var(--space-m);
-    outline: 1px solid var(--color-shade-3);
+    outline: 1px solid light-dark(var(--border-light), var(--border-dark));
     outline-offset: 2px;
 
     &.standby {

@@ -105,6 +105,10 @@ import CameraIcon from "../assets/svg/camera.svg";
   .contact-field {
     padding: 0.75rem;
     width: 100%;
+    background-color: light-dark(var(--color-light), var(--color-shade-1));
+    border: 1px solid light-dark(var(--color-shade-3), var(--color-shade-4));
+    color: var(--color-dark);
+    border-radius: var(--radius-s);
 
     &:user-invalid {
       border: 2px dashed red;

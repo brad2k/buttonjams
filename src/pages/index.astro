@@ -7,7 +7,7 @@ import Heading from "../components/Heading.astro";
 
 <Layout wrapperClass="hero-container" pageType="home">
   <Heading level={1} as={4} className="hero-title">
-    <span>San Francisco Symphony</span>
+    <span class="sfs">San Francisco Symphony</span>
     <span class="job-title">Associate Principal Oboe</span>
   </Heading>
 
@@ -25,6 +25,10 @@ import Heading from "../components/Heading.astro";
 </Layout>
 
 <style>
+  :root {
+    --nav-text-color: var(--color-dark);
+  }
+
   .hero-container {
     height: 100dvh;
     position: relative;
@@ -57,10 +61,14 @@ import Heading from "../components/Heading.astro";
     }
   }
 
+  .sfs {
+    color: var(--nav-text-color);
+  }
+
   .job-title {
     font-size: 75%;
     text-align: right;
-    color: oklch(from var(--color-dark) l c h / 0.85);
+    color: oklch(from var(--nav-text-color) l c h / 0.9);
   }
 
   .hero-image {
