@@ -1,17 +1,28 @@
 // @ts-check
 import { defineConfig, fontProviders } from "astro/config";
 import netlify from "@astrojs/netlify";
+import sanity from "@sanity/astro";
+import react from "@astrojs/react";
+import { loadEnv } from "vite";
+
+const { PUBLIC_SANITY_PROJECT_ID, PUBLIC_SANITY_DATASET } = loadEnv(
+  process.env.NODE_ENV,
+  process.cwd(),
+  "",
+);
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://jamesbuttonoboe.com/",
+
   adapter: netlify({
     imageCDN: true,
   }),
-  trailingSlash: "always",
+
   image: {
     responsiveStyles: true,
   },
+
   experimental: {
     svgo: true,
     fonts: [
@@ -32,4 +43,15 @@ export default defineConfig({
       },
     ],
   },
+
+  integrations: [
+    sanity({
+      projectId: PUBLIC_SANITY_PROJECT_ID,
+      dataset: PUBLIC_SANITY_DATASET,
+      // Set useCdn to false if you're building statically.
+      useCdn: false,
+      studioBasePath: "/studio",
+    }),
+    react(),
+  ],
 });

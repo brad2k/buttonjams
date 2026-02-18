@@ -7,6 +7,24 @@ import Layout from "../layouts/Layout.astro";
 
 import muralPhoto from "../assets/james-button-mural.jpg";
 import { Camera } from "@lucide/astro";
+
+import type { SanityDocument } from "@sanity/client";
+import { loadQuery } from "../sanity/lib/load-query";
+
+// Query for the specific page by slug
+
+const { data } = await loadQuery<SanityDocument[]>({
+  query: `*[_type == "page" && slug.current == "about"][0]{
+    headline,
+    image,
+    imageAlt,
+    imageCaption,
+    content,
+    seo
+  }`,
+});
+
+console.log(data);
 ---
 
 <Layout pageTitle="About">
