@@ -1,123 +1,148 @@
-/* Modern reset: https://piccalil.li/blog/a-more-modern-css-reset/ */
+/* Inspired by:
+    https://piccalil.li/blog/a-more-modern-css-reset/
+    https://www.joshwcomeau.com/css/custom-css-reset/
+    https://frontendmasters.com/blog/the-coyier-css-starter/
+*/
 
 /* Box sizing rules */
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-/* Prevent font size inflation */
-
-html {
-  -moz-text-size-adjust: none;
-  -webkit-text-size-adjust: none;
-  text-size-adjust: none;
-  overflow-y: scroll;
-  scroll-behavior: smooth;
-  hanging-punctuation: first allow-end last;
-  word-break: break-word;
-}
-
-@supports (scrollbar-gutter: stable) {
-  html {
-    overflow-y: auto;
-    scrollbar-gutter: stable;
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
   }
-}
 
-/* Remove default margin in favour of better control in authored CSS */
+  /* Some sensible typographic and container defaults */
 
-body,
-h1,
-h2,
-h3,
-h4,
-p,
-figure,
-blockquote,
-ul,
-ol,
-dl,
-dd {
-  margin-block: 0;
-}
+  :where(html) {
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    hanging-punctuation: first allow-end last;
+    word-break: break-word;
 
-/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+    @media (prefers-reduced-motion: no-preference) {
+      interpolate-size: allow-keywords;
+    }
 
-ul[role="list"],
-ol[role="list"] {
-  list-style: none;
-}
+    @supports (scrollbar-gutter: stable) {
+      overflow-y: auto;
+      scrollbar-gutter: stable;
+    }
+  }
 
-/* Set core body defaults */
+  /* Set core body defaults */
 
-body {
-  min-height: 100vh;
-  line-height: 1.5;
-}
+  :where(body) {
+    min-height: 100vh;
+    line-height: 1.5;
+  }
 
-/* Set shorter line heights on headings and interactive elements */
+  /* Remove default margin on almost everything */
 
-h1,
-h2,
-h3,
-h4,
-button,
-input,
-label {
-  line-height: 1.1;
-}
+  :where(:not(dialog, popover)) {
+    margin: 0;
+  }
 
-/* Balance text wrapping on headings */
+  /*
+    Lists with role="list" will be treated as a normal list;
+    Lists with classes (and not role="list") will be considered custom
+  */
 
-h1,
-h2,
-h3,
-h4 {
-  text-wrap: balance;
-}
+  :where(ul[class]:not([role="list"]), ol[class]:not([role="list"])) {
+    padding: 0;
+    list-style: none;
+  }
 
-/* A elements that don't have a class get default styles */
+  :where(ul[role="list"], ol[role="list"]) {
+    list-style: inside;
+  }
 
-a:not([class]) {
-  text-decoration-skip-ink: auto;
-  color: currentColor;
-}
+  /* Set shorter line heights on headings and interactive elements */
 
-/* Make images easier to work with */
+  :where(h1, h2, h3, h4, h5, h6, button, input, label) {
+    line-height: 1.1;
+  }
 
-:is(img, picture) {
-  height: auto;
-  max-width: 100%;
-  display: block;
-}
+  :where(p, h1, h2, h3, h4, h5, h6) {
+    overflow-wrap: break-word;
+  }
 
-/* Inherit fonts for inputs and buttons */
+  /* Balance text wrapping on headings */
 
-input,
-button,
-textarea,
-select {
-  font: inherit;
-}
+  :where(h1, h2, h3, h4, h5, h6) {
+    text-wrap: balance;
+  }
 
-/* Make sure textareas without a rows attribute are not tiny */
+  /* Use pretty wrapping on longer-form content */
+  :where(p, li, dd) {
+    text-wrap: pretty;
+  }
 
-textarea:not([rows]) {
-  min-height: 10em;
-}
+  :where(a) {
+    text-decoration-skip-ink: auto;
+    color: currentColor;
+  }
 
-/* Button resets */
+  /* Inherit fonts for inputs and buttons */
 
-button {
-  display: block;
-  margin: 0;
-  padding: 0;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  text-align: left;
-  color: inherit;
+  :where(input, button, textarea, select) {
+    font: inherit;
+  }
+
+  /* Button resets */
+
+  :where(button) {
+    display: block;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    text-align: left;
+    color: inherit;
+  }
+
+  /* Make most input elements occupy their container width */
+  :where(
+    input:not(
+      [type="submit"],
+      [type="checkbox"],
+      [type="radio"],
+      [type="button"],
+      [type="reset"]
+    )
+  ) {
+    inline-size: 100%;
+  }
+
+  /* Make images easier to work with */
+
+  :where(img, svg, video) {
+    display: block;
+    block-size: auto;
+    max-inline-size: 100%;
+  }
+
+  :where(svg) {
+    display: inline-block;
+    block-size: auto;
+    max-inline-size: 100%;
+
+    &:not([class]) {
+      block-size: 1lh;
+    }
+  }
+
+  :where(figure) {
+    inline-size: fit-content;
+    margin-inline: auto;
+  }
+
+  :where(figcaption) {
+    contain: inline-size;
+    font-size: 90%;
+  }
 }

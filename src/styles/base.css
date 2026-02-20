@@ -70,8 +70,8 @@
   --size-step-9: clamp(2.70625rem, 1.57rem + 5.51vw, 5.805rem);
   --size-step-10: clamp(3.044375rem, 1.61rem + 6.97vw, 6.965625rem);
 
-  --font-base: var(--font-Montserrat), Segoe UI, Roboto, Helvetica Neue, Arial,
-    sans-serif;
+  --font-base:
+    var(--font-Montserrat), Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
   --font-regular: 400;
   --font-medium: 500;
   --font-bold: 700;
@@ -100,14 +100,14 @@ body {
   font-optical-sizing: auto;
   line-height: var(--leading-standard);
   font-size-adjust: from-font;
-  margin: 0;
-  transition: --starting-color var(--transition-fade),
-    --ending-color var(--transition-fade), color var(--transition-fade);
+  transition:
+    --starting-color var(--transition-fade),
+    --ending-color var(--transition-fade),
+    color var(--transition-fade);
 }
 
 :is(h1, h2, h3, h4) {
   line-height: var(--leading-fine);
-  text-wrap: balance;
 }
 
 h1,
@@ -139,54 +139,15 @@ h4,
   font-size: var(--size-step-2);
 }
 
-/* Lists */
+/* Lists without a class are assumed to be displayed as a list */
 
-:is(ol, ul) {
-  margin-block-end: 0;
-}
-
-ul {
+ul:not([class]) {
   padding-inline-start: 1.8ch;
   list-style-type: disc;
-}
 
-ul:not([class]) > li {
-  padding-inline-start: var(--space-xs);
-}
-
-ul ::marker {
-  font-size: 0.8lh;
-}
-
-ol {
-  padding-inline-start: 2ch;
-}
-
-ol ::marker {
-  font-size: 1em;
-  font-weight: var(--font-bold);
-}
-
-/* Lists with classes and roles will be out of standard flow, so remove the default spacing and style */
-
-ol[class],
-ul[class],
-[role="tablist"] {
-  margin-block: 0;
-  padding: 0;
-  list-style: none;
-}
-
-/* Media */
-
-figure {
-  margin-inline: 0;
-}
-
-figcaption {
-  padding-block-start: 0.5em;
-  font-size: var(--size-step-0);
-  font-family: var(--font-mono);
+  & > li {
+    padding-inline-start: var(--space-xs);
+  }
 }
 
 /* Favour focus-visible over focus so click events don't trigger focus styles */
@@ -214,19 +175,6 @@ figcaption {
 ::selection {
   color: var(--color-light);
   background: var(--color-dark);
-}
-
-/* Scale icons within container*/
-
-svg:not([class]) {
-  width: auto;
-  height: 1lh;
-}
-
-/* Don't let SVGs shrink in flex contexts where there's less space */
-
-svg {
-  flex-shrink: 0;
 }
 
 .button {
@@ -269,11 +217,6 @@ svg {
   max-width: 20ch;
 }
 
-.prose :is(h1, h2, h3) {
-  /* Allow words to break by default. Great for small viewports */
-  overflow-wrap: anywhere;
-}
-
 .prose h2 {
   max-width: 30ch;
 }
@@ -287,51 +230,6 @@ svg {
 .prose :is(p, li, dl, figcaption, blockquote) {
   max-width: 70ch;
   text-wrap: pretty;
-}
-
-/* Heading flow for elements that follow them */
-
-.prose :is(h1, h2, h3, h4) + *:not([class]) {
-  --flow-space: var(--space-m);
-}
-
-/* Add more space to headings on block start */
-
-.prose * + :is(h1, h2, h3, h4):not([class]) {
-  --flow-space: var(--space-xl);
-}
-
-/* Undo the breaking of words rule because we don't need it on larger viewports */
-
-@media (min-width: 55rem) {
-  .prose :is(h1, h2, h3) {
-    overflow-wrap: unset;
-  }
-}
-
-/*
-CLUSTER
-More info: https://every-layout.dev/layouts/cluster/
-A layout that lets you distribute items with consitent
-spacing, regardless of their size
-
-CUSTOM PROPERTIES AND CONFIGURATION
---gutter (var(--space-m)): This defines the space
-between each item.
-
---cluster-horizontal-alignment (flex-start) How items should align
-horizontally. Can be any acceptable flexbox aligmnent value.
-
---cluster-vertical-alignment How items should align vertically.
-Can be any acceptable flexbox alignment value.
-*/
-
-.cluster {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--gutter, var(--space-m));
-  justify-content: var(--cluster-horizontal-alignment, flex-start);
-  align-items: var(--cluster-vertical-alignment, center);
 }
 
 /* 
