@@ -105,9 +105,13 @@ import CameraIcon from "../assets/svg/camera.svg";
   .contact-field {
     padding: 0.75rem;
     width: 100%;
-    background-color: light-dark(var(--color-light), var(--color-shade-1));
-    border: 1px solid light-dark(var(--color-shade-3), var(--color-shade-4));
-    color: var(--color-dark);
+    background-color: light-dark(
+      var(--color-neutral-100),
+      var(--color-neutral-200)
+    );
+    border: 1px solid
+      light-dark(var(--color-neutral-400), var(--color-dark-500));
+    color: var(--color-dark-700);
     border-radius: var(--radius-s);
 
     &:user-invalid {
@@ -133,7 +137,7 @@ import CameraIcon from "../assets/svg/camera.svg";
 
     const myForm = event.target as HTMLFormElement;
     const submitButton = myForm.querySelector(
-      'button[type="submit"]'
+      'button[type="submit"]',
     ) as HTMLButtonElement;
 
     submitButton.setAttribute("disabled", "disabled");

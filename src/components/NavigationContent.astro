@@ -69,14 +69,14 @@ const links = [
       a {
         display: block;
         padding: var(--space-s);
-        color: light-dark(var(--color-dark), var(--color-light));
+        color: light-dark(var(--color-dark-700), var(--color-neutral-100));
 
         @media (hover: hover) {
           &:hover,
           &:focus {
             background-color: light-dark(
-              var(--color-shade-1),
-              var(--color-shade-4)
+              var(--color-neutral-200),
+              var(--color-dark-500)
             );
           }
         }

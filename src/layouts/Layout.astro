@@ -1,6 +1,5 @@
 ---
-import "../styles/reset.css";
-import "../styles/base.css";
+import "../styles/imports.css";
 
 import Head from "../components/Head.astro";
 import Navigation from "../components/Navigation.astro";
@@ -42,8 +41,8 @@ const { heroImage, pageTitle, pageType, wrapperClass, ...rest } = Astro.props;
   .footer {
     padding-block: var(--space-xs);
     font-size: var(--size-step-00);
-    background-color: light-dark(var(--color-shade-4), var(--color-dark));
-    color: var(--color-light);
+    background-color: light-dark(var(--color-dark-500), var(--surface-base));
+    color: var(--color-neutral-100);
   }
 
   .footer-wrapper {
