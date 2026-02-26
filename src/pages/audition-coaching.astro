@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import Heading from "../components/Heading.astro";
-import Prose from "../components/Prose.astro";
+import ProseLayout from "../layouts/ProseLayout.astro";
 import Section from "../components/Section.astro";
 import Layout from "../layouts/Layout.astro";
 
@@ -13,7 +13,7 @@ import CameraIcon from "../assets/svg/camera.svg";
   <Section className="wrapper flow" as="div">
     <Heading level={1} emphasis>Audition coaching</Heading>
 
-    <Prose>
+    <ProseLayout>
       <figure slot="figure">
         <Image
           src={playingPhoto}
@@ -22,6 +22,7 @@ import CameraIcon from "../assets/svg/camera.svg";
           class="prose--image"
           format="avif"
           densities={[1, 1.5, 2]}
+          priority
         />
         <figcaption><CameraIcon /> Anne Richardson</figcaption>
       </figure>
@@ -67,6 +68,6 @@ import CameraIcon from "../assets/svg/camera.svg";
         offer services in person in San Francisco or online for all woodwind
         instruments.
       </p>
-    </Prose>
+    </ProseLayout>
   </Section>
 </Layout>

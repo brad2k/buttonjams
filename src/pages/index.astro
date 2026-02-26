@@ -26,10 +26,6 @@ import Heading from "../components/Heading.astro";
 </Layout>
 
 <style>
-  :root {
-    --nav-text-color: var(--color-dark);
-  }
-
   .hero-container {
     height: 100dvh;
     position: relative;
@@ -44,16 +40,16 @@ import Heading from "../components/Heading.astro";
     bottom: 3rem;
     right: 50%;
     transform: translateX(50%);
-    background: oklch(from var(--color-light) l c h / 0.75);
+    background: oklch(from var(--surface-base) l c h / 0.75);
     font-family: var(--font-Playfair);
+    font-weight: 400;
     border-radius: var(--radius-m);
     padding: 2rem;
-    max-width: unset;
 
     @media (min-width: 55rem) {
       right: 3rem;
       transform: unset;
-      background: oklch(from var(--color-light) l c h / 0.5);
+      background: oklch(from var(--surface-base) l c h / 0.5);
     }
 
     span {
@@ -62,19 +58,15 @@ import Heading from "../components/Heading.astro";
     }
   }
 
-  .sfs {
-    color: var(--nav-text-color);
-  }
-
   .job-title {
     font-size: 75%;
     text-align: right;
-    color: oklch(from var(--nav-text-color) l c h / 0.9);
+    color: var(--color-dark-600);
   }
 
   .hero-image {
     height: 100%;
-    transition: 0.3s ease-in-out object-position;
+    transition: object-position var(--transition-base);
     color: transparent;
 
     @media (min-width: 55rem) {

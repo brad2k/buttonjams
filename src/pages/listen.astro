@@ -65,13 +65,15 @@ const songs: SongProps[] = [
 ---
 
 <Layout pageTitle="Listen to audio excerpts">
-  <Section className="wrapper flow prose" as="div">
-    <Heading level={1} emphasis>Audio excerpts</Heading>
+  <Section className="wrapper flow" as="div">
+    <header class="prose flow">
+      <Heading level={1} emphasis>Audio excerpts</Heading>
 
-    <p>
-      Below are a selection of audio excerpts featuring my playing in various
-      orchestral and chamber music settings. Click on a title to listen.
-    </p>
+      <p>
+        Below are a selection of audio excerpts featuring my playing in various
+        orchestral and chamber music settings. Click on a title to listen.
+      </p>
+    </header>
 
     <Card className="audio-player">
       <ul
@@ -131,6 +133,8 @@ const songs: SongProps[] = [
 
 <style>
   .audio-player {
+    --flow-space: var(--space-l);
+
     grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
     font-size: var(--size-step-0);
   }
@@ -141,7 +145,7 @@ const songs: SongProps[] = [
       width: 0.75rem;
       margin-inline-end: var(--space-xs);
       margin-inline-start: -1.5rem;
-      fill: light-dark(var(--color-dark), var(--color-light));
+      fill: var(--text-primary);
     }
 
     .audio-control {
@@ -161,7 +165,10 @@ const songs: SongProps[] = [
 
       .icon--playing {
         display: inline-block;
-        animation: pulse 2s ease-in-out infinite;
+
+        @media (prefers-reduced-motion: no-preference) {
+          animation: pulse 2s ease-in-out infinite;
+        }
       }
     }
   }
@@ -181,7 +188,7 @@ const songs: SongProps[] = [
     display: flex;
     gap: var(--space-m);
     justify-content: center;
-    background-color: light-dark(var(--color-shade-2), var(--color-shade-3));
+    background-color: var(--card-bg-raised);
     border-radius: var(--radius-m);
     padding: var(--space-xs);
 
@@ -201,7 +208,7 @@ const songs: SongProps[] = [
       display: block;
       height: 2rem;
       width: 2rem;
-      color: var(--color-dark);
+      color: var(--color-dark-700);
     }
   }
 
@@ -209,11 +216,13 @@ const songs: SongProps[] = [
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: light-dark(var(--color-shade-3), var(--color-shade-4));
-    border-radius: var(--radius-m);
+    background-color: light-dark(
+      var(--color-neutral-300),
+      var(--color-dark-600)
+    );
     padding: var(--space-m);
-    outline: 1px solid light-dark(var(--border-light), var(--border-dark));
-    outline-offset: 2px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-m);
 
     &.standby {
       justify-content: center;
@@ -269,28 +278,28 @@ const songs: SongProps[] = [
   // Cache DOM elements
   const elements = {
     playlist: document.querySelector(
-      SELECTORS.playlist
+      SELECTORS.playlist,
     ) as HTMLUListElement | null,
     rewindButton: document.querySelector(
-      SELECTORS.rewindButton
+      SELECTORS.rewindButton,
     ) as HTMLButtonElement | null,
     playButton: document.querySelector(
-      SELECTORS.playButton
+      SELECTORS.playButton,
     ) as HTMLButtonElement | null,
     pauseButton: document.querySelector(
-      SELECTORS.pauseButton
+      SELECTORS.pauseButton,
     ) as HTMLButtonElement | null,
     songDeck: document.querySelector(
-      SELECTORS.songDeck
+      SELECTORS.songDeck,
     ) as HTMLDivElement | null,
     songTitle: document.querySelector(
-      SELECTORS.songTitle
+      SELECTORS.songTitle,
     ) as HTMLElement | null,
     songDescription: document.querySelector(
-      SELECTORS.songDescription
+      SELECTORS.songDescription,
     ) as HTMLElement | null,
     placeholder: document.querySelector(
-      SELECTORS.placeholder
+      SELECTORS.placeholder,
     ) as HTMLElement | null,
   };
 
@@ -303,11 +312,11 @@ const songs: SongProps[] = [
     isPlaying = playing;
     elements.pauseButton?.setAttribute(
       "aria-pressed",
-      playing ? "false" : "true"
+      playing ? "false" : "true",
     );
     elements.playButton?.setAttribute(
       "aria-pressed",
-      playing ? "true" : "false"
+      playing ? "true" : "false",
     );
   }
 
@@ -331,7 +340,7 @@ const songs: SongProps[] = [
   // Play or toggle a song
   function playOrToggleSong(id: string) {
     const audio = elements.playlist?.querySelector(
-      `audio[data-id="${id}"]`
+      `audio[data-id="${id}"]`,
     ) as HTMLAudioElement | null;
     if (!audio) return;
 
@@ -386,7 +395,7 @@ const songs: SongProps[] = [
   // Event listeners
   elements.playlist?.addEventListener("click", (e) => {
     const button = (e.target as HTMLElement).closest(
-      ".audio-control"
+      ".audio-control",
     ) as HTMLButtonElement | null;
     if (!button) return;
 
@@ -409,7 +418,7 @@ const songs: SongProps[] = [
         updatePlayPauseButtons(true);
       }
     },
-    true
+    true,
   );
 
   document.addEventListener(
@@ -419,7 +428,7 @@ const songs: SongProps[] = [
         updatePlayPauseButtons(false);
       }
     },
-    true
+    true,
   );
 
   document.addEventListener(
@@ -429,6 +438,6 @@ const songs: SongProps[] = [
         updatePlayPauseButtons(false);
       }
     },
-    true
+    true,
   );
 </script>

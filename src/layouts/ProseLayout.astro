@@ -12,6 +12,10 @@ const { className, ...rest } = Astro.props;
 </section>
 
 <style>
+  .prose {
+    --flow-space: var(--space-l);
+  }
+
   .prose-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -22,7 +26,7 @@ const { className, ...rest } = Astro.props;
     }
 
     img {
-      border: 1px solid light-dark(var(--border-light), var(--border-dark));
+      border: 1px solid var(--border-color);
       border-radius: var(--radius-m);
       width: 100%;
     }
