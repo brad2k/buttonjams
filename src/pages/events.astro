@@ -6,14 +6,16 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout pageTitle="Upcoming events">
-  <Section className="wrapper prose event-grid" as="div">
-    <Heading level={2} emphasis>Special events</Heading>
+  <Section className="wrapper flow event-grid" as="div">
+    <header class="prose flow">
+      <Heading level={2} emphasis>Special events</Heading>
 
-    <p>
-      I perform regularly with the San Francisco Symphony in my role as
-      Associate Principal Oboe, but I occasionally give masterclasses, join in
-      recitals, and play with other orchestras.
-    </p>
+      <p>
+        I perform regularly with the San Francisco Symphony in my role as
+        Associate Principal Oboe, but I occasionally give masterclasses, join in
+        recitals, and play with other orchestras.
+      </p>
+    </header>
 
     <ul class="event-list grid">
       <Event
@@ -42,9 +44,7 @@ import Layout from "../layouts/Layout.astro";
 
 <style>
   .event-grid {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-l);
+    --flow-space: var(--space-l);
   }
 
   .event-list {

@@ -12,6 +12,8 @@ interface Props {
 }
 
 const { heroImage, pageTitle, pageType, wrapperClass, ...rest } = Astro.props;
+
+const year = new Date().getFullYear();
 ---
 
 <!doctype html>
@@ -22,7 +24,7 @@ const { heroImage, pageTitle, pageType, wrapperClass, ...rest } = Astro.props;
     <main class:list={[wrapperClass]} {...rest}><slot /></main>
   </body><footer class="footer">
     <div class="wrapper footer-wrapper">
-      <span>James Button © 2026</span><span
+      <span>James Button © {year}</span><span
         >Website by Brad Azevedo{
           pageType === "home" ? " | Photo by Anne Richardson" : null
         }</span
@@ -40,9 +42,9 @@ const { heroImage, pageTitle, pageType, wrapperClass, ...rest } = Astro.props;
 
   .footer {
     padding-block: var(--space-xs);
-    font-size: var(--size-step-00);
-    background-color: light-dark(var(--color-dark-500), var(--surface-base));
-    color: var(--color-neutral-100);
+    font-size: var(--size-step-000);
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
   }
 
   .footer-wrapper {
@@ -51,3 +53,18 @@ const { heroImage, pageTitle, pageType, wrapperClass, ...rest } = Astro.props;
     justify-content: space-between;
   }
 </style>
+
+<script>
+  const setTheme = (prefersDark: Boolean) => {
+    document.documentElement.dataset.theme = prefersDark ? "dark" : "light";
+  };
+
+  const prefersDark =
+    window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
+
+  prefersDark.addEventListener("change", (e) => setTheme(e.matches));
+
+  document.addEventListener("astro:page-load", () => {
+    setTheme(prefersDark.matches);
+  });
+</script>

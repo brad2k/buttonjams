@@ -23,7 +23,9 @@ import CloseIcon from "../assets/svg/close.svg";
       <CloseIcon aria-hidden="true" />
     </button>
 
-    <nav id="primary-navigation"><NavigationContent /></nav>
+    <nav id="primary-navigation" aria-label="Primary navigation">
+      <NavigationContent />
+    </nav>
   </div>
 </header>
 
@@ -94,16 +96,16 @@ import CloseIcon from "../assets/svg/close.svg";
 
   .header-logo {
     font-family: var(--font-Playfair);
-    font-size: var(--size-step-4);
+    font-size: var(--font-size-h3);
     text-decoration: none;
-    color: var(--nav-text-color);
+    color: var(--text-primary);
     line-height: var(--leading-flat);
     word-break: normal;
   }
 
   .oboe-title {
     display: block;
-    font-size: var(--size-step-3);
+    font-size: var(--font-size-h4);
     text-align: right;
     margin-block-start: 0.25rem;
   }
@@ -124,10 +126,7 @@ import CloseIcon from "../assets/svg/close.svg";
       z-index: 1000;
       inset: 0;
       height: 100dvh;
-      background-color: light-dark(
-        var(--color-neutral-100),
-        var(--color-dark-700)
-      );
+      background-color: var(--surface-base);
     }
   }
 
@@ -178,6 +177,8 @@ import CloseIcon from "../assets/svg/close.svg";
 
   /* if the body has a hero element then position the menu absolutely (just the homepage) */
   body:has(.hero-container) {
+    color-scheme: only light;
+
     .header {
       position: absolute;
       width: 100%;
@@ -190,7 +191,7 @@ import CloseIcon from "../assets/svg/close.svg";
     }
 
     .header-logo {
-      font-size: var(--size-step-6);
+      font-size: var(--font-size-h1);
     }
 
     .last-name {

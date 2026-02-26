@@ -19,6 +19,7 @@ export default defineConfig({
         provider: fontProviders.google(),
         name: "Playfair Display",
         cssVariable: "--font-Playfair",
+        weights: [400, 700],
         styles: ["normal"],
       },
       {

@@ -65,13 +65,15 @@ const songs: SongProps[] = [
 ---
 
 <Layout pageTitle="Listen to audio excerpts">
-  <Section className="wrapper flow prose" as="div">
-    <Heading level={1} emphasis>Audio excerpts</Heading>
+  <Section className="wrapper flow" as="div">
+    <header class="prose flow">
+      <Heading level={1} emphasis>Audio excerpts</Heading>
 
-    <p>
-      Below are a selection of audio excerpts featuring my playing in various
-      orchestral and chamber music settings. Click on a title to listen.
-    </p>
+      <p>
+        Below are a selection of audio excerpts featuring my playing in various
+        orchestral and chamber music settings. Click on a title to listen.
+      </p>
+    </header>
 
     <Card className="audio-player">
       <ul
@@ -131,6 +133,8 @@ const songs: SongProps[] = [
 
 <style>
   .audio-player {
+    --flow-space: var(--space-l);
+
     grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
     font-size: var(--size-step-0);
   }
@@ -161,7 +165,10 @@ const songs: SongProps[] = [
 
       .icon--playing {
         display: inline-block;
-        animation: pulse 2s ease-in-out infinite;
+
+        @media (prefers-reduced-motion: no-preference) {
+          animation: pulse 2s ease-in-out infinite;
+        }
       }
     }
   }
@@ -181,10 +188,7 @@ const songs: SongProps[] = [
     display: flex;
     gap: var(--space-m);
     justify-content: center;
-    background-color: light-dark(
-      var(--color-neutral-300),
-      var(--color-neutral-400)
-    );
+    background-color: var(--card-bg-raised);
     border-radius: var(--radius-m);
     padding: var(--space-xs);
 
@@ -213,13 +217,12 @@ const songs: SongProps[] = [
     flex-direction: column;
     justify-content: space-between;
     background-color: light-dark(
-      var(--color-neutral-400),
-      var(--color-dark-500)
+      var(--color-neutral-300),
+      var(--color-dark-600)
     );
-    border-radius: var(--radius-m);
     padding: var(--space-m);
     border: 1px solid var(--border-color);
-    outline-offset: 2px;
+    border-radius: var(--radius-m);
 
     &.standby {
       justify-content: center;

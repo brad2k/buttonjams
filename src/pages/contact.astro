@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import Card from "../components/Card.astro";
 import Heading from "../components/Heading.astro";
-import Prose from "../components/Prose.astro";
+import ProseLayout from "../layouts/ProseLayout.astro";
 import Section from "../components/Section.astro";
 import Layout from "../layouts/Layout.astro";
 
@@ -21,7 +21,7 @@ import CameraIcon from "../assets/svg/camera.svg";
       don’t hesitate to reach out.
     </p>
 
-    <Prose>
+    <ProseLayout>
       <figure slot="figure">
         <Image
           src={denimPhoto}
@@ -30,6 +30,7 @@ import CameraIcon from "../assets/svg/camera.svg";
           class="prose--image"
           format="avif"
           densities={[1, 1.5, 2]}
+          priority
         />
         <figcaption><CameraIcon /> Anne Richardson</figcaption>
       </figure>
@@ -59,7 +60,13 @@ import CameraIcon from "../assets/svg/camera.svg";
             <div>
               <label>
                 <span class="form-label-text">Your name:</span>
-                <input type="text" name="name" required class="contact-field" />
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  class="contact-field"
+                  autocomplete="given-name family-name"
+                />
               </label>
             </div>
             <div>
@@ -70,6 +77,7 @@ import CameraIcon from "../assets/svg/camera.svg";
                   name="email"
                   required
                   class="contact-field"
+                  autocomplete="email"
                 />
               </label>
             </div>
@@ -87,7 +95,7 @@ import CameraIcon from "../assets/svg/camera.svg";
           </div>
         </form>
       </aside>
-    </Prose>
+    </ProseLayout>
   </Section>
 </Layout>
 

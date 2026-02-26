@@ -1,21 +1,32 @@
-/*
-  Initial values need to be primitive color values, not variables.
-  These will be immediately reset in the :root block to correct values.
-*/
-
-@property --bg-gradient-start {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: black;
-}
-
-@property --bg-gradient-end {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: white;
-}
-
 @layer theme {
+  /*
+    Initial values need to be primitive color values, not variables.
+    The values default to the light theme; dark theme values are set below.
+  */
+  @property --bg-gradient-start {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: oklch(95% 0.005 106.5); /* --color-neutral-100 */
+  }
+
+  @property --bg-gradient-end {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: oklch(89% 0.005 106.5); /* --color-neutral-200 */
+  }
+
+  /* These definitions aren't nested in the main :root selector strictly
+  because their syntax messages with syntax highlighting, which annoys me */
+  :root[data-theme="dark"] {
+    --bg-gradient-start: var(--color-dark-700);
+    --bg-gradient-end: var(--color-dark-600);
+  }
+
+  :root[data-theme="light"] {
+    --bg-gradient-start: var(--color-neutral-100);
+    --bg-gradient-end: var(--color-neutral-200);
+  }
+
   :root {
     /* Token definitions */
 
@@ -24,30 +35,27 @@
 
     /* Colors */
     --surface-base: light-dark(var(--color-neutral-100), var(--color-dark-700));
-    --surface-raised: light-dark(
-      var(--color-neutral-200),
-      var(--color-dark-600)
-    );
+
+    --accent: var(--color-teal);
+
+    --footer-bg: light-dark(var(--color-dark-500), var(--color-dark-700));
+    --footer-text: var(--color-neutral-100);
 
     --text-primary: light-dark(var(--color-dark-700), var(--color-neutral-100));
     --text-on-accent: #fff;
+    --text-as-accent: var(--accent);
 
     --nav-text-color: var(--text-primary);
-
-    --accent: var(--color-teal);
 
     /* 
       Background gradient
       Subtle glow effect that changes with theme
     */
 
-    --bg-gradient-start: var(--surface-base);
-    --bg-gradient-end: var(--surface-raised);
-
     --bg-gradient: radial-gradient(
-      in oklch circle,
-      var(--surface-base) 0%,
-      var(--surface-raised) 100%
+      circle in oklch,
+      var(--bg-gradient-start) 0%,
+      var(--bg-gradient-end) 100%
     );
 
     /* Structural */
@@ -70,6 +78,14 @@
     --font-size-h4: var(--size-step-3);
     --font-size-h5: var(--size-step-2);
     --font-size-h6: var(--size-step-1);
+
+    /* Cards */
+    --card-border-color: var(--border-color);
+    --card-bg: light-dark(var(--color-neutral-200), var(--color-dark-700));
+    --card-bg-raised: light-dark(
+      var(--color-neutral-200),
+      var(--color-neutral-300)
+    );
   }
 
   /*
@@ -128,17 +144,14 @@
 
   :where(h1, .h1) {
     font-size: var(--font-size-h1, var(--size-step-6));
-    max-width: 20ch;
   }
 
   :where(h2, .h2) {
     font-size: var(--font-size-h2, var(--size-step-5));
-    max-width: 35ch;
   }
 
   :where(h3, .h3) {
     font-size: var(--font-size-h3, var(--size-step-4));
-    max-width: 35ch;
   }
 
   :where(h4, .h4) {
@@ -189,14 +202,38 @@
     font-size: var(--size-step-00);
     font-weight: var(--font-bold);
     text-align: center;
+
+    &:hover {
+      filter: brightness(90%);
+    }
+
+    &:active {
+      transform: scale(99%);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      transition: filter var(--transition-base);
+    }
   }
 
-  .button:hover {
-    filter: brightness(90%);
-  }
+  /* Prose */
 
-  .button:active {
-    transform: scale(99%);
+  :where(.prose) {
+    & h1 {
+      max-width: 20ch;
+    }
+
+    & h2 {
+      max-width: 35ch;
+    }
+
+    & h3 {
+      max-width: 40ch;
+    }
+
+    & :is(p, li, dl, figcaption, blockquote) {
+      max-width: 70ch;
+    }
   }
 
   /* 
@@ -241,7 +278,7 @@
     A common wrapper/container
   */
 
-  .wrapper {
+  :where(.wrapper) {
     margin-inline: auto;
     max-inline-size: clamp(16rem, var(--wrapper-max-width, 100vw), 80rem);
     padding-inline: var(--gutter);
