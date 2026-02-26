@@ -40,13 +40,13 @@ const links = [
       position: relative;
 
       &[aria-current="page"] {
-        text-decoration-color: var(--text-primary);
+        text-decoration-color: currentColor;
         text-underline-offset: 0.3em;
       }
 
       @media (hover: hover) {
         &:hover {
-          text-decoration-color: var(--nav-text-color);
+          text-decoration-color: currentColor;
           text-underline-offset: 0.3em;
         }
       }
