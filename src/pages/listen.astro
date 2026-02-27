@@ -76,10 +76,10 @@ const songs: SongProps[] = [
     </header>
 
     <Card className="audio-player">
-      <ul
-        class="playlist"
-        aria-label="Playlist of James Button's audio excerpts"
-      >
+      <span hidden id="playlist-description">
+        Playlist of James Button's audio excerpts
+      </span>
+      <ul class="playlist" aria-labelledby="playlist-description">
         {
           songs.map((song) => {
             return (
@@ -87,11 +87,11 @@ const songs: SongProps[] = [
                 <button
                   data-id={song.id}
                   class="audio-control"
-                  aria-label={`Play ${song.name}`}
                   aria-controls={`audio-${song.id}`}
                 >
-                  <PlayingIcon />
-                  <PlayIcon />
+                  <PlayingIcon aria-hidden="true" />
+                  <PlayIcon aria-hidden="true" />
+                  <span class="visually-hidden">Play</span>
                   {song.name}
                 </button>
                 <audio

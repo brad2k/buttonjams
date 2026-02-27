@@ -1,5 +1,6 @@
 @layer theme {
   /*
+    Establishing custom properties for the background graidnet colors.
     Initial values need to be primitive color values, not variables.
     The values default to the light theme; dark theme values are set below.
   */
@@ -15,23 +16,33 @@
     initial-value: oklch(89% 0.005 106.5); /* --color-neutral-200 */
   }
 
-  /* These definitions aren't nested in the main :root selector strictly
-  because their syntax messages with syntax highlighting, which annoys me */
-  :root[data-theme="dark"] {
-    --bg-gradient-start: var(--color-dark-700);
-    --bg-gradient-end: var(--color-dark-600);
-  }
+  /*
+    Theme setup & switching.
+    These definitions aren't nested in the main :root selector strictly
+    because their syntax messages with syntax highlighting, which annoys me.
+  */
+  :root {
+    /* Theme - light by default will follow the UA preference */
+    color-scheme: light dark;
 
-  :root[data-theme="light"] {
-    --bg-gradient-start: var(--color-neutral-100);
-    --bg-gradient-end: var(--color-neutral-200);
+    /* User-selected light theme */
+    &[data-theme="light"] {
+      color-scheme: light;
+
+      --bg-gradient-start: var(--color-neutral-100);
+      --bg-gradient-end: var(--color-neutral-200);
+    }
+    /* User-selected dark theme */
+    &[data-theme="dark"] {
+      color-scheme: dark;
+
+      --bg-gradient-start: var(--color-dark-700);
+      --bg-gradient-end: var(--color-dark-600);
+    }
   }
 
   :root {
     /* Token definitions */
-
-    /* Theme - light by default */
-    color-scheme: light dark;
 
     /* Colors */
     --surface-base: light-dark(var(--color-neutral-100), var(--color-dark-700));
