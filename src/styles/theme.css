@@ -112,10 +112,13 @@
     font-optical-sizing: auto;
     line-height: var(--leading-standard);
     font-size-adjust: from-font;
-    transition:
-      --bg-gradient-start var(--transition-fade),
-      --bg-gradient-end var(--transition-fade),
-      color var(--transition-fade);
+
+    @media (prefers-reduced-motion: no-preference) {
+      transition:
+        --bg-gradient-start var(--transition-fade),
+        --bg-gradient-end var(--transition-fade),
+        color var(--transition-fade);
+    }
   }
 
   /* Accessibility */

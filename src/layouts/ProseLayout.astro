@@ -21,7 +21,7 @@ const { className, ...rest } = Astro.props;
     grid-template-columns: 1fr;
     gap: var(--space-xl);
 
-    @media (min-width: 55rem) {
+    @media (min-width: 50rem) {
       grid-template-columns: 2fr 3fr;
     }
 
@@ -37,11 +37,11 @@ const { className, ...rest } = Astro.props;
       gap: var(--space-xs);
       font-size: var(--size-step-00);
       margin-block-start: 0.5em;
+    }
 
-      .icon {
-        height: 1.2em;
-        width: 1.2em;
-      }
+    .lucide {
+      height: 1.2em;
+      width: 1.2em;
     }
   }
 </style>

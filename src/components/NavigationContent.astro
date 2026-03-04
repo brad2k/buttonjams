@@ -1,6 +1,8 @@
 ---
 import InstagramLogo from "../assets/svg/instagram.svg";
 
+import { Moon, Sun } from "@lucide/astro";
+
 const links = [
   { href: "/about/", label: "About" },
   { href: "/audition-coaching/", label: "Audition coaching" },
@@ -25,6 +27,12 @@ const links = [
       rel="noopener noreferrer"
       ><InstagramLogo height={22} width={22} />
     </a>
+  </li>
+  <li>
+    <button id="theme-switcher">
+      <Sun />
+      <Moon />
+    </button>
   </li>
 </ul>
 
@@ -62,12 +70,16 @@ const links = [
       display: block;
     }
 
-    @media (max-width: 55rem) {
+    @media (max-width: 59rem) {
       flex-direction: column;
       padding-inline: var(--space-m);
       margin-block-start: calc(
         var(--headerPadding) + var(--space-m) + var(--space-m)
       );
+
+      button {
+        padding: var(--space-s);
+      }
 
       a {
         display: block;
@@ -86,9 +98,48 @@ const links = [
       }
     }
 
-    @media (min-width: 55rem) {
+    @media (min-width: 59rem) {
       align-items: center;
       gap: var(--space-l);
     }
   }
+
+  :root[data-theme="dark"] {
+    .lucide-moon {
+      display: none;
+    }
+  }
+
+  :root[data-theme="light"] {
+    .lucide-sun {
+      display: none;
+    }
+  }
 </style>
+
+<script>
+  const setTheme = (prefersDark: Boolean) => {
+    const theme = prefersDark ? "dark" : "light";
+    document.documentElement.dataset.theme = theme;
+  };
+
+  const prefersDark =
+    window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
+
+  prefersDark.addEventListener("change", (e) => setTheme(e.matches));
+
+  document.addEventListener("astro:after-swap", () => {
+    const theme =
+      localStorage.getItem("theme") || (prefersDark.matches ? "dark" : "light");
+    document.documentElement.dataset.theme = theme;
+  });
+
+  const switcher = document.getElementById("theme-switcher");
+
+  switcher?.addEventListener("click", () => {
+    const currentTheme = document.documentElement.dataset.theme;
+    const newTheme = currentTheme === "light" ? "dark" : "light";
+    document.documentElement.dataset.theme = newTheme;
+    localStorage.setItem("theme", newTheme);
+  });
+</script>
