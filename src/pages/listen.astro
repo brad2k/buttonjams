@@ -4,11 +4,7 @@ import Section from "../components/Section.astro";
 import Heading from "../components/Heading.astro";
 import Card from "../components/Card.astro";
 
-import PlayIcon from "../assets/svg/play.svg";
-import RewindIcon from "../assets/svg/rewind.svg";
-import PauseIcon from "../assets/svg/pause.svg";
-import PlayingIcon from "../assets/svg/playing.svg";
-import MusicIcon from "../assets/svg/music.svg";
+import { AudioLines, Music, Pause, Play, RotateCcw } from "@lucide/astro";
 
 interface SongProps {
   id: string;
@@ -89,8 +85,8 @@ const songs: SongProps[] = [
                   class="audio-control"
                   aria-controls={`audio-${song.id}`}
                 >
-                  <PlayingIcon aria-hidden="true" />
-                  <PlayIcon aria-hidden="true" />
+                  <AudioLines />
+                  <Play stroke-width={0} />
                   <span class="visually-hidden">Play</span>
                   {song.name}
                 </button>
@@ -108,7 +104,7 @@ const songs: SongProps[] = [
       </ul>
 
       <div class="song-deck standby">
-        <div class="placeholder"><MusicIcon /><p>Select a song</p></div>
+        <div class="placeholder"><Music /><p>Select a song</p></div>
         <div class="song-info">
           <strong class="now-playing">Now playing</strong>
           <Heading level={3} className="song-title" />
@@ -117,13 +113,13 @@ const songs: SongProps[] = [
 
         <aside class="audio-controls" aria-label="Audio controls">
           <button class="audio-control play-button" aria-label="Play">
-            <PlayIcon />
+            <Play stroke-width={0} fill="currentColor" />
           </button>
           <button class="audio-control pause-button" aria-label="Pause">
-            <PauseIcon />
+            <Pause stroke-width={0} fill="currentColor" />
           </button>
           <button class="audio-control rewind-button" aria-label="Rewind">
-            <RewindIcon />
+            <RotateCcw />
           </button>
         </aside>
       </div>
@@ -140,7 +136,7 @@ const songs: SongProps[] = [
   }
 
   .playlist {
-    .icon {
+    .lucide {
       height: 0.75rem;
       width: 0.75rem;
       margin-inline-end: var(--space-xs);
@@ -154,16 +150,16 @@ const songs: SongProps[] = [
       padding-inline-start: 1.5rem;
     }
 
-    .icon--playing {
+    .lucide-audio-lines {
       display: none;
     }
 
     [aria-current="true"] {
-      .icon--play {
+      .lucide-play {
         display: none;
       }
 
-      .icon--playing {
+      .lucide-audio-lines {
         display: inline-block;
 
         @media (prefers-reduced-motion: no-preference) {
@@ -204,7 +200,7 @@ const songs: SongProps[] = [
       }
     }
 
-    .icon {
+    .lucide {
       display: block;
       height: 2rem;
       width: 2rem;

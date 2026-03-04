@@ -7,7 +7,7 @@ import Section from "../components/Section.astro";
 import Layout from "../layouts/Layout.astro";
 
 import denimPhoto from "../assets/james-button-denim.avif";
-import CameraIcon from "../assets/svg/camera.svg";
+import { Camera } from "@lucide/astro";
 ---
 
 <Layout pageTitle="Contact">
@@ -32,7 +32,9 @@ import CameraIcon from "../assets/svg/camera.svg";
           densities={[1, 1.5, 2]}
           priority
         />
-        <figcaption><CameraIcon /> Anne Richardson</figcaption>
+        <figcaption>
+          <Camera /><span class="visually-hidden">Photo credit:</span> Anne Richardson
+        </figcaption>
       </figure>
 
       <aside>

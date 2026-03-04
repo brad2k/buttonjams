@@ -120,7 +120,7 @@
 
   /* Make images easier to work with */
 
-  :where(img, svg, video) {
+  :where(img, video) {
     display: block;
     block-size: auto;
     max-inline-size: 100%;

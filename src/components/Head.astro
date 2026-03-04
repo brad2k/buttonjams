@@ -27,7 +27,7 @@ const { heroImage, pageTitle } = Astro.props;
   <PostHog />
 
   <title>{`James Button | ${pageTitle || "San Francisco Oboist"}`}</title>
-  <link rel="canonical" href="https://jamesbuttonoboe.com/" />
+  <link rel="canonical" href={Astro.url} />
   <meta
     name="description"
     content="James Button is a San Francisco-based oboist and Associate Principal Oboe of the San Francisco Symphony. He offers woodwind audition coaching and adult oboe lessons in San Francisco or online."
@@ -48,6 +48,16 @@ const { heroImage, pageTitle } = Astro.props;
   <meta property="og:locale" content="en_US" />
 
   <ClientRouter />
+
+  <script>
+    const theme =
+      localStorage.getItem("theme") ||
+      (window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light");
+
+    document.documentElement.dataset.theme = theme;
+  </script>
 
   <script type="application/ld+json">
     {
