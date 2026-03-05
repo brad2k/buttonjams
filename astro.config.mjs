@@ -31,6 +31,7 @@ export default defineConfig({
         name: "Playfair Display",
         cssVariable: "--font-Playfair",
         weights: [400, 700],
+        subsets: ["latin"],
         styles: ["normal"],
       },
       {
