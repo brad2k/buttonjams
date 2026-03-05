@@ -19,7 +19,10 @@ const { heroImage, pageTitle } = Astro.props;
   {heroImage && <link rel="preload" as="image" href={heroImage} />}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <Font cssVariable="--font-Playfair" preload />
+  <Font
+    cssVariable="--font-Playfair"
+    preload={[{ subset: "latin", style: "normal" }, { weight: "400" }]}
+  />
   <Font
     cssVariable="--font-Montserrat"
     preload={[{ subset: "latin", style: "normal" }, { weight: "400" }]}
