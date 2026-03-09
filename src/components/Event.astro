@@ -47,6 +47,16 @@ const ammendedLink = url.toString();
 </Card>
 
 <style>
+  :root {
+    &[data-theme="light"] {
+      --event-category-color: var(--text-as-accent);
+    }
+
+    &[data-theme="dark"] {
+      --event-category-color: var(--color-neutral-100);
+    }
+  }
+
   .event {
     grid-template-columns: 1fr;
     grid-template-rows: max-content auto max-content;
@@ -58,7 +68,7 @@ const ammendedLink = url.toString();
 
   .event-category {
     text-transform: uppercase;
-    color: light-dark(var(--text-as-accent), var(--color-neutral-100));
+    color: var(--event-category-color);
   }
 
   .event-details {

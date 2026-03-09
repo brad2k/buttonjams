@@ -37,6 +37,18 @@ const links = [
 </ul>
 
 <style>
+  :root {
+    &[data-theme="light"] {
+      --mobile-nav-link-color: var(--color-dark-700);
+      --mobile-nav-link-background-color: var(--color-neutral-200);
+    }
+
+    &[data-theme="dark"] {
+      --mobile-nav-link-color: var(--color-neutral-100);
+      --mobile-nav-link-background-color: var(--color-dark-500);
+    }
+  }
+
   .header-menu {
     display: flex;
     font-size: var(--size-step-0);
@@ -84,15 +96,12 @@ const links = [
       a {
         display: block;
         padding: var(--space-s);
-        color: light-dark(var(--color-dark-700), var(--color-neutral-100));
+        color: var(--mobile-nav-link-color);
 
         @media (hover: hover) {
           &:hover,
           &:focus {
-            background-color: light-dark(
-              var(--color-neutral-200),
-              var(--color-dark-500)
-            );
+            background-color: var(--mobile-nav-link-background-color);
           }
         }
       }
