@@ -5,59 +5,20 @@ import Heading from "../components/Heading.astro";
 import Card from "../components/Card.astro";
 
 import { AudioLines, Music, Pause, Play, RotateCcw } from "@lucide/astro";
+import { loadQuery } from "../sanity/lib/load-query";
 
 interface SongProps {
-  id: string;
-  src?: string;
-  filename: string;
+  _id: string;
   name: string;
   description: string;
+  audioUrl: string;
 }
 
-const songs: SongProps[] = [
-  {
-    id: "albinoni",
-    src: (await import(`../assets/audio/albinoni-concerto.mp3`)).default,
-    filename: "albinoni-concerto.mp3",
-    name: "Albinoni: Concerto for Two Oboes in G Major",
-    description: "2nd movement (performing all parts)",
-  },
-  {
-    id: "sheherazade",
-    src: (await import(`../assets/audio/sheherazade.mp3`)).default,
-    filename: "sheherazade.mp3",
-    name: "Ravel: Scheherazade",
-    description: "2nd movement solo",
-  },
-  {
-    id: "tombeau",
-    src: (await import(`../assets/audio/tombeau.m4a`)).default,
-    filename: "tombeau.m4a",
-    name: "Ravel: Le Tombeau de Couperin",
-    description: "1st movement solo",
-  },
-  {
-    id: "alwyn",
-    src: (await import(`../assets/audio/alwyn.m4a`)).default,
-    filename: "alwyn.m4a",
-    name: "Alwyn: Oboe Sonata",
-    description: "1st movement opening",
-  },
-  {
-    id: "magnificat",
-    src: (await import(`../assets/audio/magnificat.m4a`)).default,
-    filename: "magnificat.m4a",
-    name: "Bach: Magnificat",
-    description: "Quia Respexit, oboe d’amore solo",
-  },
-  {
-    id: "stravinsky",
-    src: (await import(`../assets/audio/stravinsky.mp3`)).default,
-    filename: "stravinsky.mp3",
-    name: "Stravinsky: Persephone",
-    description: "Oboe solo",
-  },
-];
+const { data: songs } = await loadQuery<SongProps[]>({
+  query: `*[_type == "song"] | order(orderRank) {
+    _id, name, description, "audioUrl": audioFile.asset->url
+  }`,
+});
 ---
 
 <Layout pageTitle="Listen to audio excerpts">
@@ -81,9 +42,9 @@ const songs: SongProps[] = [
             return (
               <li>
                 <button
-                  data-id={song.id}
+                  data-id={song._id}
                   class="audio-control"
-                  aria-controls={`audio-${song.id}`}
+                  aria-controls={`audio-${song._id}`}
                 >
                   <AudioLines />
                   <Play stroke-width={0} />
@@ -91,11 +52,12 @@ const songs: SongProps[] = [
                   {song.name}
                 </button>
                 <audio
-                  src={song.src}
-                  data-id={song.id}
+                  src={song.audioUrl}
+                  data-id={song._id}
                   data-name={song.name}
                   data-description={song.description}
-                  id={`audio-${song.id}`}
+                  id={`audio-${song._id}`}
+                  loading="lazy"
                 />
               </li>
             );

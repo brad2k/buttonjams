@@ -39,6 +39,13 @@ export default defineType({
       description: "Credit for the image (e.g., 'David Kim')",
     }),
     defineField({
+      name: "imageCaptionIsPhotoCredit",
+      title: "Caption is a photo credit",
+      type: "boolean",
+      description: "If checked, a camera icon and 'Photo credit:' label will be shown before the caption.",
+      initialValue: false,
+    }),
+    defineField({
       name: "imageAlt",
       title: "Image alt text",
       type: "string",
