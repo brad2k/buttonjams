@@ -90,6 +90,16 @@ const { data: songs } = await loadQuery<SongProps[]>({
 </Layout>
 
 <style>
+  :root {
+    &[data-theme="light"] {
+      --song-deck-background-color: var(--color-neutral-300);
+    }
+
+    &[data-theme="dark"] {
+      --song-deck-background-color: var(--color-dark-600);
+    }
+  }
+
   .audio-player {
     --flow-space: var(--space-l);
 
@@ -174,10 +184,7 @@ const { data: songs } = await loadQuery<SongProps[]>({
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: light-dark(
-      var(--color-neutral-300),
-      var(--color-dark-600)
-    );
+    background-color: var(--song-deck-background-color);
     padding: var(--space-m);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-m);

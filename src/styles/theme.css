@@ -31,13 +31,32 @@
 
       --bg-gradient-start: var(--color-neutral-100);
       --bg-gradient-end: var(--color-neutral-200);
+
+      --surface-base: var(--color-neutral-100);
+      --footer-bg: var(--color-dark-500);
+      --text-primary: var(--color-dark-700);
+      --border-color: var(--color-neutral-400);
+      --card-bg: var(--color-neutral-200);
+      --card-bg-raised: var(--color-neutral-200);
+      --selection-text-color: var(--color-neutral-100);
+      --selection-background: var(--color-dark-700);
     }
+
     /* User-selected dark theme */
     &[data-theme="dark"] {
       color-scheme: dark;
 
       --bg-gradient-start: var(--color-dark-700);
       --bg-gradient-end: var(--color-dark-600);
+      --surface-base: var(--color-dark-700);
+      --footer-bg: var(--color-dark-700);
+      --text-primary: var(--color-neutral-100);
+      --border-color: var(--color-dark-500);
+      --card-bg: var(--color-dark-700);
+      --card-bg-raised: var(--color-neutral-300);
+
+      --selection-text-color: var(--color-dark-700);
+      --selection-background: var(--color-neutral-100);
     }
   }
 
@@ -45,14 +64,11 @@
     /* Token definitions */
 
     /* Colors */
-    --surface-base: light-dark(var(--color-neutral-100), var(--color-dark-700));
 
     --accent: var(--color-teal);
 
-    --footer-bg: light-dark(var(--color-dark-500), var(--color-dark-700));
     --footer-text: var(--color-neutral-100);
 
-    --text-primary: light-dark(var(--color-dark-700), var(--color-neutral-100));
     --text-on-accent: #fff;
     --text-as-accent: var(--accent);
 
@@ -61,7 +77,17 @@
     /* 
       Background gradient
       Subtle glow effect that changes with theme
+
+      This transition needs to happen on the root element (where the custom
+      property is defined and values are changed) in order to transition
+      properly. The body element will inherit the values.
     */
+
+    @media (prefers-reduced-motion: no-preference) {
+      transition:
+        --bg-gradient-start var(--transition-fade),
+        --bg-gradient-end var(--transition-fade);
+    }
 
     --bg-gradient: radial-gradient(
       circle in oklch,
@@ -72,7 +98,6 @@
     /* Structural */
 
     --gutter: var(--space-m);
-    --border-color: light-dark(var(--color-neutral-400), var(--color-dark-500));
 
     /* Typography */
 
@@ -92,11 +117,6 @@
 
     /* Cards */
     --card-border-color: var(--border-color);
-    --card-bg: light-dark(var(--color-neutral-200), var(--color-dark-700));
-    --card-bg-raised: light-dark(
-      var(--color-neutral-200),
-      var(--color-neutral-300)
-    );
   }
 
   /*
@@ -114,10 +134,7 @@
     font-size-adjust: from-font;
 
     @media (prefers-reduced-motion: no-preference) {
-      transition:
-        --bg-gradient-start var(--transition-fade),
-        --bg-gradient-end var(--transition-fade),
-        color var(--transition-fade);
+      transition: color var(--transition-fade);
     }
   }
 
@@ -146,8 +163,8 @@
   }
 
   ::selection {
-    color: light-dark(var(--color-neutral-100), var(--color-dark-700));
-    background: light-dark(var(--color-dark-700), var(--color-neutral-100));
+    color: var(--selection-text-color);
+    background: var(--selection-background);
   }
 
   /* Base typography */

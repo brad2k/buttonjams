@@ -102,6 +102,16 @@ import { Camera } from "@lucide/astro";
 </Layout>
 
 <style>
+  :root {
+    &[data-theme="light"] {
+      --contact-field-background-color: var(--color-neutral-100);
+    }
+
+    &[data-theme="dark"] {
+      --contact-field-background-color: var(--color-neutral-200);
+    }
+  }
+
   .contact-form {
     display: grid;
     gap: var(--space-s);
@@ -115,10 +125,7 @@ import { Camera } from "@lucide/astro";
   .contact-field {
     padding: 0.75rem;
     width: 100%;
-    background-color: light-dark(
-      var(--color-neutral-100),
-      var(--color-neutral-200)
-    );
+    background-color: var(--contact-field-background-color);
     border: 1px solid var(--border-color);
     color: var(--color-dark-700);
     border-radius: var(--radius-s);
