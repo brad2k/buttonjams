@@ -20,6 +20,7 @@ const { data } = await loadQuery<SanityDocument>({
     image,
     imageAlt,
     imageCaption,
+    imageCaptionIsPhotoCredit,
     content,
     seo
   }`,
@@ -42,7 +43,9 @@ const { data } = await loadQuery<SanityDocument>({
           priority
         />
         <figcaption>
-          <Camera /><span class="visually-hidden">Photo credit:</span>
+          {data.imageCaptionIsPhotoCredit && (
+            <><Camera /><span class="visually-hidden">Photo credit:</span></>
+          )}
           {data.imageCaption}
         </figcaption>
       </figure>
