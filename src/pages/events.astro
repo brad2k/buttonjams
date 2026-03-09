@@ -3,6 +3,38 @@ import Event from "../components/Event.astro";
 import Heading from "../components/Heading.astro";
 import Section from "../components/Section.astro";
 import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import { loadQuery } from "../sanity/lib/load-query";
+
+interface SanityEvent {
+  _id: string;
+  title: string;
+  category: string;
+  dateTime: string;
+  timezone: string;
+  location: string;
+  link: string;
+  description?: string;
+}
+
+const { data: events } = await loadQuery<SanityEvent[]>({
+  query: `*[_type == "event" && dateTime > now()] | order(dateTime asc) {
+    _id, title, category, dateTime, timezone, location, link, description
+  }`,
+});
+
+function formatEventDate(dateTime: string, timezone: string) {
+  return new Intl.DateTimeFormat("en-US", {
+    weekday: "short",
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    timeZoneName: "short",
+    timeZone: timezone,
+  }).format(new Date(dateTime));
+}
 ---
 
 <Layout pageTitle="Upcoming events">
@@ -18,26 +50,27 @@ import Layout from "../layouts/Layout.astro";
     </header>
 
     <ul class="event-list grid">
-      <Event
-        category="Performance"
-        title="Chamber Music at Davies Symphony Hall"
-        dateTime="Sun, May 3, 2026 at 2:00pm PST"
-        link="https://www.sfsymphony.org/Buy-Tickets/2025-26/CHAMBER-DSH-MAY"
-        location="Mondavi Center, UC Davis, Davis, CA"
-      >
-        Performing Prokofiev’s Quintet with San Francisco Symphony colleagues.
-      </Event>
-
-      <Event
-        category="Performance"
-        title="Santa Rosa Symphony Youth Orchestra"
-        dateTime="Sat, May 9, 2026 at 2:00pm PST"
-        link="https://www.srsymphony.org/event/srsyomay2026/"
-        location="Green Music Center, Rohnert Park, CA"
-      >
-        Performing Johann Nepomuk Hummel’s Introduction, Theme and Variations
-        for Oboe and Orchestra.
-      </Event>
+      {
+        events.map((event) => (
+          <Event
+            category={event.category}
+            title={event.title}
+            dateTime={formatEventDate(event.dateTime, event.timezone)}
+            link={event.link}
+            location={event.location}
+          >
+            {event.description}
+          </Event>
+        ))
+      }
+      {
+        events.length === 0 && (
+          <Card>
+            There are no upcoming special events, but you can still find me
+            playing regularly at the SF Symphony.
+          </Card>
+        )
+      }
     </ul>
   </Section>
 </Layout>
