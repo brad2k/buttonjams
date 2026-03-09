@@ -19,7 +19,7 @@
     -moz-text-size-adjust: none;
     -webkit-text-size-adjust: none;
     text-size-adjust: none;
-    overflow-y: scroll;
+    overflow-y: auto;
     scroll-behavior: smooth;
     hanging-punctuation: first allow-end last;
     word-break: break-word;
@@ -28,10 +28,10 @@
       interpolate-size: allow-keywords;
     }
 
-    @supports (scrollbar-gutter: stable) {
+    /* @supports (scrollbar-gutter: stable) {
       overflow-y: auto;
       scrollbar-gutter: stable;
-    }
+    } */
   }
 
   /* Set core body defaults */
