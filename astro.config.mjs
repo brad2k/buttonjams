@@ -3,6 +3,7 @@ import { defineConfig, fontProviders } from "astro/config";
 import netlify from "@astrojs/netlify";
 import sanity from "@sanity/astro";
 import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
 import { loadEnv } from "vite";
 
 const { PUBLIC_SANITY_PROJECT_ID, PUBLIC_SANITY_DATASET } = loadEnv(
@@ -46,6 +47,9 @@ export default defineConfig({
   },
 
   integrations: [
+    sitemap({
+      filter: (page) => page !== "https://jamesbuttonoboe.com/ds/",
+    }),
     sanity({
       projectId: PUBLIC_SANITY_PROJECT_ID,
       dataset: PUBLIC_SANITY_DATASET,
