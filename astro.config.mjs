@@ -50,6 +50,7 @@ export default defineConfig({
   vite: {
     build: {
       target: "esnext",
+      minify: false,
     },
   },
 
