@@ -7,7 +7,7 @@ import sitemap from "@astrojs/sitemap";
 import { loadEnv } from "vite";
 
 const { PUBLIC_SANITY_PROJECT_ID, PUBLIC_SANITY_DATASET } = loadEnv(
-  process.env.NODE_ENV,
+  process.env.NODE_ENV || "",
   process.cwd(),
   "",
 );
@@ -48,7 +48,11 @@ export default defineConfig({
 
   integrations: [
     sitemap({
-      filter: (page) => page !== "https://jamesbuttonoboe.com/ds/",
+      filter: (page) =>
+        [
+          "https://jamesbuttonoboe.com/ds/",
+          "https://jamesbuttonoboe.com/studio/",
+        ].includes(page),
     }),
     sanity({
       projectId: PUBLIC_SANITY_PROJECT_ID,
