@@ -196,8 +196,16 @@ import { Menu } from "@lucide/astro";
       color: var(--color-dark-700);
     }
 
-    .header-menu a {
-      color: var(--color-dark-700);
+    @media (min-width: calc(59rem + 1px)) {
+      .header-menu {
+        a {
+          color: var(--color-dark-700);
+        }
+
+        .lucide {
+          color: var(--color-dark-700);
+        }
+      }
     }
 
     .last-name {

@@ -12,7 +12,7 @@ interface Props {
 }
 const { heroImage, heroImageSrcSet, heroImageSizes, pageTitle } = Astro.props;
 
-const canonical = new URL(Astro.url.pathname.replace(/\/?$/, '/'), Astro.site);
+const canonical = new URL(Astro.url.pathname.replace(/\/?$/, "/"), Astro.site);
 ---
 
 <head>
@@ -20,7 +20,17 @@ const canonical = new URL(Astro.url.pathname.replace(/\/?$/, '/'), Astro.site);
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="light dark" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  {heroImage && <link rel="preload" as="image" href={heroImage} imagesrcset={heroImageSrcSet} imagesizes={heroImageSizes} />}
+  {
+    heroImage && (
+      <link
+        rel="preload"
+        as="image"
+        href={heroImage}
+        imagesrcset={heroImageSrcSet}
+        imagesizes={heroImageSizes}
+      />
+    )
+  }
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <Font
@@ -40,7 +50,10 @@ const canonical = new URL(Astro.url.pathname.replace(/\/?$/, '/'), Astro.site);
     content="James Button is a San Francisco-based oboist and Associate Principal Oboe of the San Francisco Symphony. He offers woodwind audition coaching and adult oboe lessons in San Francisco or online."
   />
   <meta name="generator" content={Astro.generator} />
-  <meta property="og:title" content="James Button | San Francisco Oboist" />
+  <meta
+    property="og:title"
+    content={`James Button | ${pageTitle ? pageTitle + " | " : ""}San Francisco Oboist`}
+  />
   <meta
     property="og:description"
     content="San Francisco-based oboist and Associate Principal Oboe of the San Francisco Symphony offering audition coaching and adult oboe lessons."
