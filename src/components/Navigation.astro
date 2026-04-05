@@ -75,7 +75,7 @@ import { Menu } from "@lucide/astro";
     highlightActiveLink();
   });
 
-  document.addEventListener("astro:before-swap", (event) => {
+  document.addEventListener("astro:before-swap", () => {
     // Remove menu event listener to prevent multiple bindings
     navToggle.removeEventListener("click", toggleMenu);
 
@@ -115,10 +115,6 @@ import { Menu } from "@lucide/astro";
   #primary-navigation {
     display: none;
 
-    [aria-expanded="true"] + & {
-      display: block;
-    }
-
     @media (min-width: calc(59rem + 1px)) {
       display: block;
     }
@@ -136,6 +132,10 @@ import { Menu } from "@lucide/astro";
     }
   }
 
+  [aria-expanded="true"] + #primary-navigation {
+    display: block;
+  }
+
   /* open the navigation */
 
   .menu-button {
@@ -151,11 +151,6 @@ import { Menu } from "@lucide/astro";
       display: none;
     }
   }
-
-  /* .lucide {
-    stroke: currentColor;
-    display: block;
-  } */
 
   .lucide-menu {
     color: var(--nav-text-color);
@@ -181,9 +176,18 @@ import { Menu } from "@lucide/astro";
     width: 100%;
   }
 
-  /* if the body has a hero element then position the menu absolutely (just the homepage) */
-  body:has(.hero-container) {
+  /* Homepage only — always render in light mode regardless of user theme preference */
+  :root:has(.hero-container) {
     color-scheme: only light;
+
+    /*
+      Force dark theme custom properties.
+      This feels hacky and I hate it; may need to revisit this
+    */
+    --surface-base: var(--color-neutral-100);
+    --text-primary: var(--color-dark-700);
+    --bg-gradient-start: var(--color-neutral-100);
+    --bg-gradient-end: var(--color-neutral-200);
 
     .header {
       position: absolute;

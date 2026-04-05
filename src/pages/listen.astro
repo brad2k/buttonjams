@@ -321,13 +321,15 @@ const { data: songs } = await loadQuery<SongProps[]>({
       if (currentAudio) currentAudio.pause();
       currentAudio = audio;
       audio.currentTime = 0;
-      try {
-        audio.play();
-        updatePlayPauseButtons(true);
-        updateSongInfo(audio);
-      } catch (error) {
-        console.error("Audio playback failed:", error);
-      }
+      audio
+        .play()
+        .then(() => {
+          updatePlayPauseButtons(true);
+          updateSongInfo(audio);
+        })
+        .catch((error) => {
+          console.error("Audio playback failed:", error);
+        });
     }
   }
 
@@ -348,12 +350,14 @@ const { data: songs } = await loadQuery<SongProps[]>({
   // Resume playback
   function resumePlayback() {
     if (currentAudio) {
-      try {
-        currentAudio.play();
-        updatePlayPauseButtons(true);
-      } catch (error) {
-        console.error("Audio resume failed:", error);
-      }
+      currentAudio
+        .play()
+        .then(() => {
+          updatePlayPauseButtons(true);
+        })
+        .catch((error) => {
+          console.error("Audio resume failed:", error);
+        });
     }
   }
 
