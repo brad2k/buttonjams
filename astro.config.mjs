@@ -47,6 +47,12 @@ export default defineConfig({
     svgo: true,
   },
 
+  vite: {
+    build: {
+      target: "esnext",
+    },
+  },
+
   integrations: [
     sitemap({
       filter: (page) =>
