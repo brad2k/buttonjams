@@ -7,7 +7,7 @@ import sitemap from "@astrojs/sitemap";
 import { loadEnv } from "vite";
 
 const { PUBLIC_SANITY_PROJECT_ID, PUBLIC_SANITY_DATASET } = loadEnv(
-  process.env.NODE_ENV,
+  process.env.NODE_ENV || "",
   process.cwd(),
   "",
 );
@@ -24,31 +24,36 @@ export default defineConfig({
     responsiveStyles: true,
   },
 
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: "Playfair Display",
+      cssVariable: "--font-Playfair",
+      weights: [400, 700],
+      subsets: ["latin"],
+      styles: ["normal"],
+    },
+    {
+      provider: fontProviders.google(),
+      name: "Montserrat",
+      cssVariable: "--font-Montserrat",
+      weights: [400, 700],
+      subsets: ["latin"],
+      styles: ["normal"],
+    },
+  ],
+
   experimental: {
     svgo: true,
-    fonts: [
-      {
-        provider: fontProviders.google(),
-        name: "Playfair Display",
-        cssVariable: "--font-Playfair",
-        weights: [400, 700],
-        subsets: ["latin"],
-        styles: ["normal"],
-      },
-      {
-        provider: fontProviders.google(),
-        name: "Montserrat",
-        cssVariable: "--font-Montserrat",
-        weights: [400, 700],
-        subsets: ["latin"],
-        styles: ["normal"],
-      },
-    ],
   },
 
   integrations: [
     sitemap({
-      filter: (page) => page !== "https://jamesbuttonoboe.com/ds/",
+      filter: (page) =>
+        [
+          "https://jamesbuttonoboe.com/ds/",
+          "https://jamesbuttonoboe.com/studio/",
+        ].includes(page),
     }),
     sanity({
       projectId: PUBLIC_SANITY_PROJECT_ID,
