@@ -180,15 +180,6 @@ import { Menu } from "@lucide/astro";
   :root:has(.hero-container) {
     color-scheme: only light;
 
-    /*
-      Force dark theme custom properties.
-      This feels hacky and I hate it; may need to revisit this
-    */
-    --surface-base: var(--color-neutral-100);
-    --text-primary: var(--color-dark-700);
-    --bg-gradient-start: var(--color-neutral-100);
-    --bg-gradient-end: var(--color-neutral-200);
-
     .header {
       position: absolute;
       width: 100%;
@@ -202,6 +193,7 @@ import { Menu } from "@lucide/astro";
 
     .header-logo {
       font-size: var(--font-size-h1);
+      color: var(--color-dark-700);
     }
 
     .last-name {
@@ -227,6 +219,10 @@ import { Menu } from "@lucide/astro";
 
     .oboe-title {
       animation-delay: 1s;
+    }
+
+    .lucide-menu {
+      color: var(--color-dark-700);
     }
   }
 

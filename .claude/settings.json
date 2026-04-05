@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /Users/brad/Code/buttonjams ls-files package-lock.json)",
+      "Bash(node -e \"const lock = require\\('./package-lock.json'\\); const eb = lock.packages['node_modules/esbuild']; console.log\\('esbuild:', eb?.version\\)\")",
+      "Bash(ls /Users/brad/Code/buttonjams/dist/_astro/pane2*)",
+      "Bash(node -e \"const lock = require\\('./package-lock.json'\\); const r = lock.packages['node_modules/rollup']; console.log\\('rollup:', r?.version\\)\")",
+      "Bash(node -e \"const lock = require\\('./package-lock.json'\\); const r = lock.packages['node_modules/@rollup/rollup-linux-x64-gnu']; console.log\\('rollup linux:', r?.version\\)\")",
+      "Read(//temp/readonly/**)",
+      "mcp__claude_ai_Netlify__netlify-project-services-reader",
+      "mcp__claude_ai_Netlify__netlify-deploy-services-reader",
+      "Bash(gh run:*)",
+      "Bash(npx netlify:*)",
+      "Bash(netlify api:*)",
+      "Bash(python3 -c \"import sys,json; deploys=json.load\\(sys.stdin\\); [print\\(d['id'], d['state'], d.get\\('branch',''\\), d.get\\('created_at',''\\), d.get\\('error_message',''\\)[:200] if d.get\\('error_message'\\) else ''\\) for d in deploys]\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\({k:d[k] for k in ['state','error_message','summary'] if k in d}, indent=2\\)\\)\")",
+      "Bash(python3 -c ':*)",
+      "Bash(netlify help:*)",
+      "Bash(netlify logs:*)",
+      "Read(//Users/brad/.netlify/**)",
+      "Read(//Users/brad/.config/netlify/**)",
+      "Read(//Users/brad/**)"
+    ]
+  }
+}
