@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import { getImage, Image } from "astro:assets";
 import Heading from "../components/Heading.astro";
 import ProseLayout from "../layouts/ProseLayout.astro";
 import Section from "../components/Section.astro";
@@ -11,6 +11,8 @@ import playingPhoto from "../assets/james-button-playing.avif";
 
 import type { SanityDocument } from "@sanity/client";
 import { loadQuery } from "../sanity/lib/load-query";
+
+const heroImg = await getImage({ src: playingPhoto, width: playingPhoto.width / 2, format: "avif", densities: [1, 1.5, 2] });
 
 const { data } = await loadQuery<SanityDocument>({
   query: `*[_type == "page" && slug.current == "audition-coaching"][0]{
@@ -24,7 +26,7 @@ const { data } = await loadQuery<SanityDocument>({
 });
 ---
 
-<Layout pageTitle="Woodwind audition coaching">
+<Layout pageTitle="Woodwind audition coaching" heroImage={heroImg.src} heroImageSrcSet={heroImg.srcSet.attribute}>
   <Section className="wrapper flow" as="div">
     <Heading level={1} emphasis>{data.headline}</Heading>
 

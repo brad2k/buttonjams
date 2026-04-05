@@ -6,28 +6,44 @@ import Navigation from "../components/Navigation.astro";
 
 interface Props {
   heroImage?: string;
+  heroImageSrcSet?: string;
+  heroImageSizes?: string;
   pageTitle?: string;
   pageType?: string;
   wrapperClass?: string;
 }
 
-const { heroImage, pageTitle, pageType, wrapperClass, ...rest } = Astro.props;
+const {
+  heroImage,
+  heroImageSrcSet,
+  heroImageSizes,
+  pageTitle,
+  pageType,
+  wrapperClass,
+  ...rest
+} = Astro.props;
 
 const year = new Date().getFullYear();
 ---
 
 <!doctype html>
 <html lang="en">
-  <Head pageTitle={pageTitle} heroImage={heroImage} />
+  <Head
+    pageTitle={pageTitle}
+    heroImage={heroImage}
+    heroImageSrcSet={heroImageSrcSet}
+    heroImageSizes={heroImageSizes}
+  />
   <body>
     <Navigation />
     <main class:list={[wrapperClass]} {...rest}><slot /></main>
     <footer class="footer">
       <div class="wrapper footer-wrapper">
         <span>James Button © {year}</span><span
-          >Website by Brad Azevedo{
-            pageType === "home" ? " | Photo by Anne Richardson" : null
-          }</span
+          >Website by <a
+            href="https://www.bradazevedo.com/"
+            rel="external noopener">Brad Azevedo</a
+          >{pageType === "home" ? " | Photo by Anne Richardson" : null}</span
         >
       </div>
     </footer>

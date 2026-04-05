@@ -6,9 +6,13 @@ import PostHog from "../components/posthog.astro";
 
 interface Props {
   heroImage?: string;
+  heroImageSrcSet?: string;
+  heroImageSizes?: string;
   pageTitle?: string;
 }
-const { heroImage, pageTitle } = Astro.props;
+const { heroImage, heroImageSrcSet, heroImageSizes, pageTitle } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname.replace(/\/?$/, '/'), Astro.site);
 ---
 
 <head>
@@ -16,7 +20,7 @@ const { heroImage, pageTitle } = Astro.props;
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="light dark" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  {heroImage && <link rel="preload" as="image" href={heroImage} />}
+  {heroImage && <link rel="preload" as="image" href={heroImage} imagesrcset={heroImageSrcSet} imagesizes={heroImageSizes} />}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <Font
@@ -30,7 +34,7 @@ const { heroImage, pageTitle } = Astro.props;
   <PostHog />
 
   <title>{`James Button | ${pageTitle || "San Francisco Oboist"}`}</title>
-  <link rel="canonical" href={Astro.url} />
+  <link rel="canonical" href={canonical} />
   <meta
     name="description"
     content="James Button is a San Francisco-based oboist and Associate Principal Oboe of the San Francisco Symphony. He offers woodwind audition coaching and adult oboe lessons in San Francisco or online."
