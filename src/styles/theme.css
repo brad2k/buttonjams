@@ -1,6 +1,6 @@
 @layer theme {
   /*
-    Establishing custom properties for the background graidnet colors.
+    Establishing custom properties for the background gradient colors.
     Initial values need to be primitive color values, not variables.
     The values default to the light theme; dark theme values are set below.
   */
@@ -102,7 +102,7 @@
     /* Typography */
 
     --font-base:
-      var(--font-Montserrat), Segoe UI, Roboto, Helvetica Neue, Arial,
+      var(--font-Montserrat), "Segoe UI", Roboto, "Helvetica Neue", Arial,
       sans-serif;
     --font-regular: 400;
     --font-medium: 500;

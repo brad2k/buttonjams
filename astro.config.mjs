@@ -49,7 +49,7 @@ export default defineConfig({
   integrations: [
     sitemap({
       filter: (page) =>
-        [
+        ![
           "https://jamesbuttonoboe.com/ds/",
           "https://jamesbuttonoboe.com/studio/",
         ].includes(page),
