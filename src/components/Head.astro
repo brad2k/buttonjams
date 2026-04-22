@@ -31,8 +31,6 @@ const canonical = new URL(Astro.url.pathname.replace(/\/?$/, "/"), Astro.site);
       />
     )
   }
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <Font
     cssVariable="--font-Playfair"
     preload={[{ subset: "latin", style: "normal" }, { weight: "400" }]}
