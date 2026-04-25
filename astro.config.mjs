@@ -20,30 +20,31 @@ export default defineConfig({
     imageCDN: true,
   }),
 
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: "Playfair Display",
+      cssVariable: "--font-Playfair",
+      weights: [400, 700],
+      subsets: ["latin"],
+      styles: ["normal"],
+    },
+    {
+      provider: fontProviders.google(),
+      name: "Montserrat",
+      cssVariable: "--font-Montserrat",
+      weights: [400, 700],
+      subsets: ["latin"],
+      styles: ["normal"],
+    },
+  ],
+
   image: {
     responsiveStyles: true,
   },
 
   experimental: {
     svgo: true,
-    fonts: [
-      {
-        provider: fontProviders.google(),
-        name: "Playfair Display",
-        cssVariable: "--font-Playfair",
-        weights: [400, 700],
-        subsets: ["latin"],
-        styles: ["normal"],
-      },
-      {
-        provider: fontProviders.google(),
-        name: "Montserrat",
-        cssVariable: "--font-Montserrat",
-        weights: [400, 700],
-        subsets: ["latin"],
-        styles: ["normal"],
-      },
-    ],
   },
 
   integrations: [

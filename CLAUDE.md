@@ -9,7 +9,7 @@ Live at [jamesbuttonoboe.com](https://jamesbuttonoboe.com/).
 
 ## Stack
 
-- **Astro 5** — primary framework, SSR via Netlify adapter; fully pre-rendered at build time
+- **Astro 6** — primary framework, SSR via Netlify adapter; fully pre-rendered at build time
 - **Sanity v5** — headless CMS; embedded Studio at `/studio`
 - **React 19** — installed but not currently used; interactivity is done with vanilla JS in `<script>` tags
 - **Netlify** — hosting + image CDN; pretty URLs enabled (strips `.html` extensions and adds a trailing slash, e.g. `/about.html` → `/about/`)
@@ -20,9 +20,9 @@ Live at [jamesbuttonoboe.com](https://jamesbuttonoboe.com/).
 ## Development
 
 ```bash
-npm run dev      # start dev server
+npm run dev      # start dev server (Astro)
 npm run build    # production build
-npm run preview  # preview production build locally
+npm run preview  # preview production build via Netlify (netlify serve)
 ```
 
 Environment variables required (`.env`):
@@ -94,16 +94,25 @@ astro.config.mjs
 Uses Astro's `Image` and `Picture` components from `astro:assets` with the Netlify Image CDN:
 
 - Static images: import and use `Image` component with format/densities (e.g., `format="avif"`, `densities={[1, 1.5, 2]}`)
-- Responsive images: use `Picture` component with multiple formats and srcSet
-- Helper: `getImage()` returns optimized src + srcSet for programmatic usage (see index.astro)
+- Responsive images: use `Picture` component with multiple formats (e.g., `formats={["avif", "webp"]}`) and `layout="full-width"` for hero images
 - Netlify Image CDN is enabled in `astro.config.mjs`; images are automatically optimized at request time
 
-Example pattern (from about.astro):
+Example patterns:
 
 ```astro
-import muralPhoto from "../assets/james-button-mural.jpg";
-const heroImg = await getImage({ src: muralPhoto, width: 480, format: "avif" });
+// Simple Image (about.astro)
+import muralPhoto from "../assets/james-button-mural.avif";
 <Image src={muralPhoto} width={480} alt="..." format="avif" densities={[1, 1.5, 2]} />
+
+// Full-width Picture (index.astro)
+import heroAvif from "../assets/hero-4000x2667.avif";
+<Picture
+  src={heroAvif}
+  formats={["avif", "webp"]}
+  alt="..."
+  layout="full-width"
+  position="30% 0%"
+/>
 ```
 
 ## CSS conventions
@@ -115,7 +124,7 @@ No utility framework (no Tailwind). Styles use plain CSS with:
 - **Light/dark theming** via `color-scheme` + `[data-theme]` attribute on `:root` (user can toggle via theme switcher in Navigation)
 - **Composition utilities**: `.wrapper`, `.flow`, `.grid`, `.prose`, `.button` — prefer these over one-off layout styles
 - **Typography scale**: `--size-step-*` fluid type scale; heading sizes via `--font-size-h1` through `--font-size-h6`
-- **Fonts**: `--font-Playfair` (Playfair Display, display/headings), `--font-base` / `--font-Montserrat` (Montserrat, body)
+- **Fonts**: Managed via `<Font>` component in Head.astro with CSS variables `--font-Playfair` (Playfair Display, display/headings) and `--font-Montserrat` (Montserrat, body)
 - **Accent**: teal (`--accent`, `--color-teal`)
 
 ## Sanity content types
@@ -131,9 +140,20 @@ No utility framework (no Tailwind). Styles use plain CSS with:
 - **Build command** — `npm run build` (see netlify.toml for Netlify's build config)
 - **Sitemap & robots.txt** — auto-generated via @astrojs/sitemap; `/studio` and `/ds` are filtered out
 
+## Head component
+
+`src/components/Head.astro` manages all head elements including:
+
+- Font loading via `<Font>` component from `astro:assets`
+- Meta tags and Open Graph properties
+- JSON-LD structured data (Person schema)
+- View transitions via `<ClientRouter>` from `astro:transitions`
+- Theme initialization script (reads localStorage or system preference)
+
 ## Notes
 
 - `/ds` is a local design-system scratch page; it is excluded from the sitemap (as is `/studio`) and should not be treated as production content.
+- **View transitions** — Enabled via `<ClientRouter>` in Head.astro for smooth page navigation without full reloads
 - **PostHog analytics** component is included in the Head (`src/components/posthog.astro`) for tracking user behavior.
 - **Audio files** live in `src/assets/audio/` and are referenced directly in pages (or via Sanity asset references in songs).
 - **Accessibility** — pages use semantic HTML, ARIA labels, and keyboard support (see listen.astro for audio playlist example).

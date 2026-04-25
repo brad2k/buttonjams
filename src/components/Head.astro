@@ -10,7 +10,7 @@ interface Props {
   heroImageSizes?: string;
   pageTitle?: string;
 }
-const { heroImage, heroImageSrcSet, heroImageSizes, pageTitle } = Astro.props;
+const { pageTitle } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname.replace(/\/?$/, "/"), Astro.site);
 ---
@@ -20,25 +20,9 @@ const canonical = new URL(Astro.url.pathname.replace(/\/?$/, "/"), Astro.site);
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="light dark" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  {
-    heroImage && (
-      <link
-        rel="preload"
-        as="image"
-        href={heroImage}
-        imagesrcset={heroImageSrcSet}
-        imagesizes={heroImageSizes}
-      />
-    )
-  }
-  <Font
-    cssVariable="--font-Playfair"
-    preload={[{ subset: "latin", style: "normal" }, { weight: "400" }]}
-  />
-  <Font
-    cssVariable="--font-Montserrat"
-    preload={[{ subset: "latin", style: "normal" }, { weight: "400" }]}
-  />
+
+  <Font cssVariable="--font-Playfair" />
+  <Font cssVariable="--font-Montserrat" />
   <PostHog />
 
   <title>{`James Button | ${pageTitle || "San Francisco Oboist"}`}</title>
@@ -79,7 +63,7 @@ const canonical = new URL(Astro.url.pathname.replace(/\/?$/, "/"), Astro.site);
     document.documentElement.dataset.theme = theme;
   </script>
 
-  <script type="application/ld+json">
+  <script type="application/ld+json" is:inline>
     {
       "@context": "https://schema.org",
       "@type": "Person",
