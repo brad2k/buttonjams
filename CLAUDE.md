@@ -101,7 +101,7 @@ Example patterns:
 
 ```astro
 // Simple Image (about.astro)
-import muralPhoto from "../assets/james-button-mural.jpg";
+import muralPhoto from "../assets/james-button-mural.avif";
 <Image src={muralPhoto} width={480} alt="..." format="avif" densities={[1, 1.5, 2]} />
 
 // Full-width Picture (index.astro)
@@ -143,6 +143,7 @@ No utility framework (no Tailwind). Styles use plain CSS with:
 ## Head component
 
 `src/components/Head.astro` manages all head elements including:
+
 - Font loading via `<Font>` component from `astro:assets`
 - Meta tags and Open Graph properties
 - JSON-LD structured data (Person schema)

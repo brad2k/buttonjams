@@ -1,18 +1,14 @@
 ---
-import { getImage, Image } from "astro:assets";
+import { Camera } from "@lucide/astro";
+import type { SanityDocument } from "@sanity/client";
+import { PortableText } from "astro-portabletext";
+import { Image } from "astro:assets";
+import playingPhoto from "../assets/james-button-playing.avif";
 import Heading from "../components/Heading.astro";
-import ProseLayout from "../layouts/ProseLayout.astro";
 import Section from "../components/Section.astro";
 import Layout from "../layouts/Layout.astro";
-import { PortableText } from "astro-portabletext";
-import { Camera } from "@lucide/astro";
-
-import playingPhoto from "../assets/james-button-playing.avif";
-
-import type { SanityDocument } from "@sanity/client";
+import ProseLayout from "../layouts/ProseLayout.astro";
 import { loadQuery } from "../sanity/lib/load-query";
-
-const heroImg = await getImage({ src: playingPhoto, width: playingPhoto.width / 2, format: "avif", densities: [1, 1.5, 2] });
 
 const { data } = await loadQuery<SanityDocument>({
   query: `*[_type == "page" && slug.current == "audition-coaching"][0]{
@@ -26,7 +22,7 @@ const { data } = await loadQuery<SanityDocument>({
 });
 ---
 
-<Layout pageTitle="Woodwind audition coaching" heroImage={heroImg.src} heroImageSrcSet={heroImg.srcSet.attribute}>
+<Layout pageTitle="Woodwind audition coaching">
   <Section className="wrapper flow" as="div">
     <Heading level={1} emphasis>{data.headline}</Heading>
 
@@ -42,9 +38,14 @@ const { data } = await loadQuery<SanityDocument>({
           priority
         />
         <figcaption>
-          {data.imageCaptionIsPhotoCredit && (
-            <><Camera /><span class="visually-hidden">Photo credit:</span></>
-          )}
+          {
+            data.imageCaptionIsPhotoCredit && (
+              <>
+                <Camera />
+                <span class="visually-hidden">Photo credit:</span>
+              </>
+            )
+          }
           {data.imageCaption}
         </figcaption>
       </figure>
