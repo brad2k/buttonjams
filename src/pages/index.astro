@@ -1,24 +1,11 @@
 ---
-import { getImage, Picture } from "astro:assets";
-import heroAvif from "../assets/hero-5568×3712.avif";
+import { Picture } from "astro:assets";
+import heroAvif from "../assets/hero-4000x2667.avif";
 import Layout from "../layouts/Layout.astro";
 import Heading from "../components/Heading.astro";
-
-const heroImg = await getImage({
-  src: heroAvif,
-  format: "webp",
-  width: 1920,
-  widths: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-});
 ---
 
-<Layout
-  wrapperClass="hero-container"
-  pageType="home"
-  heroImage={heroImg.src}
-  heroImageSrcSet={heroImg.srcSet.attribute}
-  heroImageSizes="100vw"
->
+<Layout wrapperClass="hero-container" pageType="home">
   <Heading level={1} as={4} className="hero-title">
     <span class="sfs">San Francisco Symphony</span>
     <span class="job-title">Associate Principal Oboe</span>
@@ -30,8 +17,8 @@ const heroImg = await getImage({
     formats={["avif", "webp"]}
     alt="James Button holding his Marigaux 920A oboe in the lobby of Davies Symphony Hall"
     priority
-    width={5568}
-    height={3712}
+    width={4000}
+    height={2667}
     layout="full-width"
     position="30% 0%"
     pictureAttributes={{ class: "hero-picture" }}
