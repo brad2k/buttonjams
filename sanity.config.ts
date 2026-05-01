@@ -33,4 +33,7 @@ export default defineConfig({
     }),
   ],
   schema,
+  deployment: {
+    appId: "slsc3gobbhuuqk8wnz9cehje",
+  },
 });
