@@ -111,7 +111,6 @@ import heroAvif from "../assets/hero-4000x2667.avif";
   formats={["avif", "webp"]}
   alt="..."
   layout="full-width"
-  position="30% 0%"
 />
 ```
 

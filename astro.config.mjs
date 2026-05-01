@@ -17,7 +17,7 @@ export default defineConfig({
   site: "https://jamesbuttonoboe.com/",
 
   adapter: netlify({
-    imageCDN: true,
+    imageCDN: false,
   }),
 
   fonts: [
@@ -54,6 +54,7 @@ export default defineConfig({
           "https://jamesbuttonoboe.com/ds/",
           "https://jamesbuttonoboe.com/studio/",
         ].includes(page),
+      lastmod: new Date(),
     }),
     sanity({
       projectId: PUBLIC_SANITY_PROJECT_ID,

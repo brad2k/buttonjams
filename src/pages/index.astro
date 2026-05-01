@@ -20,7 +20,6 @@ import Layout from "../layouts/Layout.astro";
     width={4000}
     height={2667}
     layout="full-width"
-    position="30% 0%"
     pictureAttributes={{ class: "hero-picture" }}
   />
 </Layout>
@@ -69,6 +68,7 @@ import Layout from "../layouts/Layout.astro";
   .hero-image {
     height: 100%;
     transition: object-position var(--transition-base);
+    object-position: 30% 0%;
     object-fit: cover;
     color: transparent;
 
