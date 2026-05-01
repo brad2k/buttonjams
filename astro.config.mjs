@@ -1,5 +1,6 @@
 // @ts-check
-import { defineConfig, fontProviders } from "astro/config";
+import { defineConfig, fontProviders, svgoOptimizer } from "astro/config";
+
 import netlify from "@astrojs/netlify";
 import sanity from "@sanity/astro";
 import react from "@astrojs/react";
@@ -19,6 +20,13 @@ export default defineConfig({
   adapter: netlify({
     imageCDN: false,
   }),
+
+  vite: {
+    ssr: {
+      // This tells Vite to bundle Sanity instead of leaving it to Node
+      noExternal: ["sanity", "@sanity/vision"],
+    },
+  },
 
   fonts: [
     {
@@ -44,7 +52,7 @@ export default defineConfig({
   },
 
   experimental: {
-    svgo: true,
+    svgOptimizer: svgoOptimizer(),
   },
 
   integrations: [
