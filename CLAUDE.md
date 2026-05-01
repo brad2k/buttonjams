@@ -12,7 +12,7 @@ Live at [jamesbuttonoboe.com](https://jamesbuttonoboe.com/).
 - **Astro 6** — primary framework, SSR via Netlify adapter; fully pre-rendered at build time
 - **Sanity v5** — headless CMS; embedded Studio at `/studio`
 - **React 19** — installed but not currently used; interactivity is done with vanilla JS in `<script>` tags
-- **Netlify** — hosting + image CDN; pretty URLs enabled (strips `.html` extensions and adds a trailing slash, e.g. `/about.html` → `/about/`)
+- **Netlify** — hosting; pretty URLs enabled (strips `.html` extensions and adds a trailing slash, e.g. `/about.html` → `/about/`)
 - **astro-portabletext** — renders Sanity rich text (Portable Text) to HTML
 - **Lucide icons** — via `@lucide/astro`
 - Node >= 24, npm >= 11
@@ -58,6 +58,16 @@ GROQ query examples:
 
 All `.astro` files that use Sanity data should define TypeScript interfaces for the expected document shape.
 
+## Sanity configuration
+
+**Environment variables** (`.env`):
+- `PUBLIC_SANITY_PROJECT_ID` — Sanity project ID
+- `PUBLIC_SANITY_DATASET` — Sanity dataset name
+
+Configuration files:
+- `sanity.config.ts` — Studio config; reads from `import.meta.env` (Astro) or `process.env` (fallback), with hardcoded defaults (`projectId: "ths10aea"`, `dataset: "production"`)
+- `sanity.cli.ts` — CLI config for local development; loads `.env` via `dotenv` and reads from `process.env`
+
 ## Interactivity & client behavior
 
 **Vanilla JavaScript** — Client-side behavior uses `<script>` tags in Astro pages, not React islands.
@@ -85,17 +95,18 @@ src/
     imports.css   # barrel import
   assets/       # Images and audio files
 public/
-sanity.config.ts  # Sanity Studio config
 astro.config.mjs
+sanity.config.ts  # Sanity Studio config
+sanity.cli.ts     # Sanity CLI config (loads env via dotenv)
 ```
 
 ## Image optimization
 
-Uses Astro's `Image` and `Picture` components from `astro:assets` with the Netlify Image CDN:
+Uses Astro's `Image` and `Picture` components from `astro:assets`:
 
 - Static images: import and use `Image` component with format/densities (e.g., `format="avif"`, `densities={[1, 1.5, 2]}`)
 - Responsive images: use `Picture` component with multiple formats (e.g., `formats={["avif", "webp"]}`) and `layout="full-width"` for hero images
-- Netlify Image CDN is enabled in `astro.config.mjs`; images are automatically optimized at request time
+- Netlify Image CDN is disabled (`imageCDN: false` in `astro.config.mjs`); images are optimized at build time
 
 Example patterns:
 
@@ -135,7 +146,7 @@ No utility framework (no Tailwind). Styles use plain CSS with:
 ## Build & deployment
 
 - **Pre-rendered at build time** — all pages are fully pre-rendered; there are no dynamic routes or server-side rendering at request time
-- **Netlify adapter** — configured in `astro.config.mjs` with Image CDN enabled
+- **Netlify adapter** — configured in `astro.config.mjs` with Image CDN disabled
 - **Build command** — `npm run build` (see netlify.toml for Netlify's build config)
 - **Sitemap & robots.txt** — auto-generated via @astrojs/sitemap; `/studio` and `/ds` are filtered out
 
