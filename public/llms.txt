@@ -1,0 +1,7 @@
+# llms.txt
+
+# jamesbuttonoboe.com — Personal website for James Button, Associate Principal Oboe at the San Francisco Symphony
+
+## Quick Summary
+
+This is a static Astro 6 site (fully pre-rendered) with a Sanity v5 headless CMS. All pages are static routes with no dynamic rendering. Vanilla JavaScript for interactivity, no React islands. Plain CSS with design tokens and composition utilities.
