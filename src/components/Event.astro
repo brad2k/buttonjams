@@ -31,10 +31,8 @@ const ammendedLink = url.toString();
   <div class="event-details">
     <h3 class="event-heading">{title}</h3>
     <div class="event-info">
-      <time class="event-date">
-        <Calendar class="calendar-icon" />
-        <span>{dateTime}</span></time
-      >
+      <Calendar class="calendar-icon" />
+      <time class="event-date"> <span>{dateTime}</span></time>
       <p>{location}</p>
     </div>
 
@@ -79,14 +77,10 @@ const ammendedLink = url.toString();
     line-height: var(--leading-standard);
   }
 
-  .event-date {
-    display: inline-flex;
-    align-items: center;
-  }
-
   .calendar-icon {
     width: 1.2em;
     height: 1.2em;
     margin-inline-end: var(--space-xs);
+    vertical-align: text-top;
   }
 </style>
