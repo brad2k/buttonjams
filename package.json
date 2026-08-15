@@ -13,22 +13,22 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/netlify": "^7.0.9",
-    "@astrojs/react": "^5.0.5",
-    "@astrojs/sitemap": "^3.7.2",
-    "@lucide/astro": "^1.16.0",
-    "@sanity/astro": "^3.4.0",
-    "@sanity/client": "^7.22.0",
-    "@sanity/orderable-document-list": "^1.5.1",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "astro": "^6.3.3",
+    "@astrojs/netlify": "^8.2.1",
+    "@astrojs/react": "^6.0.2",
+    "@astrojs/sitemap": "^3.7.3",
+    "@lucide/astro": "^1.31.0",
+    "@sanity/astro": "^3.5.0",
+    "@sanity/client": "^7.26.2",
+    "@sanity/orderable-document-list": "^2.0.20",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "astro": "^7.2.2",
     "astro-portabletext": "^0.13.0",
-    "react": "^19.2.6",
-    "react-dom": "^19.2.6",
-    "react-is": "^19.2.6",
-    "sanity": "^5.25.1",
-    "styled-components": "^6.4.1"
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-is": "^19.2.8",
+    "sanity": "^6.9.2",
+    "styled-components": "^6.5.2"
   },
   "devDependencies": {
     "dotenv": "^17.4.2"
