@@ -12,6 +12,81 @@ interface Props {
 }
 const { pageTitle } = Astro.props;
 
+const siteUrl = "https://jamesbuttonoboe.com";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${siteUrl}/#james-button`,
+  name: "James Button",
+  jobTitle: "Associate Principal Oboe",
+  description:
+    "Oboist James Button has been Associate Principal Oboe of the San Francisco Symphony since 2017. He offers woodwind audition coaching and adult oboe lessons in San Francisco or online.",
+  url: siteUrl,
+  image: new URL(socialImage.src, Astro.site ?? siteUrl).href,
+  homeLocation: {
+    "@type": "Place",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "San Francisco",
+      addressRegion: "CA",
+      addressCountry: "US",
+    },
+  },
+  worksFor: {
+    "@type": "MusicGroup",
+    name: "San Francisco Symphony",
+    url: "https://www.sfsymphony.org",
+  },
+  affiliation: {
+    "@type": "Organization",
+    name: "Marigaux",
+    url: "https://www.marigaux.com/en/artists/",
+  },
+  alumniOf: [
+    { "@type": "CollegeOrUniversity", name: "Temple University" },
+    { "@type": "CollegeOrUniversity", name: "The Juilliard School" },
+    { "@type": "MusicGroup", name: "Nashville Symphony" },
+  ],
+  award:
+    "Grammy Award, 2018 (Jennifer Higdon's Oboe Concerto, Nashville Symphony)",
+  knowsAbout: [
+    "Oboe",
+    "Woodwind audition coaching",
+    "Orchestral auditions",
+    "Chamber music",
+    "Oboe reed making",
+  ],
+  sameAs: [
+    "https://www.instagram.com/buttonjamss/",
+    "https://www.sfsymphony.org/Data/Event-Data/Artists/B/James-Button",
+  ],
+  makesOffer: [
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "Woodwind Audition Coaching",
+        description:
+          "Audition coaching for all woodwind instruments, drawing on 25+ years of professional auditions and service on San Francisco Symphony audition committees. Suited to professional orchestra, music school and summer festival auditions.",
+        url: `${siteUrl}/audition-coaching/`,
+        areaServed: "San Francisco, CA and online",
+      },
+    },
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "Adult Oboe Lessons",
+        description:
+          "Private oboe lessons for adults, in San Francisco or online.",
+        url: `${siteUrl}/contact/`,
+        areaServed: "San Francisco, CA and online",
+      },
+    },
+  ],
+};
+
 const canonical = new URL(Astro.url.pathname.replace(/\/?$/, "/"), Astro.site);
 ---
 
@@ -63,30 +138,5 @@ const canonical = new URL(Astro.url.pathname.replace(/\/?$/, "/"), Astro.site);
     document.documentElement.dataset.theme = theme;
   </script>
 
-  <script type="application/ld+json" is:inline>
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "James Button",
-      "jobTitle": "Oboist",
-      "url": "https://jamesbuttonoboe.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "San Francisco",
-        "addressRegion": "CA"
-      },
-      "sameAs": [
-        "https://www.instagram.com/buttonjamss/",
-        "https://www.sfsymphony.org/Data/Event-Data/Artists/B/James-Button"
-      ],
-      "offers": {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Woodwind Audition Coaching",
-          "description": "Professional woodwind audition coaching."
-        }
-      }
-    }
-  </script>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 </head>
