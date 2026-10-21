@@ -13,24 +13,21 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/netlify": "^8.2.7",
-    "@astrojs/react": "^7.0.1",
+    "@astrojs/netlify": "^8.2.10",
     "@astrojs/sitemap": "^3.7.4",
-    "@lucide/astro": "^1.52.0",
-    "@sanity/astro": "^3.5.1",
-    "@sanity/client": "^8.9.0",
-    "@sanity/orderable-document-list": "^2.0.25",
+    "@lucide/astro": "^1.61.0",
+    "@sanity/client": "^8.10.1",
+    "@sanity/orderable-document-list": "^2.0.28",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
-    "astro": "^7.3.6",
+    "astro": "^7.4.2",
     "astro-portabletext": "^1.0.1",
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0",
-    "react-is": "^19.2.8",
-    "sanity": "^6.18.0",
-    "styled-components": "^6.5.3"
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "sanity": "^6.20.0",
+    "styled-components": "^6.6.0"
   },
   "devDependencies": {
-    "dotenv": "^17.4.2"
+    "dotenv": "^18.0.8"
   }
 }

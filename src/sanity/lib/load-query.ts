@@ -1,6 +1,12 @@
 // ./src/sanity/lib/load-query.ts
-import { type QueryParams } from "sanity";
-import { sanityClient } from "sanity:client";
+import { createClient, type QueryParams } from "@sanity/client";
+
+const sanityClient = createClient({
+  projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID,
+  dataset: import.meta.env.PUBLIC_SANITY_DATASET,
+  apiVersion: "v2023-08-24",
+  useCdn: false,
+});
 
 export async function loadQuery<QueryResponse>({
   query,

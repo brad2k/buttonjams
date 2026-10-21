@@ -96,7 +96,10 @@ const canonical = new URL(Astro.url.pathname.replace(/\/?$/, "/"), Astro.site);
   <meta name="color-scheme" content="light dark" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-  <Font cssVariable="--font-Playfair" />
+  <Font
+    cssVariable="--font-Playfair"
+    preload={[{ weight: 400, style: "normal", subset: "latin" }]}
+  />
   <Font cssVariable="--font-Montserrat" />
   <PostHog />
 
