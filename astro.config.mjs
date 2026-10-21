@@ -2,16 +2,7 @@
 import { defineConfig, fontProviders, svgoOptimizer } from "astro/config";
 
 import netlify from "@astrojs/netlify";
-import sanity from "@sanity/astro";
-import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
-import { loadEnv } from "vite";
-
-const { PUBLIC_SANITY_PROJECT_ID, PUBLIC_SANITY_DATASET } = loadEnv(
-  process.env.NODE_ENV || "",
-  process.cwd(),
-  "",
-);
 
 // https://astro.build/config
 export default defineConfig({
@@ -21,11 +12,8 @@ export default defineConfig({
     imageCDN: false,
   }),
 
-  vite: {
-    ssr: {
-      // This tells Vite to bundle Sanity instead of leaving it to Node
-      noExternal: ["sanity", "@sanity/vision"],
-    },
+  build: {
+    inlineStylesheets: "always",
   },
 
   fonts: [
@@ -57,20 +45,8 @@ export default defineConfig({
 
   integrations: [
     sitemap({
-      filter: (page) =>
-        ![
-          "https://jamesbuttonoboe.com/ds/",
-          "https://jamesbuttonoboe.com/studio/",
-        ].includes(page),
+      filter: (page) => page !== "https://jamesbuttonoboe.com/ds/",
       lastmod: new Date(),
     }),
-    sanity({
-      projectId: PUBLIC_SANITY_PROJECT_ID,
-      dataset: PUBLIC_SANITY_DATASET,
-      // Set useCdn to false if you're building statically.
-      useCdn: false,
-      studioBasePath: "/studio",
-    }),
-    react(),
   ],
 });
